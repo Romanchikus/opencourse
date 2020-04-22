@@ -1,6 +1,7 @@
-from django.urls import include, path
-from opencourse.users.views import IndexView
+from django.urls import path
+from opencourse.users import views
 
+app_name = "users"
 urlpatterns = [
-    path('', IndexView.as_view(), name="index"),
+    path("signup/", views.SignUpView.as_view(), name="signup"),
 ]
