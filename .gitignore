@@ -320,8 +320,7 @@ everycheese/media/
 
 .pytest_cache/
 
-#PyCharm
+# Dev
 .idea
-
-# DB
 db.sqlite3
+alex.py
