@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'opencourse.courses.apps.CoursesConfig',
+    'opencourse.users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
