@@ -8,7 +8,7 @@
   <div class="header" style="padding: 50px 50px 10px;">
     <a href="{% url 'users:login' %}">Login</a>
     <a href="{% url 'users:logout' %}">Logout</a>
-    <p>User is logged in: {{ user.is_authenticated }} </p>
+    <p>User is logged in: {{ user.username|default:"Anonymous"}} </p>
   </div>
   <div class="container" style="padding: 10px 50px;">
     {% block content %}
