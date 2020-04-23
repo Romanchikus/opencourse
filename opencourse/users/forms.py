@@ -1,5 +1,6 @@
 from opencourse.users import models
 from django import forms
+from django.forms.models import inlineformset_factory
 from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
 
@@ -31,3 +32,19 @@ class UserCreationForm(auth_forms.UserCreationForm):
             user.save()
             profile.save()
         return user
+
+
+class ProfessorForm(forms.ModelForm):
+    class Meta:
+        model = models.Professor
+        fields = '__all__'
+
+
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = models.Student
+        fields = '__all__'
+
+
+ProfessorFormSet = inlineformset_factory(
+    User, models.Professor, fields="__all__", exclude=[], extra=1, can_delete=False)
