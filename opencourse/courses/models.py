@@ -21,6 +21,46 @@ class City(models.Model):
         return self.name
 
 
+class CourseLevel(models.Model):
+    name = models.CharField(max_length=30, blank=True, null=True)
+    name_ar = models.CharField(max_length=45, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+
+class CourseDuration(models.Model):
+    duration = models.SmallIntegerField(blank=True, null=True)
+
+
+class CourseAge(models.Model):
+    max = models.SmallIntegerField(blank=True, null=True)
+    name = models.CharField(max_length=20, blank=True, null=True)
+    name_ar = models.CharField(max_length=20, blank=True, null=True)
+
+
+class CourseArea(models.Model):
+    name = models.CharField(max_length=30, blank=True, null=True)
+    name_ar = models.CharField(max_length=45, blank=True, null=True)
+    description = models.CharField(max_length=255, blank=True, null=True)
+
+
+class CourseLanguage(models.Model):
+    origin = models.CharField(max_length=30, blank=True, null=True)
+    ar = models.CharField(max_length=30, blank=True, null=True)
+    fr = models.CharField(max_length=30, blank=True, null=True)
+    tag = models.CharField(max_length=2, blank=True, null=True)
+
+
+class CourseLocation(models.Model):
+    location = models.CharField(max_length=25, blank=True, null=True)
+    location_ar = models.CharField(max_length=20, blank=True, null=True)
+    location_decription = models.CharField(max_length=100, blank=True, null=True)
+    price = models.SmallIntegerField(blank=True, null=True)
+    currency = models.CharField(max_length=23, blank=True, null=True)
+    number_sessions = models.SmallIntegerField(blank=True, null=True)
+    coursestartdate = models.DateTimeField(blank=True, null=True)
+    courseenddate = models.DateTimeField(blank=True, null=True)
+
+
 class Course(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
@@ -35,6 +75,12 @@ class Course(models.Model):
     endhostdate = models.DateTimeField(blank=True, null=True)
     hosted = models.NullBooleanField()
     hostactive = models.NullBooleanField()
+    level = models.ForeignKey(CourseLevel, on_delete=models.PROTECT, null=True)
+    duration = models.ForeignKey(CourseDuration, on_delete=models.PROTECT, null=True)
+    age = models.ForeignKey(CourseAge, on_delete=models.PROTECT, null=True)
+    area = models.ForeignKey(CourseArea, on_delete=models.PROTECT, null=True)
+    language = models.ForeignKey(CourseLanguage, on_delete=models.PROTECT, null=True)
+    location = models.ForeignKey(CourseLocation, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return self.title or ""
