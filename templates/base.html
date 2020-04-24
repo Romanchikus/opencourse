@@ -1,30 +1,59 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>OpenCourse</title>
+
+  {% block css %}
+    <!-- Latest compiled and minified Semantic UI -->
+    <link rel="stylesheet" type="text/css" href={% static "semantic/semantic.min.css" %}>
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    <!-- This file stores project-specific CSS -->
+  {% endblock %}
+
 </head>
 <body>
-  <div class="header" style="padding: 50px 50px 10px;">
+
+  <div class="ui menu">
+    <div class="header item">Opencourse</div>
     {% if user.is_authenticated %}
-      <a href="{% url 'users:professor_update' %}">Profile</a>
-      <a href="{% url 'users:logout' %}">Logout</a>
-      <br>
-      <a href="{% url 'courses:search' %}">Search course</a>
-      <a href="{% url 'courses:create' %}">Create course</a>
-      <a href="{% url 'courses:list' %}">List courses</a>
-
-    {% else %}
-      <a href="{% url 'users:login' %}">Login</a>
-      <a href="{% url 'users:signup' %}">Signup</a>
+      <a class="item" href="{% url 'courses:search' %}">Search course</a>
+      <a class="item" href="{% url 'courses:create' %}">Create course</a>
+      <a class="item" href="{% url 'courses:list' %}">List courses</a>
     {% endif %}
-
-    <p>User is logged in: {{ user.username|default:"Anonymous"}} </p>
+    <div class="right menu">
+      {% if user.is_authenticated %}
+        <a class="item" href="{% url 'users:professor_update' %}">Profile</a>
+        <a class="item" href="{% url 'users:logout' %}">Logout</a>
+      {% else %}
+        <a class="item" href="{% url 'users:login' %}">Login</a>
+        <a class="item" href="{% url 'users:signup' %}">Signup</a>
+      {% endif %}
+    </div>
   </div>
-  <div class="container" style="padding: 10px 50px;">
+
+  <div class="ui container" style="padding: 10px 50px;">
+    <p>User is logged in: {{ user.username|default:"Anonymous"}} </p>
+
     {% block content %}
       Base
     {% endblock content %}
   </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    {% block javascript %}
+      <!-- Semantic and its dependencies-->
+      <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+      <script src={% static "semantic/semantic.min.js" %}></script>
+      <!-- Your stuff: Third-party javascript libraries go here -->
+      <!-- place project specific Javascript in this file -->
+    {% endblock javascript %}
+
 </body>
 </html>
