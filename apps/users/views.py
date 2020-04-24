@@ -5,7 +5,7 @@ from django.contrib.auth.views import (
     LoginView as BaseLoginView,
     LogoutView as BaseLogoutView,
 )
-from opencourse.users import forms
+from apps.users import forms
 
 User = get_user_model()
 
@@ -32,7 +32,7 @@ class LogoutView(BaseLogoutView):
 class ProfessorUpdateView(UpdateView):
     model = User
     template_name = "users/update_professor.html"
-    success_url = reverse_lazy('users:profile')
+    success_url = reverse_lazy('users:users:professor_update')
     fields = '__all__'
 
     def get_object(self, queryset=None):

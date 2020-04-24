@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'opencourse.users'
+    name = 'apps.users'

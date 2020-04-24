@@ -1,5 +1,5 @@
 from django import forms
-from opencourse.courses import models
+from apps.courses import models
 
 
 class CourseForm(forms.ModelForm):

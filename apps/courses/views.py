@@ -1,6 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView
-from opencourse.courses import forms, models
+from apps.courses import forms, models
 
 
 class CourseCreateView(CreateView):
