@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, FormView
 from opencourse.courses import forms, models
 
 
@@ -18,3 +18,8 @@ class CourseListView(ListView):
     model = models.Course
     template_name = "courses/list.html"
     paginate_by = 100  # if pagination is desired
+
+
+class CourseSearchView(FormView):
+    template_name = "courses/search.html"
+    form_class = forms.CourseSearchForm
