@@ -9,5 +9,5 @@ class CourseForm(forms.ModelForm):
 
 
 class CourseSearchForm(forms.Form):
-    city = forms.ModelChoiceField(models.City.objects)
-    area = forms.ModelChoiceField(models.CourseArea.objects)
+    city = forms.ModelChoiceField(models.City.objects, empty_label="Select City")
+    area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Select Area")

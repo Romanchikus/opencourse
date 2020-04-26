@@ -61,10 +61,20 @@
           </div>
         </div>
         <div class="ui text container">
-          <h1 class="ui inverted header">Imagine-a-Company</h1>
-          <h2>Do whatever you want when you want to.</h2>
-          <div class="ui huge primary button">
-            Get Started <i class="right arrow icon"></i>
+          <h1 class="ui inverted header">Do you want to learn?</h1>
+          <h2>From math tutoring to yoga, OpenCourse is the best and fastest way to find high-quality teachers.</h2>
+          <div class="ui segment centered">
+            <form class="ui form" action="" method="post">
+              {% csrf_token %}
+              <div class=" two fields">
+                {% for field in form %}
+                  <div class="field">
+                    {{ field }}
+                  </div>
+                {% endfor %}
+                <button class="ui button" type="submit">Search</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
