@@ -127,3 +127,7 @@ body {
 
   z-index: -1;
 }
+
+div.ui.large.secondary.inverted.pointing.menu.navbar-top {
+  border: 0;
+}
