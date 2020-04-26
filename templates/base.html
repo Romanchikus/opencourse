@@ -35,15 +35,17 @@
     </div>
   </div>
 
-  <div class="ui text container">
-    <p>User is logged in: {{ user.username|default:"Anonymous"}} </p>
-
+  <main>
+    <div class="ui text container">
     {% block content %}
       Base
     {% endblock content %}
-  </div>
+    </div>
+  </main>
 
-  <br>
+  <footer>
+    <div class="ui container"><p>© 2020 All rights reserved</p></div>
+  </footer>
 
     <!-- Le javascript
     ================================================== -->
