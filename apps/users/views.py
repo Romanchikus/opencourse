@@ -32,7 +32,7 @@ class LogoutView(BaseLogoutView):
 class ProfessorUpdateView(UpdateView):
     model = User
     template_name = "users/update_professor.html"
-    success_url = reverse_lazy('users:users:professor_update')
+    success_url = reverse_lazy('users:professor_update')
     fields = '__all__'
 
     def get_object(self, queryset=None):
