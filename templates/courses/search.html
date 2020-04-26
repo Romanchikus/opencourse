@@ -1,17 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-  <form action="{% url 'courses:search' %}" method="post">
+  <form class="ui form" action="" method="post">
     {% csrf_token %}
     <h1>Search course </h1>
-    {% for field in form %}
-      <p>
-          {{ field.errors }}
-          {{ field.label_tag }} {{ field }}
-      </p>
-    {% endfor %}
-    <input type="submit" value="Search">
+    {% include "components/form.html" %}
+    <button class="ui button" type="submit">Search</button>
   </form>
-
 {% endblock content %}

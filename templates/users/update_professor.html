@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <form method="post" action="">
+  <form class="ui form" method="post" action="">
+    {{ professor_formset.management_form }}
     {% csrf_token %}
-    <table>
-      {{ form }}
-    </table>
-    <table>
-	    {{ professor_formset }}
-    </table>
-    <input type="submit"/>
+    {% include "components/form.html" %}
+    {% for profile_form in professor_formset %}
+      {% include "components/form.html" with form=profile_form %}
+    {% endfor %}
+    <button class="ui button" type="submit">Update</button>
   </form>
 {% endblock content %}
