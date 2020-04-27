@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h3 class="ui header">Create course</h3>
   <form class="ui form" action="" method="post">
     {% csrf_token %}
-    <h1>Create course </h1>
     {% include "components/form.html" %}
     <button class="ui button" type="submit">Create course</button>
   </form>

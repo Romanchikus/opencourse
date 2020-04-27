@@ -130,3 +130,11 @@ body {
 div.ui.large.secondary.inverted.pointing.menu.navbar-top {
   border: 0;
 }
+
+main {
+  background: rgb(248, 249, 250);
+}
+
+#content-wrapper {
+  padding: 4rem;
+}
