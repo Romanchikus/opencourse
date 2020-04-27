@@ -9,9 +9,7 @@ User = get_user_model()
 
 class UserCreationForm(auth_forms.UserCreationForm):
     USER_TYPES = [("student", "student"), ("professor", "professor")]
-    user_type = forms.ChoiceField(
-        choices=USER_TYPES
-    )
+    user_type = forms.ChoiceField(choices=USER_TYPES)
 
     class Meta(auth_forms.UserCreationForm.Meta):
         model = User
@@ -34,17 +32,48 @@ class UserCreationForm(auth_forms.UserCreationForm):
         return user
 
 
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            "first_name",
+            "last_name",
+        ]
+
+
 class ProfessorForm(forms.ModelForm):
     class Meta:
         model = models.Professor
-        fields = '__all__'
+        fields = [
+            "dob",
+            "city",
+            "bio",
+            "edulevel",
+            "yearsexperience",
+            "picture",
+        ]
 
 
 class StudentForm(forms.ModelForm):
     class Meta:
         model = models.Student
-        fields = '__all__'
+        fields = "__all__"
 
 
+professor_form_fields = [
+    "dob",
+    "city",
+    "bio",
+    "edulevel",
+    "yearsexperience",
+    "picture",
+]
 ProfessorFormSet = inlineformset_factory(
-    User, models.Professor, fields="__all__", exclude=[], extra=1, can_delete=False)
+    User,
+    models.Professor,
+    form=UserForm,
+    fields=professor_form_fields,
+    exclude=[],
+    extra=1,
+    can_delete=False,
+)

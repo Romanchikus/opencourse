@@ -5,7 +5,17 @@ from apps.courses import models
 class CourseForm(forms.ModelForm):
     class Meta:
         model = models.Course
-        exclude = ["professor"]
+        fields = [
+            "title",
+            "area",
+            "descrip",
+            "level",
+            "extrainfo",
+            "language",
+            "duration",
+            "age",
+            # "location",
+        ]
 
 
 class CourseSearchForm(forms.Form):

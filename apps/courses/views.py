@@ -23,3 +23,4 @@ class CourseListView(ListView):
 class CourseSearchView(FormView):
     template_name = "courses/search.html"
     form_class = forms.CourseSearchForm
+    success_url = reverse_lazy("courses:search")

@@ -26,9 +26,14 @@ class CourseLevel(models.Model):
     name_ar = models.CharField(max_length=45, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
 
 class CourseDuration(models.Model):
     duration = models.SmallIntegerField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.duration} minutes"
 
 
 class CourseAge(models.Model):
@@ -36,11 +41,17 @@ class CourseAge(models.Model):
     name = models.CharField(max_length=20, blank=True, null=True)
     name_ar = models.CharField(max_length=20, blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class CourseArea(models.Model):
     name = models.CharField(max_length=30, blank=True, null=True)
     name_ar = models.CharField(max_length=45, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
 
 
 class CourseLanguage(models.Model):
@@ -48,6 +59,9 @@ class CourseLanguage(models.Model):
     ar = models.CharField(max_length=30, blank=True, null=True)
     fr = models.CharField(max_length=30, blank=True, null=True)
     tag = models.CharField(max_length=2, blank=True, null=True)
+
+    def __str__(self):
+        return self.origin
 
 
 class CourseLocation(models.Model):
@@ -63,7 +77,7 @@ class CourseLocation(models.Model):
 
 class Course(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100, blank=True, null=True)
     title_ar = models.CharField(max_length=100, blank=True, null=True)
     descrip = models.TextField(blank=True, null=True)
@@ -79,7 +93,7 @@ class Course(models.Model):
     duration = models.ForeignKey(CourseDuration, on_delete=models.PROTECT, null=True)
     age = models.ForeignKey(CourseAge, on_delete=models.PROTECT, null=True)
     area = models.ForeignKey(CourseArea, on_delete=models.PROTECT, null=True)
-    language = models.ForeignKey(CourseLanguage, on_delete=models.PROTECT, null=True)
+    language = models.ManyToManyField(CourseLanguage)
     location = models.ForeignKey(CourseLocation, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
