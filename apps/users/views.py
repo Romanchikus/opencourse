@@ -26,7 +26,7 @@ class LoginView(BaseLoginView):
 
 class LogoutView(BaseLogoutView):
     def get_next_page(self):
-        return reverse_lazy("users:signup")
+        return reverse_lazy("users:login")
 
 
 class ProfessorUpdateView(UpdateView):

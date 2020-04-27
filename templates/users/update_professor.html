@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h3 class="ui header">Profile</h3>
   <form class="ui form" method="post" action="">
     {{ professor_formset.management_form }}
     {% csrf_token %}

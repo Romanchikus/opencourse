@@ -2,13 +2,13 @@
 
 {% block content %}
 
-  <h1>Courses</h1>
-  <ul>
-  {% for course in object_list %}
-      <li>{{ course }}</li>
-  {% empty %}
-      <li>No courses yet.</li>
-  {% endfor %}
-  </ul>
+  <h3 class="ui header">List courses</h3>
+  <div class="ui list">
+    {% for course in object_list %}
+        <div class="item">{{ course }}</div>
+    {% empty %}
+        <div class="item">No courses yet.</div>
+    {% endfor %}
+  </div>
 
 {% endblock content %}
