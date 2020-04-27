@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 from apps.courses import models
 
 
@@ -16,6 +17,10 @@ class CourseForm(forms.ModelForm):
             "age",
             # "location",
         ]
+        labels = {
+            "descrip": _("Description"),
+            "extrainfo": _("Extra information")
+        }
 
 
 class CourseSearchForm(forms.Form):

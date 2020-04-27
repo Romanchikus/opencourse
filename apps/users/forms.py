@@ -3,6 +3,8 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
+from django.utils.translation import ugettext_lazy as _
+
 
 User = get_user_model()
 
@@ -52,6 +54,13 @@ class ProfessorForm(forms.ModelForm):
             "yearsexperience",
             "picture",
         ]
+        labels = {
+            "dob": _("Data of birth"),
+            "bio": _("Biography"),
+            "edulevel": _("Education level"),
+            "yearsexperience": _("Years of experience"),
+
+        }
 
 
 class StudentForm(forms.ModelForm):
@@ -60,19 +69,10 @@ class StudentForm(forms.ModelForm):
         fields = "__all__"
 
 
-professor_form_fields = [
-    "dob",
-    "city",
-    "bio",
-    "edulevel",
-    "yearsexperience",
-    "picture",
-]
 ProfessorFormSet = inlineformset_factory(
     User,
     models.Professor,
-    form=UserForm,
-    fields=professor_form_fields,
+    form=ProfessorForm,
     exclude=[],
     extra=1,
     can_delete=False,
