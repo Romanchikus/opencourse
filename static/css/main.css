@@ -127,12 +127,18 @@ body {
   z-index: -1;
 }
 
+.pusher {
+  display: flex;
+  flex-direction: column;
+}
+
 div.ui.large.secondary.inverted.pointing.menu.navbar-top {
   border: 0;
 }
 
 main {
   background: rgb(248, 249, 250);
+  flex: 1;
 }
 
 #content-wrapper {
