@@ -66,7 +66,13 @@ body {
 }
 
 .footer.segment {
-  padding: 5em 0em;
+  padding: 1em 0em;
+  background: linear-gradient(to right,#207dff 0%,#a16ae8 100%) !important;
+  color: white;
+  opacity: 0.8;
+}
+.footer p {
+  opacity: 1;
 }
 
 .secondary.pointing.menu .toc.item {
