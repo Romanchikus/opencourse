@@ -324,3 +324,4 @@ everycheese/media/
 .idea
 db.sqlite3
 alex.py
+tmp/
