@@ -20,8 +20,9 @@ class LoginView(BaseLoginView):
     template_name = "users/login.html"
 
     def get_success_url(self):
-        redirect_url = self.get_redirect_url()
-        return redirect_url or reverse_lazy("courses:create")
+        if self.request.user.professor.course_set.exists():
+            return reverse_lazy("courses:list")
+        return reverse_lazy("courses:create")
 
 
 class LogoutView(BaseLogoutView):

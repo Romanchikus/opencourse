@@ -91,8 +91,8 @@ class Course(models.Model):
     hostactive = models.NullBooleanField()
     level = models.ForeignKey(CourseLevel, on_delete=models.PROTECT, null=True)
     duration = models.ForeignKey(CourseDuration, on_delete=models.PROTECT, null=True)
-    age = models.ForeignKey(CourseAge, on_delete=models.PROTECT, null=True)
-    area = models.ForeignKey(CourseArea, on_delete=models.PROTECT, null=True)
+    age = models.ManyToManyField(CourseAge)
+    area = models.ManyToManyField(CourseArea)
     language = models.ManyToManyField(CourseLanguage)
     location = models.ForeignKey(CourseLocation, on_delete=models.PROTECT, null=True)
 
