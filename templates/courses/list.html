@@ -1,25 +1,15 @@
 {% extends "base.html" %}
 
-{% block content %}
-  <section class="ftco-section contact-section bg-light pt-5">
-    <div class="container">
-      <div class="row d-flex contact-info">
-        <div class="col-md-12 mb-4">
-          <h2 class="h3">List courses</h2>
-        </div>
-      </div>
-      <div class="row block-9">
-        <div class="col-md-6 order-md-last d-flex">
-          <ul class="list-group">
-            {% for course in object_list %}
-              <li class="list-group-item">{{ course }}</li>
-            {% empty %}
-              <li class="list-group-item">No courses yet.</li>
-            {% endfor %}
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+{% block content_title %}
+  List courses
+{% endblock content_title %}
 
+{% block content %}
+  <ul class="list-group">
+    {% for course in object_list %}
+      <li class="list-group-item">{{ course }}</li>
+    {% empty %}
+      <li class="list-group-item">No courses yet.</li>
+    {% endfor %}
+  </ul>
 {% endblock content %}
