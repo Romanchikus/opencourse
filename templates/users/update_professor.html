@@ -1,14 +1,29 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-  <h3 class="ui header">Profile</h3>
-  <form class="ui form" method="post" action="">
-    {{ professor_formset.management_form }}
-    {% csrf_token %}
-    {% include "components/form.html" %}
-    {% for profile_form in professor_formset %}
-      {% include "components/form.html" with form=profile_form %}
-    {% endfor %}
-    <button class="ui button" type="submit">Update</button>
-  </form>
+  <section class="ftco-section contact-section bg-light pt-5">
+    <div class="container">
+      <div class="row d-flex contact-info">
+        <div class="col-md-12 mb-4">
+          <h2 class="h3">Profile</h2>
+        </div>
+      </div>
+      <div class="row block-9">
+        <div class="col-md-6 order-md-last d-flex">
+          <form action="" class="bg-white p-5 contact-form" method="post">
+            {{ csrf_token }}
+            {{ professor_formset.management_form }}
+            {{ form|crispy }}
+            {% for profile_form in professor_formset %}
+              {{ profile_form|crispy }}
+            {% endfor %}
+            <div class="form-group">
+              <input type="submit" value="Update" class="btn btn-primary py-3 px-5">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock content %}

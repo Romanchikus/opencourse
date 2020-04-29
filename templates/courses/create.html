@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <section class="ftco-section contact-section bg-light">
+  <section class="ftco-section contact-section bg-light pt-5">
     <div class="container">
       <div class="row d-flex contact-info">
         <div class="col-md-12 mb-4">
@@ -12,6 +12,7 @@
       <div class="row block-9">
         <div class="col-md-6 order-md-last d-flex">
           <form action="" class="bg-white p-5 contact-form" method="post">
+            {{ csrf_token }}
             {{ form|crispy }}
             <div class="form-group">
               <input type="submit" value="Create course" class="btn btn-primary py-3 px-5">
