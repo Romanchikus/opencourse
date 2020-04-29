@@ -141,3 +141,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_FORMS = {'signup': 'apps.users.forms.ProfileCreateForm'}
