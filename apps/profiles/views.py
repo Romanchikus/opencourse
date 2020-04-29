@@ -1,10 +1,6 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import UpdateView, RedirectView
 from django.contrib.auth import get_user_model
-from django.contrib.auth.views import (
-    LoginView as BaseLoginView,
-    LogoutView as BaseLogoutView,
-)
 from apps.profiles import forms
 
 User = get_user_model()
@@ -12,7 +8,7 @@ User = get_user_model()
 
 class ProfessorUpdateView(UpdateView):
     model = User
-    template_name = "profiles/update_professor.html"
+    template_name = "profiles/professor.html"
     success_url = reverse_lazy('courses:list')
     fields = ["first_name", "last_name"]
 
@@ -39,3 +35,13 @@ class ProfessorUpdateView(UpdateView):
         else:
             return super().form_invalid(form)
 
+
+class ProfileView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+
+        if hasattr(self.request.user, "professor"):
+            self.pattern_name = "profiles:professor"
+        elif hasattr(self.request.user, "student"):
+            self.pattern_name = "profiles:student"
+
+        return super().get_redirect_url(*args, **kwargs)

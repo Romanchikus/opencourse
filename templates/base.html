@@ -45,7 +45,7 @@
             {% if user.is_authenticated %}
               <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">Create course</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">List courses</a></li>
-              <li class="nav-item cta mr-md-1"><a href="{% url 'profiles:professor_update' %}" class="nav-link">Profile</a></li>
+              <li class="nav-item cta mr-md-1"><a href="{% url 'profiles:professor' %}" class="nav-link">Profile</a></li>
 	            <li class="nav-item cta cta-colored"><a href="{% url 'account_logout' %}" class="nav-link">Logout</a></li>
             {% else %}
               <li class="nav-item cta mr-md-1"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>

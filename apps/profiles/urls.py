@@ -3,5 +3,6 @@ from apps.profiles import views
 
 app_name = "profiles"
 urlpatterns = [
-    path("profile/professor/", views.ProfessorUpdateView.as_view(), name="professor_update"),
+    path("", views.ProfileView.as_view(), name="profile"),
+    path("professor/", views.ProfessorUpdateView.as_view(), name="professor"),
 ]
