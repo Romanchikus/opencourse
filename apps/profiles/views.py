@@ -49,16 +49,20 @@ class ProfessorUpdateView(ProfileUpdateView):
 
 class ProfileView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
-
         if hasattr(self.request.user, "professor"):
-            self.pattern_name = "profiles:professor"
-
-            # if self.request.user.professor.course_set.exists():
-            #     return reverse_lazy("courses:list")
-            # else:
-            #     return reverse_lazy("courses:create")
-
+            return reverse_lazy("profiles:professor")
         elif hasattr(self.request.user, "student"):
-            self.pattern_name = "profiles:student"
+            return reverse_lazy("profiles:student")
+        return super().get_redirect_url(*args, **kwargs)
 
+
+class DispatchLoginView(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        if hasattr(self.request.user, "professor"):
+            if self.request.user.professor.course_set.exists():
+                return reverse_lazy("courses:list")
+            else:
+                return reverse_lazy("courses:create")
+        elif hasattr(self.request.user, "student"):
+            return reverse_lazy("courses:search")
         return super().get_redirect_url(*args, **kwargs)

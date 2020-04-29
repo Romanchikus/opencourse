@@ -142,6 +142,10 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_FORMS = {'signup': 'apps.profiles.forms.ProfileCreateForm'}
-LOGIN_REDIRECT_URL = "profiles:profile"
+LOGIN_REDIRECT_URL = "profiles:dispatch_login"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
+
+# Delete on prod
+ACCOUNT_LOGOUT_ON_GET = True
