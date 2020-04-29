@@ -130,9 +130,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [str(os.path.join(BASE_DIR, "static"))]
 
+# Third-party apps settings
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_VERIFICATION = "none"

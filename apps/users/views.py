@@ -10,26 +10,6 @@ from apps.users import forms
 User = get_user_model()
 
 
-class SignUpView(CreateView):
-    template_name = "users/signup.html"
-    form_class = forms.UserCreationForm
-    success_url = reverse_lazy("users:login")
-
-
-class LoginView(BaseLoginView):
-    template_name = "users/login.html"
-
-    def get_success_url(self):
-        if self.request.user.professor.course_set.exists():
-            return reverse_lazy("courses:list")
-        return reverse_lazy("courses:create")
-
-
-class LogoutView(BaseLogoutView):
-    def get_next_page(self):
-        return reverse_lazy("users:login")
-
-
 class ProfessorUpdateView(UpdateView):
     model = User
     template_name = "users/update_professor.html"
