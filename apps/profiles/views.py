@@ -5,14 +5,14 @@ from django.contrib.auth.views import (
     LoginView as BaseLoginView,
     LogoutView as BaseLogoutView,
 )
-from apps.users import forms
+from apps.profiles import forms
 
 User = get_user_model()
 
 
 class ProfessorUpdateView(UpdateView):
     model = User
-    template_name = "users/update_professor.html"
+    template_name = "profiles/update_professor.html"
     success_url = reverse_lazy('courses:list')
     fields = ["first_name", "last_name"]
 

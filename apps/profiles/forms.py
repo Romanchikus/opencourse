@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
 from django.utils.translation import ugettext_lazy as _
 from allauth.account.forms import SignupForm
-from apps.users import models
+from apps.profiles import models
 
 
 User = get_user_model()

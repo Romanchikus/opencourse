@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'apps.courses.apps.CoursesConfig',
-    'apps.users.apps.UsersConfig',
+    'apps.profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -141,4 +141,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_FORMS = {'signup': 'apps.users.forms.ProfileCreateForm'}
+ACCOUNT_FORMS = {'signup': 'apps.profiles.forms.ProfileCreateForm'}

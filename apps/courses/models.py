@@ -1,5 +1,5 @@
 from django.db import models
-from apps.users.models import Professor
+from apps.profiles.models import Professor
 
 
 class City(models.Model):
