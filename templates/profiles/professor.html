@@ -8,9 +8,9 @@
 {% block content %}
   <form action="" class="bg-white p-5 contact-form" method="post">
     {% csrf_token %}
-    {{ professor_formset.management_form }}
+    {{ formset.management_form }}
     {{ form|crispy }}
-    {% for profile_form in professor_formset %}
+    {% for profile_form in formset %}
       {{ profile_form|crispy }}
     {% endfor %}
     <div class="form-group">
