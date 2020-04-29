@@ -142,3 +142,4 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_FORMS = {'signup': 'apps.profiles.forms.ProfileCreateForm'}
+LOGIN_REDIRECT_URL = "profiles:profile"

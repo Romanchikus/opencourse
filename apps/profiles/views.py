@@ -41,6 +41,12 @@ class ProfileView(RedirectView):
 
         if hasattr(self.request.user, "professor"):
             self.pattern_name = "profiles:professor"
+
+            if self.request.user.professor.course_set.exists():
+                return reverse_lazy("courses:list")
+            else:
+                return reverse_lazy("courses:create")
+
         elif hasattr(self.request.user, "student"):
             self.pattern_name = "profiles:student"
 
