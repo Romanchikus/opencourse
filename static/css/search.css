@@ -1,3 +1,9 @@
 .hero-wrap {
   height: 100vh;
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+body {
+  margin-bottom: 0; /* Margin bottom by footer height */
+}
