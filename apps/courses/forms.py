@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
+from crispy_forms.helper import FormHelper
 from apps.courses import models
 
 
@@ -24,5 +25,11 @@ class CourseForm(forms.ModelForm):
 
 
 class CourseSearchForm(forms.Form):
-    city = forms.ModelChoiceField(models.City.objects, empty_label="Select City")
-    area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Select Area")
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_show_labels = False
+        self.helper.field_class = 'form-field'
+
+    city = forms.ModelChoiceField(models.City.objects, empty_label="City")
+    area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
