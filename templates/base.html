@@ -48,7 +48,7 @@
               <li class="nav-item cta mr-md-1"><a href="{% url 'users:professor_update' %}" class="nav-link">Profile</a></li>
 	            <li class="nav-item cta cta-colored"><a href="{% url 'users:logout' %}" class="nav-link">Logout</a></li>
             {% else %}
-              <li class="nav-item cta mr-md-1"><a href="{% url 'users:login' %}" class="nav-link">Login</a></li>
+              <li class="nav-item cta mr-md-1"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
 	            <li class="nav-item cta cta-colored"><a href="{% url 'users:signup' %}" class="nav-link">Signup</a></li>
             {% endif %}
 	        </ul>
@@ -68,9 +68,9 @@
         <div class="container">
           <div class="row d-flex contact-info">
             <div class="col-md-12 mb-4">
-              <h2 class="h3">
-                {% block content_title %}{% endblock content_title %}
-              </h2>
+              {% block content_title %}
+                <h2 class="h3"></h2>
+              {% endblock content_title %}
             </div>
           </div>
           <div class="row block-9">
