@@ -140,6 +140,8 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_FORMS = {'signup': 'apps.profiles.forms.ProfileCreateForm'}
 LOGIN_REDIRECT_URL = "profiles:profile"
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
