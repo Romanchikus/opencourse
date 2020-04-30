@@ -63,6 +63,4 @@ class DispatchLoginView(RedirectView):
                 return reverse_lazy("courses:list")
             else:
                 return reverse_lazy("courses:create")
-        elif hasattr(self.request.user, "student"):
-            return reverse_lazy("courses:search")
-        return super().get_redirect_url(*args, **kwargs)
+        return reverse_lazy("courses:search")

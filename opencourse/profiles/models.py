@@ -5,7 +5,7 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True,
     )
     slug = models.UUIDField(default=uuid.uuid4, blank=True, editable=False)
     picture = models.ImageField(
@@ -39,3 +39,6 @@ class Professor(Profile):
     dateexpir = models.DateTimeField(blank=True, null=True)
     listed = models.NullBooleanField()
     feespaid = models.NullBooleanField()
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
