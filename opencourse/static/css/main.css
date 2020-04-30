@@ -20,3 +20,8 @@ body {
   line-height: 70px; /* Vertically center the text there */
   background: rgb(255,255,255);
 }
+/* bootstrap-seclect styles
+-------------------------------------------------- */
+.bootstrap-select .btn-light {
+  border-color: #ced4da;
+}
