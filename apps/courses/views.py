@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView
+from django_filters.views import FilterView
+
 from apps.courses import forms, models
 
 
@@ -24,3 +26,9 @@ class CourseSearchView(FormView):
     template_name = "courses/search.html"
     form_class = forms.CourseSearchForm
     success_url = reverse_lazy("courses:search")
+
+
+class CourseSearchResultsView(FilterView):
+    model = models.Course
+    filterset_fields = ['area', 'city', 'level', 'age', 'language']
+    template_name = "courses/search_results.html"

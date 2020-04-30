@@ -29,6 +29,7 @@ class CourseLevel(models.Model):
     def __str__(self):
         return self.name
 
+
 class CourseDuration(models.Model):
     duration = models.SmallIntegerField(blank=True, null=True)
 

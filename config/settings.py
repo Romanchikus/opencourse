@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
+    'django_filters',
 
     'apps.courses.apps.CoursesConfig',
     'apps.profiles.apps.ProfilesConfig',
