@@ -322,6 +322,5 @@ everycheese/media/
 
 # Dev
 .idea
-db.sqlite3
-alex.py
 tmp/
+media/
