@@ -65,20 +65,6 @@ class CourseLanguage(models.Model):
         return self.origin
 
 
-class CourseLocation(models.Model):
-    name = models.CharField(max_length=25, blank=True, null=True)
-    name_ar = models.CharField(max_length=20, blank=True, null=True)
-    decription = models.CharField(max_length=100, blank=True, null=True)
-    price = models.SmallIntegerField(blank=True, null=True)
-    currency = models.CharField(max_length=23, blank=True, null=True)
-    number_sessions = models.SmallIntegerField(blank=True, null=True)
-    coursestartdate = models.DateTimeField(blank=True, null=True)
-    courseenddate = models.DateTimeField(blank=True, null=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Course(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
@@ -98,7 +84,21 @@ class Course(models.Model):
     age = models.ManyToManyField(CourseAge)
     area = models.ManyToManyField(CourseArea)
     language = models.ManyToManyField(CourseLanguage)
-    location = models.ForeignKey(CourseLocation, on_delete=models.PROTECT, null=True)
 
     def __str__(self):
         return self.title or ""
+
+
+class CourseLocation(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    name = models.CharField(max_length=25, blank=True, null=True)
+    name_ar = models.CharField(max_length=20, blank=True, null=True)
+    description = models.CharField(max_length=100, blank=True, null=True)
+    price = models.SmallIntegerField(blank=True, null=True)
+    currency = models.CharField(max_length=23, blank=True, null=True)
+    number_sessions = models.SmallIntegerField(blank=True, null=True)
+    coursestartdate = models.DateTimeField(blank=True, null=True)
+    courseenddate = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name

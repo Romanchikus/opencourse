@@ -11,9 +11,25 @@ class CourseCreateView(CreateView):
     exclude = ["professor"]
     success_url = reverse_lazy("courses:list")
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context['formset'] = forms.CourseLocationFormset(self.request.POST)
+        else:
+            context['formset'] = forms.CourseLocationFormset()
+        return context
+
     def form_valid(self, form):
         form.instance.professor = self.request.user.professor
-        return super().form_valid(form)
+        context = self.get_context_data()
+        formset = context['formset']
+        if formset.is_valid():
+            response = super().form_valid(form)
+            formset.instance = self.object
+            formset.save()
+            return response
+        else:
+            return super().form_invalid(form)
 
 
 class CourseListView(ListView):

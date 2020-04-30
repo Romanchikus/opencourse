@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
 from opencourse.courses import models
@@ -33,3 +34,10 @@ class CourseSearchForm(forms.Form):
 
     city = forms.ModelChoiceField(models.City.objects, empty_label="City")
     area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
+
+
+CourseLocationFormset = inlineformset_factory(
+    models.Course,
+    models.CourseLocation,
+    fields=('name', 'description'),
+)

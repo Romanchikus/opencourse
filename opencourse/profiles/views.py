@@ -18,7 +18,6 @@ class ProfileUpdateView(UpdateView):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
             context['formset'] = self.formset_class(self.request.POST, self.request.FILES, instance=self.object)
-            context['formset'].full_clean()
         else:
             context['formset'] = self.formset_class(instance=self.object)
         return context
