@@ -32,3 +32,4 @@ class CourseSearchResultsView(FilterView):
     model = models.Course
     filterset_fields = ['area', 'city', 'level', 'age', 'language']
     template_name = "courses/search_results.html"
+    paginate_by = 10

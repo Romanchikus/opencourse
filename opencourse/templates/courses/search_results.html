@@ -12,7 +12,7 @@
       <div class="row">
         <div class="col-lg-8 pr-lg-4">
           <div class="row">
-            {% for course in filter.qs %}
+            {% for course in page_obj %}
               <div class="col-md-12">
                 <div class="team d-md-flex p-4 bg-white">
                   <div class="img" style="background-image: url(images/person_1.jpg);"></div>
@@ -41,21 +41,35 @@
               </div>
             {% endfor %}
           </div>
-          <div class="row mt-5">
-            <div class="col text-center">
-              <div class="block-27">
-                <ul>
-                  <li><a href="#">&lt;</a></li>
-                  <li class="active"><span>1</span></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">&gt;</a></li>
-                </ul>
+          {% if is_paginated %}
+            <div class="row mt-5">
+              <div class="col text-center">
+                <div class="block-27">
+                  {% if is_paginated %}
+                    <ul>
+                      {% if page_obj.has_previous %}
+                        <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                      {% endif %}
+                      {% for i in paginator.page_range %}
+                        {% if page_obj.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                          <li><a href="?page={{ i }}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if page_obj.has_next %}
+                        <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                </div>
               </div>
             </div>
-          </div>
+          {% endif %}
         </div>
         <div class="col-lg-4 sidebar">
           <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
