@@ -65,14 +65,30 @@ class ProfessorForm(forms.ModelForm):
 
 class StudentForm(forms.ModelForm):
     class Meta:
-        model = models.Student
-        fields = "__all__"
+        model = models.Professor
+        fields = [
+            "dob",
+            "city",
+            "picture",
+        ]
+        labels = {
+            "dob": _("Data of birth"),
+        }
 
 
 ProfessorFormSet = inlineformset_factory(
     User,
     models.Professor,
     form=ProfessorForm,
+    exclude=[],
+    extra=1,
+    can_delete=False,
+)
+
+StudentFormSet = inlineformset_factory(
+    User,
+    models.Student,
+    form=StudentForm,
     exclude=[],
     extra=1,
     can_delete=False,

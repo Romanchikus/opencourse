@@ -36,15 +36,15 @@ class ProfileUpdateView(UpdateView):
 
 
 class ProfessorUpdateView(ProfileUpdateView):
-    template_name = "profiles/professor.html"
+    template_name = "profiles/profile.html"
     success_url = reverse_lazy('courses:list')
     formset_class = forms.ProfessorFormSet
 
 
-# class StudentUpdateView(ProfileUpdateView):
-#     template_name = "profiles/student.html"
-#     success_url = reverse_lazy('courses:search')
-#     formset_class = forms.StudentFormSet
+class StudentUpdateView(ProfileUpdateView):
+    template_name = "profiles/profile.html"
+    success_url = reverse_lazy('courses:search')
+    formset_class = forms.StudentFormSet
 
 
 class ProfileView(RedirectView):
