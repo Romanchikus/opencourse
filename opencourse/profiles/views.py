@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, RedirectView
 from django.contrib.auth import get_user_model
-from apps.profiles import forms
+from opencourse.profiles import forms
 
 User = get_user_model()
 

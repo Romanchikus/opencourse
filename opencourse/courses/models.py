@@ -1,5 +1,5 @@
 from django.db import models
-from apps.profiles.models import Professor
+from opencourse.profiles.models import Professor
 
 
 class City(models.Model):

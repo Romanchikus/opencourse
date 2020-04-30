@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
-from apps.courses import models
+from opencourse.courses import models
 
 
 class CourseForm(forms.ModelForm):

@@ -45,8 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
 
-    'apps.courses.apps.CoursesConfig',
-    'apps.profiles.apps.ProfilesConfig',
+    'opencourse.courses.apps.CoursesConfig',
+    'opencourse.profiles.apps.ProfilesConfig',
 ]
 
 MIDDLEWARE = [
@@ -64,7 +64,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
+        'DIRS': [os.path.join(BASE_DIR, 'opencourse/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -129,9 +129,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [str(os.path.join(BASE_DIR, "static"))]
+STATICFILES_DIRS = [str(os.path.join(BASE_DIR, "opencourse/static"))]
 
-# Third-party apps settings
+# Third-party opencourse settings
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -142,7 +142,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_FORMS = {'signup': 'apps.profiles.forms.ProfileCreateForm'}
+ACCOUNT_FORMS = {'signup': 'opencourse.profiles.forms.ProfileCreateForm'}
 LOGIN_REDIRECT_URL = "profiles:dispatch_login"
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

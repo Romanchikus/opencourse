@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView
 from django_filters.views import FilterView
 
-from apps.courses import forms, models
+from opencourse.courses import forms, models
 
 
 class CourseCreateView(CreateView):

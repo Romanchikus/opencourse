@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.profiles import views
+from opencourse.profiles import views
 
 app_name = "profiles"
 urlpatterns = [
