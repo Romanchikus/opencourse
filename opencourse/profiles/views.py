@@ -1,9 +1,14 @@
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, RedirectView
+from django.views.generic import UpdateView, RedirectView, DetailView
 from django.contrib.auth import get_user_model
-from opencourse.profiles import forms
+from opencourse.profiles import forms, models
 
 User = get_user_model()
+
+
+class ProfessorDetailView(DetailView):
+    model = models.Professor
+    template_name = "profiles/professor_detail.html"
 
 
 class ProfileUpdateView(UpdateView):

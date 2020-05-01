@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content_title %}
+  <h2 class="h3">Professor {{ professor }} courses</h2>
+{% endblock content_title %}
+
+{% block content %}
+  <p>{{ professor }}</p>
+  <p>{{ professor.dob }}</p>
+  <p>{{ professor.city }}</p>
+  <p>{{ professor.bio }}</p>
+  <p>{{ professor.edulevel }}</p>
+  <p>{{ professor.yearsexperience }}</p>
+  <p>{{ professor.picture }}</p>
+
+  <p>====</p>
+
+  {% for course in professor.course_set.all %}
+    <p>{{ course.title }}</p>
+    <p>{{ course.area.all }}</p>
+    <p>{{ course.descrip }}</p>
+    <p>{{ course.level }}</p>
+    <p>{{ course.extrainfo }}</p>
+    <p>{{ course.language.all }}</p>
+    <p>{{ course.duration }}</p>
+    <p>{{ course.age.all }}</p>
+    <p>{{ course.courselocation_set.all }}</p>
+    <p>----</p>
+  {% endfor %}
+{% endblock content %}

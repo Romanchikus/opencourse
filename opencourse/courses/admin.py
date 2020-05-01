@@ -1,3 +1,5 @@
 from django.contrib import admin
+from opencourse.courses import models
 
-# Register your models here.
+admin.site.register(models.Course)
+admin.site.register(models.CourseLocation)
