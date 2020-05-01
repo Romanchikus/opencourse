@@ -40,7 +40,7 @@
 	          <li class="nav-item active"><a href="{% url 'courses:search' %}" class="nav-link">Home</a></li>
             {% if user.is_authenticated %}
               <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">Create course</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">Search courses</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">Search results</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' 2 %}">Professor courses</a></li>
               <li class="nav-item cta mr-md-1"><a href="{% url 'profiles:profile' %}" class="nav-link">Profile</a></li>
 	            <li class="nav-item cta cta-colored"><a href="{% url 'account_logout' %}" class="nav-link">Logout</a></li>
