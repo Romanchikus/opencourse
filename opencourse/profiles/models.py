@@ -18,7 +18,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=60, blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
-    edulevel = models.CharField(max_length=100, blank=True, null=True)
+    edulevel = models.TextField(max_length=1000, blank=True, null=True)
     tel = models.CharField(max_length=20, blank=True, null=True)
     whatsapp = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=60, blank=True, null=True)
@@ -33,7 +33,7 @@ class Student(Profile):
 
 
 class Professor(Profile):
-    bio = models.CharField(max_length=255, blank=True, null=True)
+    bio = models.TextField(max_length=1000, blank=True, null=True)
     yearsexperience = models.SmallIntegerField(blank=True, null=True)
     act_position = models.CharField(max_length=100, blank=True, null=True)
     dateexpir = models.DateTimeField(blank=True, null=True)
