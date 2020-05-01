@@ -1,26 +1,23 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, FormView
+from django.views.generic import CreateView, ListView, FormView, UpdateView
+from django.views.generic.edit import ModelFormMixin
 from django_filters.views import FilterView
 
 from opencourse.courses import forms, models
 
 
-class CourseCreateView(CreateView):
-    form_class = forms.CourseForm
-    template_name = "courses/create.html"
-    exclude = ["professor"]
-    success_url = reverse_lazy("courses:list")
+class FormsetMixin(ModelFormMixin):
+    formset_class = forms.CourseLocationFormset
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context["formset"] = forms.CourseLocationFormset(self.request.POST)
+            context["formset"] = self.formset_class(self.request.POST)
         else:
-            context["formset"] = forms.CourseLocationFormset()
+            context["formset"] = self.formset_class()
         return context
 
     def form_valid(self, form):
-        form.instance.professor = self.request.user.professor
         context = self.get_context_data()
         formset = context["formset"]
         if formset.is_valid():
@@ -30,6 +27,27 @@ class CourseCreateView(CreateView):
             return response
         else:
             return super().form_invalid(form)
+
+
+class CourseUpdateView(FormsetMixin, UpdateView):
+    model = models.Course
+    form_class = forms.CourseForm
+    formset_class = forms.CourseLocationFormset
+    template_name = "courses/edit.html"
+    exclude = ["professor"]
+    success_url = reverse_lazy("courses:list")
+
+
+class CourseCreateView(FormsetMixin, CreateView):
+    form_class = forms.CourseForm
+    formset_class = forms.CourseLocationFormset
+    template_name = "courses/edit.html"
+    exclude = ["professor"]
+    success_url = reverse_lazy("courses:list")
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user.professor
+        return super().form_valid(form)
 
 
 class CourseListView(ListView):

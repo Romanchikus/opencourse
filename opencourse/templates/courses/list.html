@@ -7,7 +7,7 @@
 {% block content %}
   <ul class="list-group">
     {% for course in object_list %}
-      <li class="list-group-item">{{ course }}</li>
+      <li class="list-group-item"><a href="{% url 'courses:update' course.id %}">{{ course }}</a></li>
     {% empty %}
       <li class="list-group-item">No courses yet.</li>
     {% endfor %}
