@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class ProfilesConfig(AppConfig):
-    name = 'opencourse.profiles'
+    name = "opencourse.profiles"

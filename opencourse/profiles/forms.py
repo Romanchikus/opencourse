@@ -59,7 +59,6 @@ class ProfessorForm(forms.ModelForm):
             "bio": _("Biography"),
             "edulevel": _("Education level"),
             "yearsexperience": _("Years of experience"),
-
         }
 
 
@@ -77,19 +76,9 @@ class StudentForm(forms.ModelForm):
 
 
 ProfessorFormSet = inlineformset_factory(
-    User,
-    models.Professor,
-    form=ProfessorForm,
-    exclude=[],
-    extra=1,
-    can_delete=False,
+    User, models.Professor, form=ProfessorForm, exclude=[], extra=1, can_delete=False,
 )
 
 StudentFormSet = inlineformset_factory(
-    User,
-    models.Student,
-    form=StudentForm,
-    exclude=[],
-    extra=1,
-    can_delete=False,
+    User, models.Student, form=StudentForm, exclude=[], extra=1, can_delete=False,
 )

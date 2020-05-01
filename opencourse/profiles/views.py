@@ -35,14 +35,16 @@ class ProfileUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['formset'] = self.formset_class(self.request.POST, self.request.FILES, instance=self.object)
+            context["formset"] = self.formset_class(
+                self.request.POST, self.request.FILES, instance=self.object
+            )
         else:
-            context['formset'] = self.formset_class(instance=self.object)
+            context["formset"] = self.formset_class(instance=self.object)
         return context
 
     def form_valid(self, form):
         context = self.get_context_data(form=form)
-        formset = context['formset']
+        formset = context["formset"]
         if formset.is_valid():
             response = super().form_valid(form)
             formset.instance = self.object
@@ -54,13 +56,13 @@ class ProfileUpdateView(UpdateView):
 
 class ProfessorUpdateView(ProfileUpdateView):
     template_name = "profiles/profile.html"
-    success_url = reverse_lazy('courses:list')
+    success_url = reverse_lazy("courses:list")
     formset_class = forms.ProfessorFormSet
 
 
 class StudentUpdateView(ProfileUpdateView):
     template_name = "profiles/profile.html"
-    success_url = reverse_lazy('courses:search')
+    success_url = reverse_lazy("courses:search")
     formset_class = forms.StudentFormSet
 
 

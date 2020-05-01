@@ -19,10 +19,7 @@ class CourseForm(forms.ModelForm):
             "age",
             # "location",
         ]
-        labels = {
-            "descrip": _("Description"),
-            "extrainfo": _("Extra information")
-        }
+        labels = {"descrip": _("Description"), "extrainfo": _("Extra information")}
 
 
 class CourseSearchForm(forms.Form):
@@ -30,14 +27,12 @@ class CourseSearchForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_show_labels = False
-        self.helper.field_class = 'form-field'
+        self.helper.field_class = "form-field"
 
     city = forms.ModelChoiceField(models.City.objects, empty_label="City")
     area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
 
 
 CourseLocationFormset = inlineformset_factory(
-    models.Course,
-    models.CourseLocation,
-    fields=('name', 'description'),
+    models.Course, models.CourseLocation, fields=("name", "description"),
 )

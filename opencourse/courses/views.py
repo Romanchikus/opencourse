@@ -14,15 +14,15 @@ class CourseCreateView(CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.POST:
-            context['formset'] = forms.CourseLocationFormset(self.request.POST)
+            context["formset"] = forms.CourseLocationFormset(self.request.POST)
         else:
-            context['formset'] = forms.CourseLocationFormset()
+            context["formset"] = forms.CourseLocationFormset()
         return context
 
     def form_valid(self, form):
         form.instance.professor = self.request.user.professor
         context = self.get_context_data()
-        formset = context['formset']
+        formset = context["formset"]
         if formset.is_valid():
             response = super().form_valid(form)
             formset.instance = self.object
@@ -46,6 +46,6 @@ class CourseSearchView(FormView):
 
 class CourseSearchResultsView(FilterView):
     model = models.Course
-    filterset_fields = ['area', 'city', 'level', 'age', 'language']
+    filterset_fields = ["area", "city", "level", "age", "language"]
     template_name = "courses/search_results.html"
     paginate_by = 10

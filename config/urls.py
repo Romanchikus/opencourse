@@ -20,9 +20,9 @@ from django.urls import include, path
 from opencourse.profiles.views import ProfileView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('courses/', include('opencourse.courses.urls', namespace="courses")),
-    path('accounts/', include('allauth.urls')),
-    path('accounts/profile/', ProfileView.as_view()),
-    path('profiles/', include('opencourse.profiles.urls', namespace="profiles")),
+    path("admin/", admin.site.urls),
+    path("courses/", include("opencourse.courses.urls", namespace="courses")),
+    path("accounts/", include("allauth.urls")),
+    path("accounts/profile/", ProfileView.as_view()),
+    path("profiles/", include("opencourse.profiles.urls", namespace="profiles")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
