@@ -1,14 +1,27 @@
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, RedirectView, DetailView
+from django.views.generic import UpdateView, RedirectView, ListView
 from django.contrib.auth import get_user_model
 from opencourse.profiles import forms, models
+from opencourse.courses.models import Course
 
 User = get_user_model()
 
 
-class ProfessorDetailView(DetailView):
-    model = models.Professor
+class ProfessorDetailView(ListView):
+    model = Course
     template_name = "profiles/professor_detail.html"
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        professor_pk = self.kwargs["professor_pk"]
+        professor = models.Professor.objects.filter(user_id=professor_pk).first()
+        kwargs["professor"] = professor
+        return super().get_context_data(**kwargs)
+
+    def get_queryset(self):
+        professor_pk = self.kwargs["professor_pk"]
+        queryset = self.model.objects.filter(professor=professor_pk)
+        return queryset
 
 
 class ProfileUpdateView(UpdateView):
