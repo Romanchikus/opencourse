@@ -11,10 +11,13 @@ class FormsetMixin(ModelFormMixin):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        instance = getattr(self, "object", None)
         if self.request.POST:
-            context["formset"] = self.formset_class(self.request.POST)
+            context["formset"] = self.formset_class(
+                self.request.POST, instance=instance
+            )
         else:
-            context["formset"] = self.formset_class()
+            context["formset"] = self.formset_class(instance=instance)
         return context
 
     def form_valid(self, form):

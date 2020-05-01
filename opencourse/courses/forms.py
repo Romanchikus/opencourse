@@ -33,6 +33,17 @@ class CourseSearchForm(forms.Form):
     area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
 
 
+# class CourseLocationInlineForm(forms.ModelForm):
+#     class Meta:
+#         model = models.CourseLocation
+#         fields = ["name", "description"]
+
+
 CourseLocationFormset = inlineformset_factory(
-    models.Course, models.CourseLocation, fields=("name", "description"),
+    models.Course,
+    models.CourseLocation,
+    fields=("name", "description"),
+    # form=CourseLocationInlineForm,
+    can_delete=False,
+    extra=1,
 )
