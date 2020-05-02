@@ -8,18 +8,18 @@
 
     {% block css %}
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href={% static "skillhunt/css/open-iconic-bootstrap.min.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/animate.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/owl.carousel.min.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/owl.theme.default.min.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/magnific-popup.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/aos.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/ionicons.min.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/bootstrap-datepicker.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/jquery.timepicker.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/flaticon.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/icomoon.css" %}>
-      <link rel="stylesheet" href={% static "skillhunt/css/style.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/open-iconic-bootstrap.min.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/animate.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/owl.carousel.min.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/owl.theme.default.min.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/magnific-popup.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/aos.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/ionicons.min.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/bootstrap-datepicker.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/jquery.timepicker.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/flaticon.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/icomoon.css" %}>
+      <link rel="stylesheet" href={% static "vendor/skillhunt/css/style.css" %}>
 
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
@@ -27,7 +27,7 @@
     {% endblock css %}
   </head>
   <body>
-    
+
 	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container-fluid px-md-4	">
 	      <a class="navbar-brand" href="{% url 'courses:search' %}">OpenCourse</a>
@@ -55,7 +55,7 @@
 	  </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap img d-none d-lg-block" style="background-image: url({% static "skillhunt/images/bg_1.jpg" %});">
+    <div class="hero-wrap img d-none d-lg-block" style="background-image: url({% static "vendor/skillhunt/images/bg_1.jpg" %});">
       <div class="overlay"></div>
       {% block header_content %}{% endblock header_content %}
     </div>
@@ -93,21 +93,21 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
-  <script src={% static "skillhunt/js/jquery.min.js" %}></script>
-  <script src={% static "skillhunt/js/jquery-migrate-3.0.1.min.js" %}></script>
-  <script src={% static "skillhunt/js/popper.min.js" %}></script>
-  <script src={% static "skillhunt/js/bootstrap.min.js" %}></script>
-  <script src={% static "skillhunt/js/jquery.easing.1.3.js" %}></script>
-  <script src={% static "skillhunt/js/jquery.waypoints.min.js" %}></script>
-  <script src={% static "skillhunt/js/jquery.stellar.min.js" %}></script>
-  <script src={% static "skillhunt/js/owl.carousel.min.js" %}></script>
-  <script src={% static "skillhunt/js/jquery.magnific-popup.min.js" %}></script>
-  <script src={% static "skillhunt/js/aos.js" %}></script>
-  <script src={% static "skillhunt/js/jquery.animateNumber.min.js" %}></script>
-  <script src={% static "skillhunt/js/scrollax.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery-migrate-3.0.1.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/popper.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/bootstrap.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery.easing.1.3.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery.waypoints.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery.stellar.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/owl.carousel.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery.magnific-popup.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/aos.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/jquery.animateNumber.min.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/scrollax.min.js" %}></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src={% static "skillhunt/js/google-map.js" %}></script>
-  <script src={% static "skillhunt/js/main.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/google-map.js" %}></script>
+  <script src={% static "vendor/skillhunt/js/main.js" %}></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
