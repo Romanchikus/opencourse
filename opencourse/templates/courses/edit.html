@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block content_title %}
@@ -10,15 +11,25 @@
     {% csrf_token %}
     {{ formset.management_form }}
     {{ form|crispy }}
+    <h4 class="h4">Locations</h4>
     {% for location_form in formset %}
-      <div class="row">
+      <div class="row formset-row">
       {% for field in location_form.visible_fields %}
         <div class="col">{{ field|as_crispy_field }}</div>
       {% endfor %}
       </div>
+      {% for field in location_form.hidden_fields %}
+        {{ field|as_crispy_field }}
+      {% endfor %}
     {% endfor %}
     <div class="form-group">
-      <input type="submit" value="Submit" class="btn btn-primary py-3 px-5">
+      <input type="submit" value="Submit" class="btn btn-primary py-3 px-5 mt-3">
     </div>
   </form>
 {% endblock content %}
+
+{% block project_js %}
+  {{ block.super }}
+  <script src={% static "vendor/jquery.formset.js" %}></script>
+  <script src={% static "js/course_edit.js" %}></script>
+{% endblock project_js %}

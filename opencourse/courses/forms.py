@@ -44,6 +44,5 @@ CourseLocationFormset = inlineformset_factory(
     models.CourseLocation,
     fields=("name", "description"),
     # form=CourseLocationInlineForm,
-    can_delete=False,
     extra=1,
 )
