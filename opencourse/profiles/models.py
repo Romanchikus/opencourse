@@ -1,6 +1,20 @@
 import uuid
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+
+
+class User(AbstractUser):
+    @property
+    def profile(self):
+        if self.professor:
+            return self.professor
+        elif self.student:
+            return self.student
+        else:
+            return self
 
 
 class Profile(models.Model):
@@ -24,6 +38,9 @@ class Profile(models.Model):
     email = models.CharField(max_length=60, blank=True, null=True)
     dateadd = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name} ({self.user.email})"
+
     class Meta:
         abstract = True
 
@@ -40,5 +57,15 @@ class Professor(Profile):
     listed = models.NullBooleanField()
     feespaid = models.NullBooleanField()
 
+
+class Review(models.Model):
+    professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
+    score = models.PositiveSmallIntegerField()
+    text = models.TextField()
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    author_id = models.PositiveIntegerField()
+    author = GenericForeignKey("content_type", "author_id")
+
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name}"
+        return self.text

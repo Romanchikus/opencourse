@@ -123,6 +123,9 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [str(os.path.join(BASE_DIR, "opencourse/static"))]
 
+# Project adjustments
+AUTH_USER_MODEL = "profiles.User"
+
 # Third-party opencourse settings
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",

@@ -82,3 +82,12 @@ ProfessorFormSet = inlineformset_factory(
 StudentFormSet = inlineformset_factory(
     User, models.Student, form=StudentForm, exclude=[], extra=1, can_delete=False,
 )
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = models.Review
+        fields = ["score", "text"]
+
+    SCORES = [(num, num) for num in range(1, 6)]
+    score = forms.ChoiceField(choices=SCORES)

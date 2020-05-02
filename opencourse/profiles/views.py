@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, RedirectView, ListView
+from django.views.generic import UpdateView, RedirectView, ListView, CreateView
 from django.contrib.auth import get_user_model
 from opencourse.profiles import forms, models
 from opencourse.courses.models import Course
@@ -16,6 +16,8 @@ class ProfessorDetailView(ListView):
         professor_pk = self.kwargs["professor_pk"]
         professor = models.Professor.objects.filter(user_id=professor_pk).first()
         kwargs["professor"] = professor
+        kwargs["review_form"] = forms.ReviewForm()
+        kwargs["reviews"] = professor.review_set.order_by("-id")[:10]
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
@@ -83,3 +85,18 @@ class DispatchLoginView(RedirectView):
             else:
                 return reverse_lazy("courses:create")
         return reverse_lazy("courses:search")
+
+
+class ReviewCreateView(CreateView):
+    form_class = forms.ReviewForm
+
+    def get_success_url(self):
+        professor_pk = self.kwargs["professor_pk"]
+        return reverse_lazy("profiles:professor_detail", args=[professor_pk])
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user.profile
+        professor_pk = self.kwargs["professor_pk"]
+        professor = models.Professor.objects.filter(user_id=professor_pk).first()
+        form.instance.professor = professor
+        return super().form_valid(form)

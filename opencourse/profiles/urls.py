@@ -11,5 +11,10 @@ urlpatterns = [
         views.ProfessorDetailView.as_view(),
         name="professor_detail",
     ),
+    path(
+        "professor/<int:professor_pk>/add-review",
+        views.ReviewCreateView.as_view(),
+        name="review_create",
+    ),
     path("student/", views.StudentUpdateView.as_view(), name="student"),
 ]
