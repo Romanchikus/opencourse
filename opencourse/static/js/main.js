@@ -1,2 +1,4 @@
-$('select').selectpicker();
-$('.bootstrap-select button').addClass("form-control")
+$(function () {
+    $('select').selectpicker();
+    $('.bootstrap-select button').addClass("form-control")
+});
