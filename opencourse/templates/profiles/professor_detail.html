@@ -82,7 +82,9 @@
                 <div class="team d-md-fle p-4 bg-white">
                   <div class="px-md-4">
                     {% for location in  course.courselocation_set.all %}
-                      <span class="location mb-0">{{ location }} </span>
+                      <span class="location mb-0">
+                        {{ location }}{% if not forloop.last %}, {% endif %}
+                      </span>
                     {% endfor %}
                     <h2>{{ course.title }}</h2>
                     {% for area in  course.area.all %}

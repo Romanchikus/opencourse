@@ -17,7 +17,6 @@ class CourseForm(forms.ModelForm):
             "language",
             "duration",
             "age",
-            # "location",
         ]
         labels = {"descrip": _("Description"), "extrainfo": _("Extra information")}
 
@@ -33,16 +32,9 @@ class CourseSearchForm(forms.Form):
     area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
 
 
-# class CourseLocationInlineForm(forms.ModelForm):
-#     class Meta:
-#         model = models.CourseLocation
-#         fields = ["name", "description"]
-
-
 CourseLocationFormset = inlineformset_factory(
     models.Course,
     models.CourseLocation,
-    fields=("name", "description"),
-    # form=CourseLocationInlineForm,
+    fields=("location_type", "description"),
     extra=1,
 )

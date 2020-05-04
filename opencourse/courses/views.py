@@ -67,6 +67,6 @@ class CourseSearchView(FormView):
 
 class CourseSearchResultsView(FilterView):
     model = models.Course
-    filterset_fields = ["area", "city", "level", "age", "language"]
+    filterset_fields = ["area", "city", "level", "age", "language", "locations__location_type"]
     template_name = "courses/search_results.html"
     paginate_by = 10

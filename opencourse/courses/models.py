@@ -105,8 +105,16 @@ class Course(models.Model):
         return self.title or ""
 
 
+class CourseLocationType(models.Model):
+    type_name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.type_name
+
+
 class CourseLocation(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    location_type = models.ForeignKey(CourseLocationType, on_delete=models.PROTECT)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="locations")
     name = models.CharField(max_length=25, blank=True, null=True)
     name_ar = models.CharField(max_length=20, blank=True, null=True)
     description = models.CharField(max_length=100, blank=True, null=True)
@@ -117,4 +125,4 @@ class CourseLocation(models.Model):
     courseenddate = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.course.id}: {self.location_type.type_name}"

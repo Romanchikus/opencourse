@@ -9,9 +9,9 @@ from django.contrib.contenttypes.models import ContentType
 class User(AbstractUser):
     @property
     def profile(self):
-        if self.professor:
+        if hasattr(self, "professor"):
             return self.professor
-        elif self.student:
+        elif hasattr(self, "student"):
             return self.student
         else:
             return self
