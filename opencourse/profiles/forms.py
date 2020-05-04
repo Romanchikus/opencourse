@@ -47,6 +47,7 @@ class ProfessorForm(forms.ModelForm):
     class Meta:
         model = models.Professor
         fields = [
+            "tel",
             "dob",
             "city",
             "bio",
@@ -55,6 +56,7 @@ class ProfessorForm(forms.ModelForm):
             "picture",
         ]
         labels = {
+            "tel": _("Telephone"),
             "dob": _("Data of birth"),
             "bio": _("Biography"),
             "edulevel": _("Education level"),

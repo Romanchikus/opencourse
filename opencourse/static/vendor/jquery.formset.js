@@ -231,7 +231,7 @@
 
     /* Setup plugin defaults */
     $.fn.formset.defaults = {
-        prefix: 'form',                  // The form prefix for your django formset
+        prefix: 'locations',                  // The form prefix for your django formset
         formTemplate: null,              // The jQuery selection cloned to generate new form instances
         addText: 'add location',          // Text for the add link
         deleteText: 'remove',            // Text for the delete link

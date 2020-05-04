@@ -29,6 +29,27 @@
 </div>
 
 {% block main %}
+  <!-- Modal -->
+  <div class="modal fade" id="contacts" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Contact {{ professor }} now:</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Telephone: {{ professor.tel }}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <section class="ftco-section ftco-candidates ftco-candidates-2 bg-light pt-5">
     <div class="container">
       <div class="row">
@@ -44,6 +65,8 @@
                     <div class="img" style="background-image: url(
                         {% if course.professor.picture %}
                           {{ course.professor.picture.url }}
+                        {% else %}
+                          {% static "images/no-avatar.png" %}
                         {% endif %}
                         );"></div>
                     <div class="text px-md-4">
@@ -53,6 +76,9 @@
                         Data of birth: {{ professor.dob }} <br>
                         {{ professor.yearsexperience }} years of experience
                       </p>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contacts">
+                        Contact
+                      </button>
                     </div>
                   </div>
                   <div class="pl-md-4">
@@ -60,6 +86,7 @@
                     <p class="mb-2">{{ professor.bio|linebreaksbr }}</p>
                     <h2>Education</h2>
                     <p class="mb-2">{{ professor.edulevel|linebreaksbr }}</p>
+
                   </div>
                 </div>
               </div>
@@ -94,6 +121,14 @@
                     <table class="table table-bordered mt-4">
                       <tbody>
                       <tr>
+                        <th scope="row">Locations</th>
+                        <td>
+                          {% for location in course.locations.all %}
+                            {{ location.location_type }}: {{ location.description }}<br>
+                          {% endfor %}
+                        </td>
+                      </tr>
+                      <tr>
                         <th scope="row">Age</th>
                         <td>
                           {% for age in  course.age.all %}
@@ -119,7 +154,6 @@
                           {% endfor %}
                         </td>
                       </tr>
-
                       </tbody>
                     </table>
                   </div>
@@ -141,7 +175,8 @@
           <h3 class="h3 mb-5">Reviews</h3>
           <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
             <h3 class="heading-sidebar">Add review</h3>
-            <form action="{% url 'profiles:review_create' professor.user_id %}" class="contact-form signup" method="post">
+            <form action="{% url 'profiles:review_create' professor.user_id %}" class="contact-form signup"
+                  method="post">
               {% csrf_token %}
               {{ review_form|crispy }}
               <div class="form-group">
@@ -163,5 +198,5 @@
 {% endblock main %}
 
 {% block project_js %}
-    <script src={% static "js/professor_detail.js" %}></script>
+  <script src={% static "js/professor_detail.js" %}></script>
 {% endblock project_js %}

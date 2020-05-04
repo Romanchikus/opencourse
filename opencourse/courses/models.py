@@ -84,7 +84,7 @@ class CourseLanguage(models.Model):
 class Course(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=100, blank=True, null=True)
+    title = models.CharField(max_length=100)
     title_ar = models.CharField(max_length=100, blank=True, null=True)
     descrip = models.TextField(blank=True, null=True)
     extrainfo = models.CharField(max_length=250, blank=True, null=True)
@@ -106,17 +106,16 @@ class Course(models.Model):
 
 
 class CourseLocationType(models.Model):
-    type_name = models.CharField(max_length=25)
+    name = models.CharField(max_length=25)
+    name_ar = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.type_name
+        return self.name
 
 
 class CourseLocation(models.Model):
-    location_type = models.ForeignKey(CourseLocationType, on_delete=models.PROTECT)
+    location_type = models.ForeignKey(CourseLocationType, on_delete=models.PROTECT, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="locations")
-    name = models.CharField(max_length=25, blank=True, null=True)
-    name_ar = models.CharField(max_length=20, blank=True, null=True)
     description = models.CharField(max_length=100, blank=True, null=True)
     price = models.SmallIntegerField(blank=True, null=True)
     currency = models.CharField(max_length=23, blank=True, null=True)
@@ -125,4 +124,4 @@ class CourseLocation(models.Model):
     courseenddate = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.course.id}: {self.location_type.type_name}"
+        return f"{self.course.id}: {self.location_type.name}"
