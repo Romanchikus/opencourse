@@ -16,6 +16,19 @@ class User(AbstractUser):
         else:
             return self
 
+    @property
+    def is_professor(self):
+        if hasattr(self, "professor"):
+            return True
+        return False
+
+    @property
+    def is_student(self):
+        if hasattr(self, "student"):
+            return True
+        return False
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(
