@@ -45,7 +45,7 @@ class Profile(models.Model):
     city = models.CharField(max_length=60, blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
     edulevel = models.TextField(max_length=1000, blank=True, null=True)
-    tel = models.CharField(max_length=20, blank=True, null=True)
+    tel = models.CharField(max_length=20)
     whatsapp = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=60, blank=True, null=True)
     dateadd = models.DateTimeField(blank=True, null=True)

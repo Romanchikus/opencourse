@@ -2,6 +2,7 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
+from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 from allauth.account.forms import SignupForm
 from opencourse.profiles import models
@@ -28,9 +29,12 @@ class ProfileCreateForm(SignupForm):
         user_class = user_type_class_map[user_type]
         profile = user_class()
         setattr(user, user_type, profile)
-
         user.save()
         profile.save()
+
+        group = Group.objects.get(name=f"{user_type}s")
+        group.user_set.add(user)
+        group.save()
         return user
 
 

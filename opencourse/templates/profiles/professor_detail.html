@@ -77,7 +77,8 @@
                         {{ professor.yearsexperience }} years of experience
                       </p>
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contacts"
-                              data-ajax-target='{% url "profiles:contact_request" professor.user_id %}' onclick="contact_request()"
+                              data-ajax-target='{% url "profiles:contact_request" professor.user_id %}'
+                              onclick="contact_request()"
                               id="contact_request">
                         Contact
                       </button>
@@ -101,69 +102,71 @@
                 </div>
               </div>
             {% endif %}
-            {% if page_obj %}
-              <div class="col-md-12">
-                <h3 class="h3 mb-5 mt-3">Courses</h3>
-              </div>
-            {% endif %}
-            {% for course in page_obj %}
-              <div class="col-md-12">
-                <div class="team d-md-fle p-4 bg-white">
-                  <div class="px-md-4">
-                    {% for location in  course.courselocation_set.all %}
-                      <span class="location mb-0">
+            {% if user.is_authenticated %}
+              {% if page_obj %}
+                <div class="col-md-12">
+                  <h3 class="h3 mb-5 mt-3">Courses</h3>
+                </div>
+              {% endif %}
+              {% for course in page_obj %}
+                <div class="col-md-12">
+                  <div class="team d-md-fle p-4 bg-white">
+                    <div class="px-md-4">
+                      {% for location in  course.courselocation_set.all %}
+                        <span class="location mb-0">
                         {{ location }}{% if not forloop.last %}, {% endif %}
                       </span>
-                    {% endfor %}
-                    <h2>{{ course.title }}</h2>
-                    {% for area in  course.area.all %}
-                      <span class="position">{{ area }} </span>
-                    {% endfor %}
-                    <p class="mb-2">{{ course.descrip }}</p>
-                    <table class="table table-bordered mt-4">
-                      <tbody>
-                      <tr>
-                        <th scope="row">Locations</th>
-                        <td>
-                          {% for location in course.locations.all %}
-                            {{ location.location_type }}: {{ location.description }}<br>
-                          {% endfor %}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Age</th>
-                        <td>
-                          {% for age in  course.age.all %}
-                            {{ age }}<br>
-                          {% endfor %}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Student level</th>
-                        <td>
-                          {{ course.level }}
-                        </td>
-                      </tr>
-                      <tr>
-                        <th scope="row">Duration</th>
-                        <td>{{ course.duration }}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">The class is taught in</th>
-                        <td>
-                          {% for language in  course.language.all %}
-                            {{ language }}
-                          {% endfor %}
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
+                      {% endfor %}
+                      <h2>{{ course.title }}</h2>
+                      {% for area in  course.area.all %}
+                        <span class="position">{{ area }} </span>
+                      {% endfor %}
+                      <p class="mb-2">{{ course.descrip }}</p>
+                      <table class="table table-bordered mt-4">
+                        <tbody>
+                        <tr>
+                          <th scope="row">Locations</th>
+                          <td>
+                            {% for location in course.locations.all %}
+                              {{ location.location_type }}: {{ location.description }}<br>
+                            {% endfor %}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Age</th>
+                          <td>
+                            {% for age in  course.age.all %}
+                              {{ age }}<br>
+                            {% endfor %}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Student level</th>
+                          <td>
+                            {{ course.level }}
+                          </td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Duration</th>
+                          <td>{{ course.duration }}</td>
+                        </tr>
+                        <tr>
+                          <th scope="row">The class is taught in</th>
+                          <td>
+                            {% for language in  course.language.all %}
+                              {{ language }}
+                            {% endfor %}
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
-              </div>
-            {% endfor %}
+              {% endfor %}
+            {% endif %}
           </div>
-          {% if is_paginated %}
+          {% if is_paginated and user.is_authenticated %}
             <div class="row mt-5">
               <div class="col text-center">
                 <div class="block-27">
@@ -175,22 +178,28 @@
         </div>
         <div class="col-lg-4 sidebar">
           <h3 class="h3 mb-5">Reviews</h3>
-          <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
-            <h3 class="heading-sidebar">Add review</h3>
-            <form action="{% url 'profiles:review_create' professor.user_id %}" class="contact-form signup"
-                  method="post">
-              {% csrf_token %}
-              {{ review_form|crispy }}
-              <div class="form-group">
-                <input type="submit" value="Review" class="btn btn-primary">
-              </div>
-            </form>
-          </div>
+          {% if user.is_authenticated %}
+            <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
+              <h3 class="heading-sidebar">Add review</h3>
+              <form action="{% url 'profiles:review_create' professor.user_id %}" class="contact-form signup"
+                    method="post">
+                {% csrf_token %}
+                {{ review_form|crispy }}
+                <div class="form-group">
+                  <input type="submit" value="Review" class="btn btn-primary">
+                </div>
+              </form>
+            </div>
+          {% endif %}
           {% for review in reviews %}
             <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
               <h3 class="heading-sidebar mb-0">{{ review.author }}</h3>
               <input class="score-display" value={{ review.score }}>
               <p>{{ review.text }}</p>
+            </div>
+          {% empty %}
+            <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
+              <h3 class="heading-sidebar mb-0">No reviews yet</h3>
             </div>
           {% endfor %}
         </div>
