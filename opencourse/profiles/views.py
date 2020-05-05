@@ -11,8 +11,11 @@ from django.views.generic import (
 from django.contrib.auth import get_user_model
 from django.views.generic.detail import SingleObjectMixin
 
+from braces.views import LoginRequiredMixin
+
 from opencourse.profiles import forms, models
 from opencourse.courses.models import Course
+from opencourse.profiles.mixins import ProfessorRequiredMixin, StudentRequiredMixin
 
 User = get_user_model()
 
@@ -36,7 +39,7 @@ class ProfessorDetailView(ListView):
         return queryset
 
 
-class ProfileUpdateView(UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     fields = ["first_name", "last_name"]
     formset_class = None
@@ -66,19 +69,19 @@ class ProfileUpdateView(UpdateView):
             return super().form_invalid(form)
 
 
-class ProfessorUpdateView(ProfileUpdateView):
+class ProfessorUpdateView(ProfessorRequiredMixin, ProfileUpdateView):
     template_name = "profiles/profile.html"
     success_url = reverse_lazy("courses:list")
     formset_class = forms.ProfessorFormSet
 
 
-class StudentUpdateView(ProfileUpdateView):
+class StudentUpdateView(StudentRequiredMixin, ProfileUpdateView):
     template_name = "profiles/profile.html"
     success_url = reverse_lazy("courses:search")
     formset_class = forms.StudentFormSet
 
 
-class ProfileView(RedirectView):
+class ProfileView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         if hasattr(self.request.user, "professor"):
             return reverse_lazy("profiles:professor")
@@ -87,7 +90,7 @@ class ProfileView(RedirectView):
         return super().get_redirect_url(*args, **kwargs)
 
 
-class DispatchLoginView(RedirectView):
+class DispatchLoginView(LoginRequiredMixin, RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         if hasattr(self.request.user, "professor"):
             if self.request.user.professor.course_set.exists():
@@ -97,7 +100,7 @@ class DispatchLoginView(RedirectView):
         return reverse_lazy("courses:search")
 
 
-class ReviewCreateView(CreateView):
+class ReviewCreateView(LoginRequiredMixin, CreateView):
     form_class = forms.ReviewForm
 
     def get_success_url(self):
