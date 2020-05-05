@@ -6,6 +6,7 @@ from django.views.generic import (
     ListView,
     CreateView,
     View,
+    TemplateView,
 )
 from django.contrib.auth import get_user_model
 from django.views.generic.detail import SingleObjectMixin
@@ -119,3 +120,7 @@ class ContactRequestView(SingleObjectMixin, View):
         professor.contacts_requests += 1
         professor.save()
         return HttpResponse()
+
+
+class ForbiddenView(TemplateView):
+    template_name = "profiles/forbidden.html"
