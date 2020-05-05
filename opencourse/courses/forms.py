@@ -35,6 +35,6 @@ class CourseSearchForm(forms.Form):
 CourseLocationFormset = inlineformset_factory(
     models.Course,
     models.CourseLocation,
-    fields=("location_type", "description"),
+    fields=("location_type", "price", "currency"),
     extra=1,
 )

@@ -86,7 +86,7 @@ class Course(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100)
     title_ar = models.CharField(max_length=100, blank=True, null=True)
-    descrip = models.TextField(blank=True, null=True)
+    descrip = models.TextField(blank=True)
     extrainfo = models.CharField(max_length=250, blank=True, null=True)
     payactive = models.NullBooleanField()
     active = models.NullBooleanField()
@@ -113,12 +113,20 @@ class CourseLocationType(models.Model):
         return self.name
 
 
+class Currency(models.Model):
+    name = models.CharField(max_length=20)
+    symbol = models.CharField(max_length=3)
+
+    def __str__(self):
+        return self.symbol
+
+
 class CourseLocation(models.Model):
     location_type = models.ForeignKey(CourseLocationType, on_delete=models.PROTECT, null=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="locations")
     description = models.CharField(max_length=100, blank=True, null=True)
-    price = models.SmallIntegerField(blank=True, null=True)
-    currency = models.CharField(max_length=23, blank=True, null=True)
+    price = models.SmallIntegerField()
+    currency = models.ForeignKey(Currency, on_delete=models.PROTECT)
     number_sessions = models.SmallIntegerField(blank=True, null=True)
     coursestartdate = models.DateTimeField(blank=True, null=True)
     courseenddate = models.DateTimeField(blank=True, null=True)
