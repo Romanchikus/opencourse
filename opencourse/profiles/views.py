@@ -1,6 +1,15 @@
+from django.http import HttpResponse
 from django.urls import reverse_lazy
-from django.views.generic import UpdateView, RedirectView, ListView, CreateView
+from django.views.generic import (
+    UpdateView,
+    RedirectView,
+    ListView,
+    CreateView,
+    View,
+)
 from django.contrib.auth import get_user_model
+from django.views.generic.detail import SingleObjectMixin
+
 from opencourse.profiles import forms, models
 from opencourse.courses.models import Course
 
@@ -13,16 +22,16 @@ class ProfessorDetailView(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        professor_pk = self.kwargs["professor_pk"]
-        professor = models.Professor.objects.filter(user_id=professor_pk).first()
+        pk = self.kwargs["pk"]
+        professor = models.Professor.objects.filter(user_id=pk).first()
         kwargs["professor"] = professor
         kwargs["review_form"] = forms.ReviewForm()
         kwargs["reviews"] = professor.review_set.order_by("-id")[:10]
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
-        professor_pk = self.kwargs["professor_pk"]
-        queryset = self.model.objects.filter(professor=professor_pk)
+        pk = self.kwargs["pk"]
+        queryset = self.model.objects.filter(professor=pk)
         return queryset
 
 
@@ -91,12 +100,22 @@ class ReviewCreateView(CreateView):
     form_class = forms.ReviewForm
 
     def get_success_url(self):
-        professor_pk = self.kwargs["professor_pk"]
-        return reverse_lazy("profiles:professor_detail", args=[professor_pk])
+        pk = self.kwargs["pk"]
+        return reverse_lazy("profiles:professor_detail", args=[pk])
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
-        professor_pk = self.kwargs["professor_pk"]
-        professor = models.Professor.objects.filter(user_id=professor_pk).first()
+        pk = self.kwargs["pk"]
+        professor = models.Professor.objects.filter(user_id=pk).first()
         form.instance.professor = professor
         return super().form_valid(form)
+
+
+class ContactRequestView(SingleObjectMixin, View):
+    model = models.Professor
+
+    def post(self, *args, **kwargs):
+        professor = self.get_object()
+        professor.contacts_requests += 1
+        professor.save()
+        return HttpResponse()

@@ -44,8 +44,5 @@ class CourseLocationForm(forms.ModelForm):
 
 
 CourseLocationFormset = inlineformset_factory(
-    models.Course,
-    models.CourseLocation,
-    form=CourseLocationForm,
-    extra=1,
+    models.Course, models.CourseLocation, form=CourseLocationForm, extra=1,
 )

@@ -7,14 +7,19 @@ urlpatterns = [
     path("dispatch-login/", views.DispatchLoginView.as_view(), name="dispatch_login"),
     path("professor/", views.ProfessorUpdateView.as_view(), name="professor"),
     path(
-        "professor/<int:professor_pk>/",
+        "professor/<int:pk>/",
         views.ProfessorDetailView.as_view(),
         name="professor_detail",
     ),
     path(
-        "professor/<int:professor_pk>/add-review",
+        "professor/<int:pk>/add-review",
         views.ReviewCreateView.as_view(),
         name="review_create",
+    ),
+    path(
+        "professor/<int:pk>/contact-request/",
+        views.ContactRequestView.as_view(),
+        name="contact_request",
     ),
     path("student/", views.StudentUpdateView.as_view(), name="student"),
 ]
