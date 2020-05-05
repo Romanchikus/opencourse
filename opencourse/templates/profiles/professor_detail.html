@@ -76,7 +76,9 @@
                         Data of birth: {{ professor.dob }} <br>
                         {{ professor.yearsexperience }} years of experience
                       </p>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contacts">
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contacts"
+                              data-ajax-target='{% url "profiles:contact_request" professor.user_id %}' onclick="contact_request()"
+                              id="contact_request">
                         Contact
                       </button>
                     </div>
