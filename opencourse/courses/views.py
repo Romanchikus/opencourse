@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView, UpdateView
 from django.views.generic.edit import ModelFormMixin
 from django_filters.views import FilterView
+from braces.views import GroupRequiredMixin
 
 from opencourse.courses import forms, models
 
@@ -32,13 +33,14 @@ class FormsetMixin(ModelFormMixin):
             return super().form_invalid(form)
 
 
-class CourseUpdateView(FormsetMixin, UpdateView):
+class CourseUpdateView(GroupRequiredMixin, FormsetMixin, UpdateView):
     model = models.Course
     form_class = forms.CourseForm
     formset_class = forms.CourseLocationFormset
     template_name = "courses/edit.html"
     exclude = ["professor"]
     success_url = reverse_lazy("courses:list")
+    group_required = "professors"
 
 
 class CourseCreateView(FormsetMixin, CreateView):
