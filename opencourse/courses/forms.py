@@ -32,9 +32,20 @@ class CourseSearchForm(forms.Form):
     area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
 
 
+class CourseLocationForm(forms.ModelForm):
+    class Meta:
+        model = models.CourseLocation
+        fields = ("location_type", "price", "currency")
+
+    currency = forms.ModelChoiceField(
+        models.Currency.objects.all(),
+        initial=models.Currency.objects.filter(iso_code="MAD").first(),
+    )
+
+
 CourseLocationFormset = inlineformset_factory(
     models.Course,
     models.CourseLocation,
-    fields=("location_type", "price", "currency"),
+    form=CourseLocationForm,
     extra=1,
 )

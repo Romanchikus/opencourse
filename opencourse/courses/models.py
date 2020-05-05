@@ -115,15 +115,20 @@ class CourseLocationType(models.Model):
 
 class Currency(models.Model):
     name = models.CharField(max_length=20)
-    symbol = models.CharField(max_length=3)
+    iso_code = models.CharField(max_length=5)
+    symbol = models.CharField(max_length=5)
 
     def __str__(self):
         return self.symbol
 
 
 class CourseLocation(models.Model):
-    location_type = models.ForeignKey(CourseLocationType, on_delete=models.PROTECT, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="locations")
+    location_type = models.ForeignKey(
+        CourseLocationType, on_delete=models.PROTECT, null=True
+    )
+    course = models.ForeignKey(
+        Course, on_delete=models.CASCADE, related_name="locations"
+    )
     description = models.CharField(max_length=100, blank=True, null=True)
     price = models.SmallIntegerField()
     currency = models.ForeignKey(Currency, on_delete=models.PROTECT)
@@ -132,4 +137,4 @@ class CourseLocation(models.Model):
     courseenddate = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.course.id}: {self.location_type.name}"
+        return f"{self.location_type.name}: {self.price}{self.currency}"

@@ -14,3 +14,4 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.CourseLocation)
+admin.site.register(models.Currency)
