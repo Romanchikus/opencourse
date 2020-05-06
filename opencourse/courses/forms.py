@@ -53,7 +53,6 @@ class CourseLocationForm(forms.ModelForm):
 
     currency = forms.ModelChoiceField(
         models.Currency.objects.all(),
-        initial=models.Currency.objects.filter(iso_code="MAD").first(),
     )
 
 

@@ -27,7 +27,7 @@ class ProfessorDetailView(ListView):
 
     def get_context_data(self, **kwargs):
         pk = self.kwargs["pk"]
-        professor = models.Professor.objects.filter(user_id=pk).first()
+        professor = models.Professor.objects.filter(id=pk).first()
         kwargs["professor"] = professor
         kwargs["review_form"] = forms.ReviewForm()
         kwargs["reviews"] = professor.review_set.order_by("-id")[:10]
@@ -110,7 +110,7 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
         pk = self.kwargs["pk"]
-        professor = models.Professor.objects.filter(user_id=pk).first()
+        professor = models.Professor.objects.filter(id=pk).first()
         form.instance.professor = professor
         return super().form_valid(form)
 

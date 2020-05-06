@@ -32,7 +32,7 @@ class User(AbstractUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, primary_key=True,
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
     slug = models.UUIDField(default=uuid.uuid4, blank=True, editable=False)
     picture = models.ImageField(
