@@ -1,8 +1,9 @@
+{% load i18n %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>OpenCourse</title>
+  <title>{% trans "OpenCourse" %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -40,28 +41,28 @@
     <a class="navbar-brand" href="{% url 'courses:search' %}">OpenCourse</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
             aria-expanded="false" aria-label="Toggle navigation">
-      <span class="oi oi-menu"></span> Menu
+      <span class="oi oi-menu"></span> {% trans "Menu" %}
     </button>
 
     <div class="collapse navbar-collapse" id="ftco-nav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">{% trans "Home" %}</a></li>
         {% if user.is_authenticated %}
           {% if user.is_professor %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">Create course</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">List courses</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% blocktrans %}Create course{% endblocktrans %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% blocktrans %}List courses{% endblocktrans %}</a></li>
 
             {% if user.is_superuser %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">Search results</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' user.professor.user_id %}">Professor courses</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">{% blocktrans %}Search results{% endblocktrans %}</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' user.professor.user_id %}">{% blocktrans %}Professor courses{% endblocktrans %}</a></li>
 
             {% endif %}
           {% endif %}
-          <li class="nav-item cta mr-md-1"><a href="{% url 'profiles:profile' %}" class="nav-link">Profile</a></li>
-          <li class="nav-item cta cta-colored"><a href="{% url 'account_logout' %}" class="nav-link">Logout</a></li>
+          <li class="nav-item cta mr-md-1"><a href="{% url 'profiles:profile' %}" class="nav-link">{% trans "Profile" %}</a></li>
+          <li class="nav-item cta cta-colored"><a href="{% url 'account_logout' %}" class="nav-link">{% trans "Logout" %}</a></li>
         {% elif not user.is_authenticated %}
-          <li class="nav-item cta mr-md-1"><a href="{% url 'account_login' %}" class="nav-link">Login</a></li>
-          <li class="nav-item cta cta-colored"><a href="{% url 'account_signup' %}" class="nav-link">Signup</a></li>
+          <li class="nav-item cta mr-md-1"><a href="{% url 'account_login' %}" class="nav-link">{% trans "Login" %}</a></li>
+          <li class="nav-item cta cta-colored"><a href="{% url 'account_signup' %}" class="nav-link">{% trans "Signup" %}</a></li>
         {% endif %}
       </ul>
     </div>
@@ -99,8 +100,8 @@
   <footer class="footer">
     <div class="container">
           <span class="text-muted">
-            Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
-              class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+            {% blocktrans %}Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i
+              class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>{% endblocktrans %}
           </span>
     </div>
   </footer>

@@ -1,14 +1,15 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content_title %}
-  <h2 class="h3">Forbidden</h2>
+  <h2 class="h3">{% trans "Forbidden" %}</h2>
 {% endblock content_title %}
 
 {% block content %}
   <ul class="list-group">
     <li class="list-group-item">
-      You have no rights to access this page. <br>
-      You can <a href='{% url "courses:search" %}'>return</a> to the home page.
+      {% blocktrans %}You have no rights to access this page. <br>
+      You can <a href='{% url "courses:search" %}'>return</a> to the home page.{% endblocktrans %}
     </li>
   </ul>
 {% endblock content %}

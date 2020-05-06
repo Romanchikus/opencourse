@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -12,8 +13,8 @@
     <div class="row d-md-flex no-gutters slider-text align-items-center justify-content-center">
       <div class="col-md-7 d-flex align-items-center ftco-animate">
         <div class="text text-center pt-5 mt-md-5">
-          <p class="mb-4">From math tutoring to yoga, OpenCourse is the best and fastest way to find high-quality teachers.</p>
-          <h1 class="mb-5">What do you want to learn?</h1>
+          <p class="mb-4">{% blocktrans %}From math tutoring to yoga, OpenCourse is the best and fastest way to find high-quality teachers.{% endblocktrans %}</p>
+          <h1 class="mb-5">{% blocktrans %}What do you want to learn?{% endblocktrans %}</h1>
           <div class="ftco-counter ftco-no-pt ftco-no-pb">
             <div class="row">
               <div class="col-md-4 d-flex justify-content-center counter-wrap ftco-animate">
@@ -24,7 +25,7 @@
                     </div>
                     <div class="desc text-left">
                       <strong class="number" data-number="46">46</strong>
-                      <span>Cities</span>
+                      <span>{% trans "Cities" %}</span>
                     </div>
                   </div>
                 </div>
@@ -37,7 +38,7 @@
                     </div>
                     <div class="desc text-left">
                       <strong class="number" data-number="450">0</strong>
-                      <span>Professors</span>
+                      <span>{% trans "Professors" %}</span>
                     </div>
                   </div>
                 </div>
@@ -50,7 +51,7 @@
                     </div>
                     <div class="desc text-left">
                       <strong class="number" data-number="80000">0</strong>
-                      <span>Students</span>
+                      <span>{% trans "Students" %}</span>
                     </div>
                   </div>
                 </div>
@@ -78,7 +79,7 @@
                         <div class="col-md">
                           <div class="form-group">
                             <div class="form-field">
-                              <button type="submit" class="form-control btn btn-primary">Search</button>
+                              <button type="submit" class="form-control btn btn-primary">{% trans "Search" %}</button>
                             </div>
                           </div>
                         </div>

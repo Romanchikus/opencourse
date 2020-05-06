@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
 
@@ -7,7 +8,7 @@
     <div class="container">
       <div class="row d-flex contact-info">
         <div class="col-md-12 mb-4">
-          <h3 class="h3">Search results</h3>
+          <h3 class="h3">{% blocktrans %}Search results{% endblocktrans %}</h3>
         </div>
       </div>
       <div class="row block-9">
@@ -46,7 +47,7 @@
               <div class="col-md-12">
                 <div class="team d-md-flex p-4 bg-white">
                   <div class="text pl-md-4">
-                    <h2>No courses yet.</h2>
+                    <h2>{% blocktrans %}No courses yet.{% endblocktrans %}</h2>
                   </div>
                 </div>
               </div>
@@ -69,7 +70,7 @@
               {% csrf_token %}
               {{ filter.form|crispy }}
               <div class="form-group">
-                <input type="submit" value="Filter" class="btn btn-primary py-3 px-5">
+                <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
               </div>
             </form>
           </div>
@@ -80,10 +81,10 @@
 {% endblock main %}
 
 <form action="" class="bg-white p-5 contact-form" method="get">
-  <h2 class="h3">Filters</h2>
+  <h2 class="h3">{% trans "Filters" %}</h2>
   {% csrf_token %}
   {{ filter.form|crispy }}
   <div class="form-group">
-    <input type="submit" value="Filter" class="btn btn-primary py-3 px-5">
+    <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
   </div>
 </form>

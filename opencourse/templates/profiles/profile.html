@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block content_title %}
-  <h2 class="h3">Profile</h2>
+  <h2 class="h3">{% trans "Profile" %}</h2>
 {% endblock content_title %}
 
 {% block content %}
@@ -14,7 +15,7 @@
       {{ profile_form|crispy }}
     {% endfor %}
     <div class="form-group">
-      <input type="submit" value="Update" class="btn btn-primary py-3 px-5">
+      <input type="submit" value='{% trans "Update" %}' class="btn btn-primary py-3 px-5">
     </div>
   </form>
 {% endblock content %}

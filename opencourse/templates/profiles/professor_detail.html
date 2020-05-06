@@ -1,32 +1,8 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
 
-
-<div class="">
-  <p>{{ professor }}</p>
-  <p>{{ professor.dob }}</p>
-  <p>{{ professor.city }}</p>
-  <p>{{ professor.bio }}</p>
-  <p>{{ professor.edulevel }}</p>
-  <p>{{ professor.yearsexperience }}</p>
-  <p>{{ professor.picture }}</p>
-
-  <p>====</p>
-
-  {% for course in professor.course_set.all %}
-    <p>{{ course.title }}</p>
-    <p>{{ course.area.all }}</p>
-    <p>{{ course.descrip }}</p>
-    <p>{{ course.level }}</p>
-    <p>{{ course.extrainfo }}</p>
-    <p>{{ course.language.all }}</p>
-    <p>{{ course.duration }}</p>
-    <p>{{ course.age.all }}</p>
-    <p>{{ course.courselocation_set.all }}</p>
-    <p>----</p>
-  {% endfor %}
-</div>
 
 {% block main %}
   <!-- Modal -->
@@ -35,13 +11,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Contact {{ professor }} now:</h5>
+          <h5 class="modal-title" id="exampleModalLabel">{% blocktrans %}Contact {{ professor }} now:{% endblocktrans %}</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          Telephone: {{ professor.tel }}
+          {% trans "Telephone:" %} {{ professor.tel }}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
@@ -57,7 +33,7 @@
           <div class="row">
             {% if professor %}
               <div class="col-md-12">
-                <h3 class="h3 mb-5">Professor</h3>
+                <h3 class="h3 mb-5">{% trans "Professor" %}</h3>
               </div>
               <div class="col-md-12">
                 <div class="team p-4 bg-white">
@@ -72,15 +48,15 @@
                     <div class="text px-md-4">
                       <h2>{{ professor }}</h2>
                       <p>
-                        City: {{ professor.city }}<br>
-                        Data of birth: {{ professor.dob }} <br>
-                        {{ professor.yearsexperience }} years of experience
+                        {% trans "City:" %} {{ professor.city }}<br>
+                        {% blocktrans %}Data of birth:{% endblocktrans %} {{ professor.dob }} <br>
+                        {{ professor.yearsexperience }} {% blocktrans %}years of experience{% endblocktrans %}
                       </p>
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contacts"
                               data-ajax-target='{% url "profiles:contact_request" professor.user_id %}'
                               onclick="contact_request()"
                               id="contact_request">
-                        Contact
+                        {% trans "Contact" %}
                       </button>
                     </div>
                   </div>
@@ -97,7 +73,7 @@
               <div class="col-md-12">
                 <div class="team d-md-flex p-4 bg-white">
                   <div class="text pl-md-4">
-                    <h2>No professor found.</h2>
+                    <h2>{% blocktrans %}No professor found.{% endblocktrans %}</h2>
                   </div>
                 </div>
               </div>
@@ -105,7 +81,7 @@
             {% if user.is_authenticated %}
               {% if page_obj %}
                 <div class="col-md-12">
-                  <h3 class="h3 mb-5 mt-3">Courses</h3>
+                  <h3 class="h3 mb-5 mt-3">{% trans "Courses" %}</h3>
                 </div>
               {% endif %}
               {% for course in page_obj %}
@@ -125,7 +101,7 @@
                       <table class="table table-bordered mt-4">
                         <tbody>
                         <tr>
-                          <th scope="row">Locations</th>
+                          <th scope="row">{% trans "Locations" %}</th>
                           <td>
                             {% for location in course.locations.all %}
                               {{ location.location_type }}: {{ location.description }}<br>
@@ -133,7 +109,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Age</th>
+                          <th scope="row">{% trans "Age" %}</th>
                           <td>
                             {% for age in  course.age.all %}
                               {{ age }}<br>
@@ -141,17 +117,17 @@
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Student level</th>
+                          <th scope="row">{% blocktrans %}Student level{% endblocktrans %}</th>
                           <td>
                             {{ course.level }}
                           </td>
                         </tr>
                         <tr>
-                          <th scope="row">Duration</th>
+                          <th scope="row">{% trans "Duration" %}</th>
                           <td>{{ course.duration }}</td>
                         </tr>
                         <tr>
-                          <th scope="row">The class is taught in</th>
+                          <th scope="row">{% blocktrans %}The class is taught in{% endblocktrans %}</th>
                           <td>
                             {% for language in  course.language.all %}
                               {{ language }}
@@ -177,16 +153,16 @@
           {% endif %}
         </div>
         <div class="col-lg-4 sidebar">
-          <h3 class="h3 mb-5">Reviews</h3>
+          <h3 class="h3 mb-5">{% trans "Reviews" %}</h3>
           {% if user.is_authenticated %}
             <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
-              <h3 class="heading-sidebar">Add review</h3>
+              <h3 class="heading-sidebar">{% blocktrans %}Add review{% endblocktrans %}</h3>
               <form action="{% url 'profiles:review_create' professor.user_id %}" class="contact-form signup"
                     method="post">
                 {% csrf_token %}
                 {{ review_form|crispy }}
                 <div class="form-group">
-                  <input type="submit" value="Review" class="btn btn-primary">
+                  <input type="submit" value='{% trans "Review" %}' class="btn btn-primary">
                 </div>
               </form>
             </div>
@@ -199,7 +175,7 @@
             </div>
           {% empty %}
             <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
-              <h3 class="heading-sidebar mb-0">No reviews yet</h3>
+              <h3 class="heading-sidebar mb-0">{% blocktrans %}No reviews yet{% endblocktrans %}</h3>
             </div>
           {% endfor %}
         </div>
