@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-06 18:09+0000\n"
+"POT-Creation-Date: 2020-05-06 18:37+0000\n"
 "PO-Revision-Date: 2020-05-06 14:27+0000\n"
 "Last-Translator: b'Alex Miller <illanterfeit@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,55 +213,59 @@ msgstr ""
 msgid "OpenCourse"
 msgstr ""
 
-#: opencourse/templates/base.html:44
+#: opencourse/templates/base.html:42
 msgid "Menu"
 msgstr "Меню"
 
-#: opencourse/templates/base.html:49
+#: opencourse/templates/base.html:47
 msgid "Home"
 msgstr "Главная"
 
-#: opencourse/templates/base.html:52
+#: opencourse/templates/base.html:50
 msgid "Create course"
 msgstr "Создать курс"
 
-#: opencourse/templates/base.html:53 opencourse/templates/courses/list.html:5
+#: opencourse/templates/base.html:51 opencourse/templates/courses/list.html:5
 msgid "List courses"
 msgstr "Курсы"
 
-#: opencourse/templates/base.html:56
+#: opencourse/templates/base.html:54
 #: opencourse/templates/courses/search_results.html:11
 msgid "Search results"
 msgstr "Результаты поиска"
 
-#: opencourse/templates/base.html:57
+#: opencourse/templates/base.html:55
 msgid "Professor courses"
 msgstr "Курсы"
 
-#: opencourse/templates/base.html:61
+#: opencourse/templates/base.html:59
 #: opencourse/templates/profiles/profile.html:6
 msgid "Profile"
 msgstr "Профиль"
 
-#: opencourse/templates/base.html:62
+#: opencourse/templates/base.html:60
 msgid "Logout"
 msgstr "Выйти"
 
-#: opencourse/templates/base.html:64
+#: opencourse/templates/base.html:62
 msgid "Login"
 msgstr "Войти"
 
-#: opencourse/templates/base.html:65
+#: opencourse/templates/base.html:63
 msgid "Signup"
 msgstr "Регистрация"
 
-#: opencourse/templates/base.html:103
+#: opencourse/templates/base.html:101
 msgid ""
 "Copyright ©<script>document.write(new Date().getFullYear());</script> All "
 "rights reserved | This template is made with <i\n"
 "              class=\"icon-heart text-danger\" aria-hidden=\"true\"></i> by "
 "<a href=\"https://colorlib.com\" target=\"_blank\">Colorlib</a>"
 msgstr ""
+"Авторское право ©<script>document.write(new Date().getFullYear());</script> "
+"Все права защищены | Этот шаблон создан с <i\n"
+"              class=\"icon-heart text-danger\" aria-hidden=\"true\"></i> с "
+"помощью <a href=\"https://colorlib.com\" target=\"_blank\">Colorlib</a>"
 
 #: opencourse/templates/courses/edit.html:7
 msgid "Сourse"
