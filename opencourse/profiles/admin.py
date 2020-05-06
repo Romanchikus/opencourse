@@ -1,5 +1,5 @@
 from django.contrib import admin
-from opencourse.profiles import models
+from . import models
 
 admin.site.register(models.Professor)
 admin.site.register(models.Student)

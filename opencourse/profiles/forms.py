@@ -5,7 +5,7 @@ from django.contrib.auth import forms as auth_forms
 from django.contrib.auth.models import Group
 from django.utils.translation import ugettext_lazy as _
 from allauth.account.forms import SignupForm
-from opencourse.profiles import models
+from . import models
 
 
 User = get_user_model()

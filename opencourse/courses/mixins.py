@@ -1,6 +1,5 @@
 from django.views.generic.edit import ModelFormMixin
-
-from opencourse.courses import forms
+from . import forms
 
 
 class FormsetMixin(ModelFormMixin):

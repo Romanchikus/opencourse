@@ -31,12 +31,10 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(
-        settings.AUTH_USER_MODEL, on_delete=models.CASCADE
-    )
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     slug = models.UUIDField(default=uuid.uuid4, blank=True, editable=False)
     picture = models.ImageField(
-        _("Profile picture"), upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True
+        _("Profile picture"), upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True,
     )
     email_verified = models.BooleanField(_("Email verified"), default=False)
 

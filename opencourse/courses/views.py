@@ -2,8 +2,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView, UpdateView
 from django_filters.views import FilterView
 
-from opencourse.courses import forms, models, filters
-from opencourse.courses.mixins import FormsetMixin
+from . import forms, models, filters
+from .mixins import FormsetMixin
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
 

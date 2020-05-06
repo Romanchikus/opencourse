@@ -10,12 +10,14 @@ from django.views.generic import (
 )
 from django.contrib.auth import get_user_model
 from django.views.generic.detail import SingleObjectMixin
-
 from braces.views import LoginRequiredMixin
 
-from opencourse.profiles import forms, models
+from . import forms, models
+from .mixins import (
+    ProfessorRequiredMixin,
+    StudentRequiredMixin,
+)
 from opencourse.courses.models import Course
-from opencourse.profiles.mixins import ProfessorRequiredMixin, StudentRequiredMixin
 
 User = get_user_model()
 

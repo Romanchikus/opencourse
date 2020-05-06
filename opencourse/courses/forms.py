@@ -2,7 +2,7 @@ from django import forms
 from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
-from opencourse.courses import models
+from . import models
 
 
 class CourseForm(forms.ModelForm):
@@ -51,9 +51,7 @@ class CourseLocationForm(forms.ModelForm):
             "currency": _("Currency"),
         }
 
-    currency = forms.ModelChoiceField(
-        models.Currency.objects.all(),
-    )
+    currency = forms.ModelChoiceField(models.Currency.objects.all(),)
 
 
 CourseLocationFormset = inlineformset_factory(

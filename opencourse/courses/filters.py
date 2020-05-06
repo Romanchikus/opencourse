@@ -1,6 +1,6 @@
 from django.utils.translation import ugettext_lazy as _
 import django_filters
-from opencourse.courses import models
+from . import models
 
 
 class CourseFilter(django_filters.FilterSet):

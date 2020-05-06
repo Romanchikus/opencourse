@@ -1,5 +1,5 @@
 from django.urls import path
-from opencourse.courses import views
+from . import views
 
 app_name = "courses"
 urlpatterns = [
