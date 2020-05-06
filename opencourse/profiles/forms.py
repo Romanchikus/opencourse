@@ -62,9 +62,11 @@ class ProfessorForm(forms.ModelForm):
         labels = {
             "tel": _("Telephone"),
             "dob": _("Data of birth"),
+            "city": _("City"),
             "bio": _("Biography"),
             "edulevel": _("Education level"),
             "yearsexperience": _("Years of experience"),
+            "picture": _("Picture"),
         }
 
 
@@ -78,6 +80,8 @@ class StudentForm(forms.ModelForm):
         ]
         labels = {
             "dob": _("Data of birth"),
+            "city": _("City"),
+            "picture": _("Picture"),
         }
 
 
@@ -94,3 +98,7 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = models.Review
         fields = ["score", "text"]
+        labels = {
+            "score": _("Score"),
+            "text": _("Text"),
+        }

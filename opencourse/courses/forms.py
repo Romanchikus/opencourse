@@ -18,7 +18,16 @@ class CourseForm(forms.ModelForm):
             "duration",
             "age",
         ]
-        labels = {"descrip": _("Description"), "extrainfo": _("Extra information")}
+        labels = {
+            "title": _("Title"),
+            "area": _("Area"),
+            "descrip": _("Description"),
+            "level": _("Level"),
+            "extrainfo": _("Extra information"),
+            "language": _("Language"),
+            "duration": _("Duration"),
+            "age": _("Age"),
+        }
 
 
 class CourseSearchForm(forms.Form):
@@ -28,14 +37,19 @@ class CourseSearchForm(forms.Form):
         self.helper.form_show_labels = False
         self.helper.field_class = "form-field"
 
-    city = forms.ModelChoiceField(models.City.objects, empty_label="City")
-    area = forms.ModelChoiceField(models.CourseArea.objects, empty_label="Area")
+    city = forms.ModelChoiceField(models.City.objects, empty_label=_("City"))
+    area = forms.ModelChoiceField(models.CourseArea.objects, empty_label=_("Area"))
 
 
 class CourseLocationForm(forms.ModelForm):
     class Meta:
         model = models.CourseLocation
         fields = ("location_type", "price", "currency")
+        labels = {
+            "location_type": _("Location type"),
+            "price": _("Price"),
+            "currency": _("Currency"),
+        }
 
     currency = forms.ModelChoiceField(
         models.Currency.objects.all(),

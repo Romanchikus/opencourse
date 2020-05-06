@@ -4,6 +4,7 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import ugettext_lazy as _
 
 
 class User(AbstractUser):
@@ -35,9 +36,9 @@ class Profile(models.Model):
     )
     slug = models.UUIDField(default=uuid.uuid4, blank=True, editable=False)
     picture = models.ImageField(
-        "Profile picture", upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True
+        _("Profile picture"), upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True
     )
-    email_verified = models.BooleanField("Email verified", default=False)
+    email_verified = models.BooleanField(_("Email verified"), default=False)
 
     first_name_ar = models.CharField(max_length=10, blank=True, null=True)
     last_name_ar = models.CharField(max_length=100, blank=True, null=True)
