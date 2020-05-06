@@ -8,7 +8,7 @@
     <div class="container">
       <div class="row d-flex contact-info">
         <div class="col-md-12 mb-4">
-          <h3 class="h3">{% blocktrans %}Search results{% endblocktrans %}</h3>
+          <h3 class="h3">{% trans "Search results" %}</h3>
         </div>
       </div>
       <div class="row block-9">
@@ -38,7 +38,7 @@
                         <span class="position">{{ area }}</span>
                       {% endfor %}
                     </span>
-                    <p><a href="{% url 'profiles:professor_detail' course.professor.user_id %}" class="btn btn-primary">Details</a>
+                    <p><a href="{% url 'profiles:professor_detail' course.professor.user_id %}" class="btn btn-primary">{% trans "Details" %}</a>
                     </p>
                   </div>
                 </div>
@@ -47,7 +47,7 @@
               <div class="col-md-12">
                 <div class="team d-md-flex p-4 bg-white">
                   <div class="text pl-md-4">
-                    <h2>{% blocktrans %}No courses yet.{% endblocktrans %}</h2>
+                    <h2>{% trans "No courses yet." %}</h2>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
         </div>
         <div class="col-lg-4 sidebar">
           <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
-            <h3 class="heading-sidebar">Filters</h3>
+            <h3 class="heading-sidebar">{% trans "Filters" %}</h3>
             <form action="" class="bg-white contact-form" method="get">
               {% csrf_token %}
               {{ filter.form|crispy }}
@@ -79,12 +79,3 @@
     </div>
   </section>
 {% endblock main %}
-
-<form action="" class="bg-white p-5 contact-form" method="get">
-  <h2 class="h3">{% trans "Filters" %}</h2>
-  {% csrf_token %}
-  {{ filter.form|crispy }}
-  <div class="form-group">
-    <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
-  </div>
-</form>

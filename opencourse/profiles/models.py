@@ -65,7 +65,7 @@ class Student(Profile):
 
 class Professor(Profile):
     bio = models.TextField(max_length=1000, blank=True, null=True)
-    yearsexperience = models.SmallIntegerField(blank=True)
+    yearsexperience = models.SmallIntegerField(blank=True, null=True)
     act_position = models.CharField(max_length=100, blank=True, null=True)
     dateexpir = models.DateTimeField(blank=True, null=True)
     listed = models.NullBooleanField()

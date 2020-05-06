@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content_title %}
-  <h2 class="h3">{% blocktrans %}List courses{% endblocktrans %}</h2>
+  <h2 class="h3">{% trans "List courses" %}</h2>
 {% endblock content_title %}
 
 {% block content %}
@@ -10,7 +10,7 @@
     {% for course in object_list %}
       <li class="list-group-item"><a href="{% url 'courses:update' course.id %}">{{ course }}</a></li>
     {% empty %}
-      <li class="list-group-item">{% blocktrans %}No courses yet.{% endblocktrans %}</li>
+      <li class="list-group-item">{% trans "No courses yet." %}</li>
     {% endfor %}
   </ul>
 {% endblock content %}

@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView, UpdateView
 from django_filters.views import FilterView
 
-from opencourse.courses import forms, models
+from opencourse.courses import forms, models, filters
 from opencourse.courses.mixins import FormsetMixin
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
@@ -41,14 +41,6 @@ class CourseSearchView(FormView):
 
 
 class CourseSearchResultsView(FilterView):
-    model = models.Course
-    filterset_fields = [
-        "area",
-        "city",
-        "level",
-        "age",
-        "language",
-        "locations__location_type",
-    ]
+    filterset_class = filters.CourseFilter
     template_name = "courses/search_results.html"
     paginate_by = 10

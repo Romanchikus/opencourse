@@ -49,12 +49,12 @@
         <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">{% trans "Home" %}</a></li>
         {% if user.is_authenticated %}
           {% if user.is_professor %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% blocktrans %}Create course{% endblocktrans %}</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% blocktrans %}List courses{% endblocktrans %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% trans "Create course" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "List courses" %}</a></li>
 
             {% if user.is_superuser %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">{% blocktrans %}Search results{% endblocktrans %}</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' user.professor.user_id %}">{% blocktrans %}Professor courses{% endblocktrans %}</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">{% trans "Search results" %}</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' user.professor.user_id %}">{% trans "Professor courses" %}</a></li>
 
             {% endif %}
           {% endif %}
