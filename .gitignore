@@ -324,3 +324,4 @@ everycheese/media/
 .idea
 tmp/
 media/
+.env

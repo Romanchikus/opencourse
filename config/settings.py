@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import environ
 from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env()
+env.read_env(os.path.join(BASE_DIR, ".env"))
+
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = "/media/"
 
@@ -22,10 +27,11 @@ MEDIA_URL = "/media/"
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "x^wgcm$rdyho=_-rfg7rxj5x5ajhjz3$p39zyxa#8(munmq+ns"
-
+SECRET_KEY = env(
+    "DJANGO_SECRET_KEY", default="!!!SET DJANGO_SECRET_KEY!!!",
+)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DJANGO_DEBUG", False)
 
 ALLOWED_HOSTS = []
 
