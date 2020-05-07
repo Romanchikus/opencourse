@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-06 18:37+0000\n"
+"POT-Creation-Date: 2020-05-07 10:05+0000\n"
 "PO-Revision-Date: 2020-05-06 14:27+0000\n"
 "Last-Translator: b'Alex Miller <illanterfeit@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid "Area"
 msgstr "Предмет"
 
 #: opencourse/courses/filters.py:23 opencourse/courses/forms.py:40
-#: opencourse/profiles/forms.py:65 opencourse/profiles/forms.py:83
+#: opencourse/profiles/forms.py:65 opencourse/profiles/forms.py:86
 #: opencourse/templates/profiles/professor_detail.html:51
 msgid "City"
 msgstr "Город"
@@ -75,24 +75,24 @@ msgstr "Дополнительная информация"
 msgid "Duration"
 msgstr "Длительность"
 
-#: opencourse/courses/forms.py:49
+#: opencourse/courses/forms.py:45
+msgid "Currency"
+msgstr "Валюта"
+
+#: opencourse/courses/forms.py:51
 msgid "Location type"
 msgstr "Локация"
 
-#: opencourse/courses/forms.py:50
+#: opencourse/courses/forms.py:52
 msgid "Price"
 msgstr "Цена"
-
-#: opencourse/courses/forms.py:51
-msgid "Currency"
-msgstr "Валюта"
 
 #: opencourse/profiles/forms.py:63
 #: opencourse/templates/profiles/professor_detail.html:20
 msgid "Telephone"
 msgstr "Телефон"
 
-#: opencourse/profiles/forms.py:64 opencourse/profiles/forms.py:82
+#: opencourse/profiles/forms.py:64 opencourse/profiles/forms.py:85
 #: opencourse/templates/profiles/professor_detail.html:52
 msgid "Data of birth"
 msgstr "Дата рождения"
@@ -109,24 +109,24 @@ msgstr "Уровень образования"
 msgid "Years of experience"
 msgstr "Стаж"
 
-#: opencourse/profiles/forms.py:69 opencourse/profiles/forms.py:84
+#: opencourse/profiles/forms.py:69 opencourse/profiles/forms.py:87
 msgid "Picture"
 msgstr "Фото"
 
-#: opencourse/profiles/forms.py:102
+#: opencourse/profiles/forms.py:108
 msgid "Score"
 msgstr "Оценка"
 
-#: opencourse/profiles/forms.py:103
+#: opencourse/profiles/forms.py:109
 #: venv/lib/python3.8/site-packages/django/db/models/fields/__init__.py:2032
 msgid "Text"
 msgstr "Текст"
 
-#: opencourse/profiles/models.py:39
+#: opencourse/profiles/models.py:37
 msgid "Profile picture"
 msgstr "Фото"
 
-#: opencourse/profiles/models.py:41
+#: opencourse/profiles/models.py:39
 msgid "Email verified"
 msgstr "Емаил подтвержден"
 
@@ -159,10 +159,7 @@ msgid "Sign In"
 msgstr ""
 
 #: opencourse/templates/account/login.html:9
-#, fuzzy, python-format
-#| msgid ""
-#| "If you have not created an account yet, then please\n"
-#| "<a href=\"%(signup_url)s\">sign up</a> first."
+#, python-format
 msgid ""
 "If you have not created an account yet, then please\n"
 "  <a href=\"%(signup_url)s\">sign up</a> first."
@@ -213,49 +210,49 @@ msgstr ""
 msgid "OpenCourse"
 msgstr ""
 
-#: opencourse/templates/base.html:42
+#: opencourse/templates/base.html:38
 msgid "Menu"
 msgstr "Меню"
 
-#: opencourse/templates/base.html:47
+#: opencourse/templates/base.html:43
 msgid "Home"
 msgstr "Главная"
 
-#: opencourse/templates/base.html:50
+#: opencourse/templates/base.html:46
 msgid "Create course"
 msgstr "Создать курс"
 
-#: opencourse/templates/base.html:51 opencourse/templates/courses/list.html:5
+#: opencourse/templates/base.html:47 opencourse/templates/courses/list.html:5
 msgid "List courses"
 msgstr "Курсы"
 
-#: opencourse/templates/base.html:54
+#: opencourse/templates/base.html:50
 #: opencourse/templates/courses/search_results.html:11
 msgid "Search results"
 msgstr "Результаты поиска"
 
-#: opencourse/templates/base.html:55
+#: opencourse/templates/base.html:51
 msgid "Professor courses"
 msgstr "Курсы"
 
-#: opencourse/templates/base.html:59
+#: opencourse/templates/base.html:55
 #: opencourse/templates/profiles/profile.html:6
 msgid "Profile"
 msgstr "Профиль"
 
-#: opencourse/templates/base.html:60
+#: opencourse/templates/base.html:56
 msgid "Logout"
 msgstr "Выйти"
 
-#: opencourse/templates/base.html:62
+#: opencourse/templates/base.html:58
 msgid "Login"
 msgstr "Войти"
 
-#: opencourse/templates/base.html:63
+#: opencourse/templates/base.html:59
 msgid "Signup"
 msgstr "Регистрация"
 
-#: opencourse/templates/base.html:101
+#: opencourse/templates/base.html:97
 msgid ""
 "Copyright ©<script>document.write(new Date().getFullYear());</script> All "
 "rights reserved | This template is made with <i\n"

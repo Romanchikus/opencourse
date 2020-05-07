@@ -28,3 +28,8 @@ body {
 .bootstrap-select .btn-light {
   border-color: #ced4da;
 }
+
+/* Rewrite Skillhunt styles */
+.form-control {
+  height: calc(1.5em + 0.75rem + 2px) !important;
+}

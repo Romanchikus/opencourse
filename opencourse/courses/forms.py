@@ -42,16 +42,15 @@ class CourseSearchForm(forms.Form):
 
 
 class CourseLocationForm(forms.ModelForm):
+    currency = forms.ModelChoiceField(models.Currency.objects.all(), label=_("Currency"))
+
     class Meta:
         model = models.CourseLocation
         fields = ("location_type", "price", "currency")
         labels = {
             "location_type": _("Location type"),
             "price": _("Price"),
-            "currency": _("Currency"),
         }
-
-    currency = forms.ModelChoiceField(models.Currency.objects.all(),)
 
 
 CourseLocationFormset = inlineformset_factory(

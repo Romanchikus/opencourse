@@ -68,6 +68,9 @@ class ProfessorForm(forms.ModelForm):
             "yearsexperience": _("Years of experience"),
             "picture": _("Picture"),
         }
+        widgets = {
+            "dob": forms.DateInput(attrs={'type': 'date'})
+        }
 
 
 class StudentForm(forms.ModelForm):
@@ -82,6 +85,9 @@ class StudentForm(forms.ModelForm):
             "dob": _("Data of birth"),
             "city": _("City"),
             "picture": _("Picture"),
+        }
+        widgets = {
+            "dob": forms.DateInput(attrs={'type': 'date'})
         }
 
 
