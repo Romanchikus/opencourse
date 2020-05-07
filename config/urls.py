@@ -27,5 +27,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("accounts/profile/", ProfileView.as_view()),
     path("profiles/", include("opencourse.profiles.urls", namespace="profiles")),
-    path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
+    path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

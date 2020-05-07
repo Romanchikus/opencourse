@@ -68,9 +68,7 @@ class ProfessorForm(forms.ModelForm):
             "yearsexperience": _("Years of experience"),
             "picture": _("Picture"),
         }
-        widgets = {
-            "dob": forms.DateInput(attrs={'type': 'date'})
-        }
+        widgets = {"dob": forms.DateInput(attrs={"type": "date"})}
 
 
 class StudentForm(forms.ModelForm):
@@ -86,9 +84,7 @@ class StudentForm(forms.ModelForm):
             "city": _("City"),
             "picture": _("Picture"),
         }
-        widgets = {
-            "dob": forms.DateInput(attrs={'type': 'date'})
-        }
+        widgets = {"dob": forms.DateInput(attrs={"type": "date"})}
 
 
 ProfessorFormSet = inlineformset_factory(

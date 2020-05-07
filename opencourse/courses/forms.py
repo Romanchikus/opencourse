@@ -37,12 +37,18 @@ class CourseSearchForm(forms.Form):
         self.helper.form_show_labels = False
         self.helper.field_class = "form-field"
 
-    city = forms.ModelChoiceField(models.City.objects, empty_label=_("City"), required=False)
-    area = forms.ModelChoiceField(models.CourseArea.objects, empty_label=_("Area"), required=False)
+    city = forms.ModelChoiceField(
+        models.City.objects, empty_label=_("City"), required=False
+    )
+    area = forms.ModelChoiceField(
+        models.CourseArea.objects, empty_label=_("Area"), required=False
+    )
 
 
 class CourseLocationForm(forms.ModelForm):
-    currency = forms.ModelChoiceField(models.Currency.objects.all(), label=_("Currency"))
+    currency = forms.ModelChoiceField(
+        models.Currency.objects.all(), label=_("Currency")
+    )
 
     class Meta:
         model = models.CourseLocation
