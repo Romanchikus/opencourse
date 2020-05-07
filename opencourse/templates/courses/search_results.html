@@ -67,7 +67,6 @@
           <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
             <h3 class="heading-sidebar">{% trans "Filters" %}</h3>
             <form action="" class="bg-white contact-form" method="get">
-              {% csrf_token %}
               {{ filter.form|crispy }}
               <div class="form-group">
                 <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
