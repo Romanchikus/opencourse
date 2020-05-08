@@ -2,3 +2,4 @@
 
 django-extensions
 black
+django-debug-toolbar
