@@ -48,7 +48,7 @@
 
             {% if user.is_superuser %}
               <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">{% trans "Search results" %}</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' user.professor.id %}">{% trans "Professor courses" %}</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'profiles:professor_detail' user.professor.slug %}">{% trans "Professor courses" %}</a></li>
 
             {% endif %}
           {% endif %}

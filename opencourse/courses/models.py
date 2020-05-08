@@ -1,4 +1,5 @@
 from django.db import models
+from autoslug import AutoSlugField
 from opencourse.profiles.models import Professor
 
 
@@ -82,6 +83,7 @@ class CourseLanguage(models.Model):
 
 
 class Course(models.Model):
+    slug = AutoSlugField(populate_from='title')
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100)

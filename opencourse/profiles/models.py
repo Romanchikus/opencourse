@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
+from autoslug import AutoSlugField
 
 
 class User(AbstractUser):
@@ -31,8 +32,8 @@ class User(AbstractUser):
 
 
 class Profile(models.Model):
+    slug = AutoSlugField(populate_from="user")
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    slug = models.UUIDField(default=uuid.uuid4, blank=True, editable=False)
     picture = models.ImageField(
         _("Profile picture"), upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True,
     )

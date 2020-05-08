@@ -28,16 +28,16 @@ class ProfessorDetailView(ListView):
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
-        pk = self.kwargs["pk"]
-        professor = models.Professor.objects.filter(id=pk).first()
+        slug = self.kwargs["slug"]
+        professor = models.Professor.objects.filter(slug=slug).first()
         kwargs["professor"] = professor
         kwargs["review_form"] = forms.ReviewForm()
         kwargs["reviews"] = professor.review_set.order_by("-id")[:10]
         return super().get_context_data(**kwargs)
 
     def get_queryset(self):
-        pk = self.kwargs["pk"]
-        queryset = self.model.objects.filter(professor=pk)
+        slug = self.kwargs["slug"]
+        queryset = self.model.objects.filter(professor__slug=slug)
         return queryset
 
 
@@ -106,13 +106,13 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     form_class = forms.ReviewForm
 
     def get_success_url(self):
-        pk = self.kwargs["pk"]
-        return reverse_lazy("profiles:professor_detail", args=[pk])
+        slug = self.kwargs["slug"]
+        return reverse_lazy("profiles:professor_detail", args=[slug])
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
-        pk = self.kwargs["pk"]
-        professor = models.Professor.objects.filter(id=pk).first()
+        slug = self.kwargs["slug"]
+        professor = models.Professor.objects.filter(slug=slug).first()
         form.instance.professor = professor
         return super().form_valid(form)
 

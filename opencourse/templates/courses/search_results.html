@@ -38,7 +38,7 @@
                         <span class="position">{{ area }}</span>
                       {% endfor %}
                     </span>
-                    <p><a href="{% url 'profiles:professor_detail' course.professor.id %}" class="btn btn-primary">{% trans "Details" %}</a>
+                    <p><a href="{% url 'profiles:professor_detail' course.professor.slug %}" class="btn btn-primary">{% trans "Details" %}</a>
                     </p>
                   </div>
                 </div>
