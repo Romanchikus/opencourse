@@ -21,7 +21,7 @@ from django.urls import include, path
 from opencourse.profiles.views import ProfileView
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path(settings.ADMIN_URL, admin.site.urls),
     path("courses/", include("opencourse.courses.urls", namespace="courses")),
     path("accounts/", include("allauth.urls")),
     path("accounts/profile/", ProfileView.as_view()),
@@ -32,4 +32,4 @@ urlpatterns = [
 if settings.DEBUG:
     import debug_toolbar
 
-    urlpatterns = [path("__debug__/", include(debug_toolbar.urls)),] + urlpatterns
+    urlpatterns = [path("__debug__/", include(debug_toolbar.urls))] + urlpatterns

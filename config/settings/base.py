@@ -153,5 +153,9 @@ LOGIN_REDIRECT_URL = "profiles:dispatch_login"
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
 
+# Security settings
+CSRF_COOKIE_HTTPONLY = True
+ADMIN_URL = "admin/"
+
 # Delete on prod
 ACCOUNT_LOGOUT_ON_GET = True
