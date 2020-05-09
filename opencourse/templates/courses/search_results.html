@@ -26,7 +26,7 @@
                       );"></div>
                   <div class="text pl-md-4">
                     <span class="location mb-0">
-                      {{ course.professor }} -
+                      {{ course.professor }} {% if course.city %} - {{ course.city }} {% endif %}
                       {% for location in course.courselocation_set.all %}
                         {{ location }}{% if not forloop.last %}, {% endif %}
                       {% endfor %}

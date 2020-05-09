@@ -17,6 +17,7 @@ class CourseForm(forms.ModelForm):
             "language",
             "duration",
             "age",
+            "city",
         ]
         labels = {
             "title": _("Title"),
@@ -26,7 +27,7 @@ class CourseForm(forms.ModelForm):
             "extrainfo": _("Extra information"),
             "language": _("Language"),
             "duration": _("Duration"),
-            "age": _("Age"),
+            "city": _("City"),
         }
 
 
