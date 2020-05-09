@@ -25,6 +25,7 @@
                       {% endif %}
                       );"></div>
                   <div class="text pl-md-4">
+                    <input class="rating-container score-display" value={{ course.professor.average_score }}>
                     <span class="location mb-0">
                       {{ course.professor }} {% if course.city %} - {{ course.city }} {% endif %}
                       {% for location in course.courselocation_set.all %}
@@ -38,7 +39,8 @@
                         <span class="position">{{ area }}</span>
                       {% endfor %}
                     </span>
-                    <p><a href="{% url 'profiles:professor_detail' course.professor.slug %}" class="btn btn-primary">{% trans "Details" %}</a>
+                    <p><a href="{% url 'profiles:professor_detail' course.professor.slug %}"
+                          class="btn btn-primary">{% trans "Details" %}</a>
                     </p>
                   </div>
                 </div>

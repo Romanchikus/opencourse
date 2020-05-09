@@ -46,6 +46,7 @@
                         {% endif %}
                         );"></div>
                     <div class="text px-md-4">
+                      <input class="rating-container score-display" value={{ professor.average_score }}>
                       <h2>{{ professor }}</h2>
                       <p>
                         {% trans "City" %}: {{ professor.city|default:"" }}<br>
@@ -183,5 +184,6 @@
 {% endblock main %}
 
 {% block project_js %}
+  {{ block.super }}
   <script src={% static "js/professor_detail.js" %}></script>
 {% endblock project_js %}

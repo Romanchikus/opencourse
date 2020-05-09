@@ -52,7 +52,9 @@ class Profile(models.Model):
     contacts_requests = models.PositiveIntegerField(null=True)
 
     def __str__(self):
-        return f"{self.user.first_name} {self.user.last_name} ({self.user.email})"
+        if self.user.first_name or self.user.last_name:
+            return f"{self.user.first_name} {self.user.last_name}"
+        return self.user.username
 
     class Meta:
         abstract = True
@@ -69,6 +71,12 @@ class Professor(Profile):
     dateexpir = models.DateTimeField(blank=True, null=True)
     listed = models.NullBooleanField()
     feespaid = models.NullBooleanField()
+
+    @property
+    def average_score(self):
+        reviews = self.review_set.all()
+        score = reviews.aggregate(models.Avg("score"))["score__avg"]
+        return score
 
 
 class Review(models.Model):
