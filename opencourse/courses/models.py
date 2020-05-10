@@ -1,12 +1,12 @@
 from django.db import models
 from autoslug import AutoSlugField
 from opencourse.profiles.models import Professor
+from django.utils.translation import ugettext_lazy as _
 
 
 class City(models.Model):
     codepostal = models.CharField(max_length=8, blank=True, null=True)
     name = models.CharField(max_length=60, blank=True, null=True)
-    name_ar = models.CharField(max_length=70, blank=True, null=True)
     latitude_south = models.DecimalField(
         blank=True, null=True, max_digits=8, decimal_places=4
     )
@@ -35,55 +35,50 @@ class City(models.Model):
     category_2 = models.SmallIntegerField(blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class CourseLevel(models.Model):
     name = models.CharField(max_length=30, blank=True, null=True)
-    name_ar = models.CharField(max_length=45, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class CourseDuration(models.Model):
     duration = models.SmallIntegerField(blank=True, null=True)
 
     def __str__(self):
-        return f"{self.duration} minutes"
+        return f"{self.duration} {_('minutes')}"
 
 
 class CourseAge(models.Model):
     max = models.SmallIntegerField(blank=True, null=True)
-    name = models.CharField(max_length=20, blank=True, null=True)
-    name_ar = models.CharField(max_length=20, blank=True, null=True)
+    name = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class CourseArea(models.Model):
     name = models.CharField(max_length=30, blank=True, null=True)
-    name_ar = models.CharField(max_length=45, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class CourseLanguage(models.Model):
-    origin = models.CharField(max_length=30, blank=True, null=True)
-    ar = models.CharField(max_length=30, blank=True, null=True)
-    fr = models.CharField(max_length=30, blank=True, null=True)
+    name = models.CharField(max_length=30, blank=True, null=True)
     tag = models.CharField(max_length=2, blank=True, null=True)
 
     def __str__(self):
-        return self.origin
+        return str(self.name)
 
 
 class Course(models.Model):
-    slug = AutoSlugField(populate_from='title')
+    slug = AutoSlugField(populate_from="title")
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100)
@@ -109,10 +104,9 @@ class Course(models.Model):
 
 class CourseLocationType(models.Model):
     name = models.CharField(max_length=25)
-    name_ar = models.CharField(max_length=25)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Currency(models.Model):

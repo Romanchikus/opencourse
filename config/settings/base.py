@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "django_filters",
+    "modeltranslation",
     "opencourse.courses.apps.CoursesConfig",
     "opencourse.profiles.apps.ProfilesConfig",
 ]
@@ -90,7 +91,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "tmp/db.sqlite3"),
+        "NAME": os.path.join(BASE_DIR, "scripts/db.sqlite3"),
     }
 }
 
@@ -115,7 +116,8 @@ LANGUAGES = (
     ("en", _("English")),
     ("ru", _("Russian")),
 )
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "ru"
+MODELTRANSLATION_FALLBACK_LANGUAGES = ["en", "ru"]
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale/")]
 
 TIME_ZONE = "UTC"

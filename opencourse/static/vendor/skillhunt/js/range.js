@@ -14,9 +14,9 @@
 
       if (slide1 > slide2) {
 				[slide1, slide2] = [slide2, slide1];
-        // var tmp = slide2;
+        // var scripts = slide2;
         // slide2 = slide1;
-        // slide1 = tmp;
+        // slide1 = scripts;
       }
 
       numberS[0].value = slide1;

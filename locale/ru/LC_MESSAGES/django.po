@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-07 11:35+0000\n"
+"POT-Creation-Date: 2020-05-10 21:00+0000\n"
 "PO-Revision-Date: 2020-05-06 14:27+0000\n"
 "Last-Translator: b'Alex Miller <illanterfeit@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,35 +21,36 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 "X-Translated-Using: django-rosetta 0.9.4\n"
 
-#: config/settings.py:111
+#: config/settings/base.py:116
 msgid "English"
 msgstr "Английский"
 
-#: config/settings.py:112
+#: config/settings/base.py:117
 msgid "Russian"
 msgstr "Русский"
 
-#: opencourse/courses/filters.py:22 opencourse/courses/forms.py:23
-#: opencourse/courses/forms.py:41
+#: opencourse/courses/filters.py:22 opencourse/courses/forms.py:24
+#: opencourse/courses/forms.py:45
 msgid "Area"
 msgstr "Предмет"
 
-#: opencourse/courses/filters.py:23 opencourse/courses/forms.py:40
-#: opencourse/profiles/forms.py:65 opencourse/profiles/forms.py:89
-#: opencourse/templates/profiles/professor_detail.html:51
+#: opencourse/courses/filters.py:23 opencourse/courses/forms.py:30
+#: opencourse/courses/forms.py:42 opencourse/profiles/forms.py:65
+#: opencourse/profiles/forms.py:84
+#: opencourse/templates/profiles/professor_detail.html:52
 msgid "City"
 msgstr "Город"
 
-#: opencourse/courses/filters.py:24 opencourse/courses/forms.py:25
+#: opencourse/courses/filters.py:24 opencourse/courses/forms.py:26
 msgid "Level"
 msgstr "Уровень"
 
-#: opencourse/courses/filters.py:25 opencourse/courses/forms.py:29
-#: opencourse/templates/profiles/professor_detail.html:112
+#: opencourse/courses/filters.py:25
+#: opencourse/templates/profiles/professor_detail.html:111
 msgid "Age"
 msgstr "Возраст"
 
-#: opencourse/courses/filters.py:26 opencourse/courses/forms.py:27
+#: opencourse/courses/filters.py:26 opencourse/courses/forms.py:28
 msgid "Language"
 msgstr "Язык"
 
@@ -57,32 +58,32 @@ msgstr "Язык"
 msgid "Location"
 msgstr "Локация"
 
-#: opencourse/courses/forms.py:22
+#: opencourse/courses/forms.py:23
 msgid "Title"
 msgstr "Название"
 
-#: opencourse/courses/forms.py:24
+#: opencourse/courses/forms.py:25
 msgid "Description"
 msgstr "Описание"
 
-#: opencourse/courses/forms.py:26
+#: opencourse/courses/forms.py:27
 msgid "Extra information"
 msgstr "Дополнительная информация"
 
-#: opencourse/courses/forms.py:28
-#: opencourse/templates/profiles/professor_detail.html:126
+#: opencourse/courses/forms.py:29
+#: opencourse/templates/profiles/professor_detail.html:125
 msgid "Duration"
 msgstr "Длительность"
 
-#: opencourse/courses/forms.py:45
+#: opencourse/courses/forms.py:51
 msgid "Currency"
 msgstr "Валюта"
 
-#: opencourse/courses/forms.py:51
+#: opencourse/courses/forms.py:58
 msgid "Location type"
 msgstr "Локация"
 
-#: opencourse/courses/forms.py:52
+#: opencourse/courses/forms.py:59
 msgid "Price"
 msgstr "Цена"
 
@@ -91,8 +92,8 @@ msgstr "Цена"
 msgid "Telephone"
 msgstr "Телефон"
 
-#: opencourse/profiles/forms.py:64 opencourse/profiles/forms.py:88
-#: opencourse/templates/profiles/professor_detail.html:52
+#: opencourse/profiles/forms.py:64 opencourse/profiles/forms.py:83
+#: opencourse/templates/profiles/professor_detail.html:53
 msgid "Data of birth"
 msgstr "Дата рождения"
 
@@ -108,23 +109,23 @@ msgstr "Уровень образования"
 msgid "Years of experience"
 msgstr "Стаж"
 
-#: opencourse/profiles/forms.py:69 opencourse/profiles/forms.py:90
+#: opencourse/profiles/forms.py:69 opencourse/profiles/forms.py:85
 msgid "Picture"
 msgstr "Фото"
 
-#: opencourse/profiles/forms.py:111
+#: opencourse/profiles/forms.py:104
 msgid "Score"
 msgstr "Оценка"
 
-#: opencourse/profiles/forms.py:112
+#: opencourse/profiles/forms.py:105
 msgid "Text"
 msgstr "Текст"
 
-#: opencourse/profiles/models.py:37
+#: opencourse/profiles/models.py:38
 msgid "Profile picture"
 msgstr "Фото"
 
-#: opencourse/profiles/models.py:39
+#: opencourse/profiles/models.py:40
 msgid "Email verified"
 msgstr "Емаил подтвержден"
 
@@ -191,7 +192,7 @@ msgid "Сourse"
 msgstr "Курс"
 
 #: opencourse/templates/courses/edit.html:15
-#: opencourse/templates/profiles/professor_detail.html:104
+#: opencourse/templates/profiles/professor_detail.html:103
 msgid "Locations"
 msgstr "Локации"
 
@@ -200,7 +201,7 @@ msgid "Submit"
 msgstr "Отправить"
 
 #: opencourse/templates/courses/list.html:13
-#: opencourse/templates/courses/search_results.html:50
+#: opencourse/templates/courses/search_results.html:52
 msgid "No courses yet."
 msgstr "Курсов еще нет."
 
@@ -236,15 +237,15 @@ msgstr "Найти профессора"
 msgid "Search"
 msgstr "Поиск"
 
-#: opencourse/templates/courses/search_results.html:41
+#: opencourse/templates/courses/search_results.html:43
 msgid "Details"
 msgstr "Подробно"
 
-#: opencourse/templates/courses/search_results.html:68
+#: opencourse/templates/courses/search_results.html:70
 msgid "Filters"
 msgstr "Фильтры"
 
-#: opencourse/templates/courses/search_results.html:72
+#: opencourse/templates/courses/search_results.html:74
 msgid "Filter"
 msgstr "Фильтровать"
 
@@ -274,61 +275,54 @@ msgstr "Ок"
 msgid "Professor"
 msgstr "Профессор"
 
-#: opencourse/templates/profiles/professor_detail.html:53
+#: opencourse/templates/profiles/professor_detail.html:54
 msgid "years of experience"
 msgstr "лет опыта"
 
-#: opencourse/templates/profiles/professor_detail.html:59
+#: opencourse/templates/profiles/professor_detail.html:60
 msgid "Contact"
 msgstr "Контакты"
 
-#: opencourse/templates/profiles/professor_detail.html:64
+#: opencourse/templates/profiles/professor_detail.html:65
 msgid "About me"
 msgstr "Обо мне"
 
-#: opencourse/templates/profiles/professor_detail.html:66
+#: opencourse/templates/profiles/professor_detail.html:67
 msgid "Education"
 msgstr "Образование"
 
-#: opencourse/templates/profiles/professor_detail.html:76
+#: opencourse/templates/profiles/professor_detail.html:77
 msgid "No professor found."
 msgstr "Профессор не найден"
 
-#: opencourse/templates/profiles/professor_detail.html:84
+#: opencourse/templates/profiles/professor_detail.html:85
 msgid "Courses"
 msgstr "Курсы"
 
-#: opencourse/templates/profiles/professor_detail.html:120
+#: opencourse/templates/profiles/professor_detail.html:119
 msgid "Student level"
 msgstr "Уровень студента"
 
-#: opencourse/templates/profiles/professor_detail.html:130
+#: opencourse/templates/profiles/professor_detail.html:129
 msgid "The class is taught in"
 msgstr "Курс проходит на"
 
-#: opencourse/templates/profiles/professor_detail.html:156
+#: opencourse/templates/profiles/professor_detail.html:155
 msgid "Reviews"
 msgstr "Отзывы"
 
-#: opencourse/templates/profiles/professor_detail.html:159
+#: opencourse/templates/profiles/professor_detail.html:158
 msgid "Add review"
 msgstr "Добавить отзыв"
 
-#: opencourse/templates/profiles/professor_detail.html:165
+#: opencourse/templates/profiles/professor_detail.html:164
 msgid "Review"
 msgstr "Отзыв"
 
-#: opencourse/templates/profiles/professor_detail.html:178
+#: opencourse/templates/profiles/professor_detail.html:177
 msgid "No reviews yet"
 msgstr "Отзывов еще нет"
 
 #: opencourse/templates/profiles/profile.html:18
 msgid "Update"
 msgstr "Обновить"
-
-msgid ""
-"If you have not created an account yet, then please\n"
-"  <a href=\"%(signup_url)s\">sign up</a> first."
-msgstr ""
-"Если у вас ещё нет учётной записи, пожалуйста, сначала <a href="
-"\"%(signup_url)s\">зарегистрируйтесь</a>."
