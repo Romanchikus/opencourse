@@ -15,4 +15,9 @@ $(function () {
 
   options.displayOnly = true
   $(".score-display").rating(options);
+
+  $('.change-language').click(function (e) {
+    $('#language').val($(this).attr('data-lang-code'));
+    $('#change-language-form').submit();
+  });
 });

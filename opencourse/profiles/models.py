@@ -49,7 +49,7 @@ class Profile(models.Model):
     whatsapp = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=60, blank=True, null=True)
     dateadd = models.DateTimeField(blank=True, null=True)
-    contacts_requests = models.PositiveIntegerField(null=True)
+    contacts_requests = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         if self.user.first_name or self.user.last_name:

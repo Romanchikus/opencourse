@@ -11,6 +11,7 @@ reset:
 	pip install -r requirements/local.txt
 	./manage.py makemigrations
 	./manage.py migrate
+	./manage.py runscript 2020_05_10_2
 	./manage.py runscript 2020_05_10
 
 translate:

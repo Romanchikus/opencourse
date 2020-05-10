@@ -27,6 +27,7 @@ urlpatterns = [
     path("accounts/profile/", ProfileView.as_view()),
     path("profiles/", include("opencourse.profiles.urls", namespace="profiles")),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
+    path("i18n/", include("django.conf.urls.i18n")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

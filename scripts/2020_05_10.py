@@ -505,7 +505,7 @@ def import_data():
     profiles_student_1.whatsapp = None
     profiles_student_1.email = None
     profiles_student_1.dateadd = None
-    profiles_student_1.contacts_requests = None
+    profiles_student_1.contacts_requests = 0
     profiles_student_1 = importer.save_or_locate(profiles_student_1)
 
     # Processing model: opencourse.profiles.models.Professor
@@ -527,7 +527,7 @@ def import_data():
     profiles_professor_1.whatsapp = None
     profiles_professor_1.email = None
     profiles_professor_1.dateadd = None
-    profiles_professor_1.contacts_requests = None
+    profiles_professor_1.contacts_requests = 0
     profiles_professor_1.bio = None
     profiles_professor_1.yearsexperience = None
     profiles_professor_1.act_position = None

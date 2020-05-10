@@ -1,5 +1,6 @@
 .hero-wrap {
   height: 100vh;
+  min-height: 900px;
 }
 
 /* Sticky footer styles
