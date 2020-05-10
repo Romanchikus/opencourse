@@ -1,12 +1,12 @@
-from braces.views import GroupRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 
 
-class ProfessorRequiredMixin(GroupRequiredMixin):
-    group_required = "professors"
+class ProfessorRequiredMixin(PermissionRequiredMixin):
+    permission_required = "profiles.access_professor_pages"
     login_url = reverse_lazy("profiles:forbidden")
 
 
-class StudentRequiredMixin(GroupRequiredMixin):
-    group_required = "students"
+class StudentRequiredMixin(PermissionRequiredMixin):
+    permission_required = "profiles.access_student_pages"
     login_url = reverse_lazy("profiles:forbidden")
