@@ -13,11 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.views.i18n import JavaScriptCatalog
-from django.conf.urls.static import static
 from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import RedirectView
+from django.views.i18n import JavaScriptCatalog
 from opencourse.profiles.views import ProfileView
 
 urlpatterns = [
@@ -28,6 +29,7 @@ urlpatterns = [
     path("profiles/", include("opencourse.profiles.urls", namespace="profiles")),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     path("i18n/", include("django.conf.urls.i18n")),
+    path("", RedirectView.as_view(pattern_name="courses:search"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

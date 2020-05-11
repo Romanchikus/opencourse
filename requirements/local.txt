@@ -1,5 +1,5 @@
 -r base.txt
 
-django-extensions
 black
 django-debug-toolbar
+python-dateutil

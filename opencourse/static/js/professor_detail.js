@@ -1,14 +1,3 @@
-$(function () {
-  var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-  $.ajaxSetup({
-    beforeSend: function (xhr, settings) {
-      if (!this.crossDomain) {
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-      }
-    }
-  });
-});
-
 function contact_request() {
   var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
   $.ajaxSetup({

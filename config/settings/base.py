@@ -19,15 +19,13 @@ BASE_DIR = environ.Path(__file__) - 3
 
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
-MEDIA_URL = "/media/"
+_ENV = env.str("DJANGO_SETTINGS_MODULE", "config.settings.base")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("DJANGO_SECRET_KEY", default="!!!SET DJANGO_SECRET_KEY!!!",)
+SECRET_KEY = env.str("DJANGO_SECRET_KEY", default="!!!SET DJANGO_SECRET_KEY!!!",)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", False)
 
@@ -50,6 +48,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "django_filters",
+    "django_extensions",
     "opencourse.courses.apps.CoursesConfig",
     "opencourse.profiles.apps.ProfilesConfig",
 ]
@@ -89,12 +88,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "scripts/db.sqlite3"),
-    }
-}
+DATABASES = {"default": env.db(default="sqlite:///db.sqlite3")}
 
 
 # Password validation
@@ -133,8 +127,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+# STATIC_ROOT = str(BASE_DIR("opencourse/static/"))
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(os.path.join(BASE_DIR, "opencourse/static/"))]
+STATICFILES_DIRS = [str(BASE_DIR("opencourse/static"))]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = str(BASE_DIR("media"))
 
 # Project adjustments
 AUTH_USER_MODEL = "profiles.User"
