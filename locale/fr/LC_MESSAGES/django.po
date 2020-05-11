@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 02:14+0000\n"
+"POT-Creation-Date: 2020-05-11 04:51+0000\n"
 "PO-Revision-Date: 2020-05-11 02:39+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,10 +24,6 @@ msgid "English"
 msgstr "Anglaise"
 
 #: config/settings/base.py:118
-msgid "Russian"
-msgstr "Russe"
-
-#: config/settings/base.py:119
 msgid "French"
 msgstr "Français"
 
@@ -191,8 +187,7 @@ msgstr "E-mail vérifiée"
 msgid "Student"
 msgstr "Étudiant"
 
-#: opencourse/profiles/models.py:64
-#: opencourse/templates/courses/search.html:54
+#: opencourse/profiles/models.py:64 opencourse/templates/courses/search.html:54
 msgid "Students"
 msgstr "Les étudiants"
 
@@ -201,8 +196,7 @@ msgstr "Les étudiants"
 msgid "Professor"
 msgstr "Le professeur"
 
-#: opencourse/profiles/models.py:77
-#: opencourse/templates/courses/search.html:41
+#: opencourse/profiles/models.py:77 opencourse/templates/courses/search.html:41
 msgid "Professors"
 msgstr "Les professeurs"
 
@@ -263,20 +257,12 @@ msgid "Signup"
 msgstr "Inscription"
 
 #: opencourse/templates/base.html:134
-msgid ""
-"\n"
-"              Copyright © <script>document.write(new Date().getFullYear());</script>\n"
-"              All rights reserved | This template is made with\n"
-"              <i class=\"icon-heart text-danger\" aria-hidden=\"true\"></i>\n"
-"              by <a href=\"https://colorlib.com\" target=\"_blank\">Colorlib</a>\n"
-"            "
-msgstr ""
-"\n"
-" Copyright © <script>document.écrire(new Date().getFullYear());</script>\n"
-" Tous droits réservés | Ce modèle est fait avec\n"
-" <i class=\"icon-cœur de texte-danger\" aria-hidden=\"true\"></i>\n"
-" par <a href=\"https://colorlib.com\" target=\"_blank\">Colorlib</a>\n"
-"            "
+msgid "Copyright"
+msgstr "Droits d'auteur"
+
+#: opencourse/templates/base.html:135
+msgid "All rights reserved | This template is made with"
+msgstr "Tous droits réservés | Ce modèle est fait avec"
 
 #: opencourse/templates/courses/edit.html:7
 msgid "Сourse"
@@ -337,9 +323,9 @@ msgstr ""
 " Vous pouvez <a href='%(search_url)s'>retour</a> pour la page d'accueil."
 
 #: opencourse/templates/profiles/professor_detail.html:14
-#, python-format
-msgid "Contact %(professor)s now:"
-msgstr "Contactez %(professeur)s maintenant:"
+#: opencourse/templates/profiles/professor_detail.html:60
+msgid "Contact"
+msgstr "Contact"
 
 #: opencourse/templates/profiles/professor_detail.html:23
 msgid "Ok"
@@ -348,10 +334,6 @@ msgstr "Ok"
 #: opencourse/templates/profiles/professor_detail.html:54
 msgid "years of experience"
 msgstr "ans d'expérience"
-
-#: opencourse/templates/profiles/professor_detail.html:60
-msgid "Contact"
-msgstr "Contact"
 
 #: opencourse/templates/profiles/professor_detail.html:65
 msgid "About me"
@@ -384,3 +366,9 @@ msgstr "Pas encore de reviews"
 #: opencourse/templates/profiles/profile.html:18
 msgid "Update"
 msgstr "Mise à jour"
+
+#~ msgid "Contact %(professor)s now:"
+#~ msgstr "Contactez %(professeur)s maintenant:"
+
+#~ msgid "Russian"
+#~ msgstr "Russe"
