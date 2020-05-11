@@ -117,7 +117,7 @@ LANGUAGES = (
     ("en", _("English")),
     ("fr", _("French")),
 )
-LANGUAGE_CODE = "en"
+LANGUAGE_CODE = "fr"
 MODELTRANSLATION_FALLBACK_LANGUAGES = ["en", "fr"]
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale/")]
 

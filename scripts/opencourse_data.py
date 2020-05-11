@@ -486,10 +486,10 @@ def import_data():
         "2020-05-10T20:20:06.664503+00:00"
     )
     profiles_user_2.is_superuser = True
-    profiles_user_2.username = "alex"
+    profiles_user_2.username = "admin"
     profiles_user_2.first_name = ""
     profiles_user_2.last_name = ""
-    profiles_user_2.email = ""
+    profiles_user_2.email = "admin@gmail.com"
     profiles_user_2.is_staff = True
     profiles_user_2.is_active = True
     profiles_user_2.date_joined = dateutil.parser.parse(

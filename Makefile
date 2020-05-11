@@ -5,8 +5,8 @@ reset:
 	pip install -r requirements/local.txt
 	./manage.py makemigrations
 	./manage.py migrate
-	./manage.py runscript 2020_05_10_2
-	./manage.py runscript 2020_05_11
+	./manage.py runscript auth_data
+	./manage.py runscript opencourse_data
 
 translate:
 	./manage.py makemessages -i venv -i */account

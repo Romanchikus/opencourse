@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-11 04:51+0000\n"
+"POT-Creation-Date: 2020-05-11 05:39+0000\n"
 "PO-Revision-Date: 2020-05-11 02:39+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -86,7 +86,7 @@ msgstr "Monnaie"
 
 #: opencourse/courses/forms.py:58
 msgid "Location type"
-msgstr "Type d'emplacement"
+msgstr "D'emplacement"
 
 #: opencourse/courses/forms.py:59
 msgid "Price"
@@ -122,11 +122,11 @@ msgstr "Cours"
 
 #: opencourse/courses/models.py:136
 msgid "Location Type"
-msgstr "Type D'Emplacement"
+msgstr "D'Emplacement"
 
 #: opencourse/courses/models.py:137
 msgid "Location Types"
-msgstr "Les Types D'Emplacement"
+msgstr "D'Emplacement"
 
 #: opencourse/courses/models.py:150
 msgid "Currencies"
@@ -175,37 +175,37 @@ msgstr "Score"
 msgid "Text"
 msgstr "Texte"
 
-#: opencourse/profiles/models.py:38
+#: opencourse/profiles/models.py:37
 msgid "Profile picture"
 msgstr "Photo de profil"
 
-#: opencourse/profiles/models.py:40
+#: opencourse/profiles/models.py:39
 msgid "Email verified"
 msgstr "E-mail vérifiée"
 
-#: opencourse/profiles/models.py:63
+#: opencourse/profiles/models.py:62
 msgid "Student"
 msgstr "Étudiant"
 
-#: opencourse/profiles/models.py:64 opencourse/templates/courses/search.html:54
+#: opencourse/profiles/models.py:63 opencourse/templates/courses/search.html:54
 msgid "Students"
 msgstr "Les étudiants"
 
-#: opencourse/profiles/models.py:76
+#: opencourse/profiles/models.py:75
 #: opencourse/templates/profiles/professor_detail.html:36
 msgid "Professor"
 msgstr "Le professeur"
 
-#: opencourse/profiles/models.py:77 opencourse/templates/courses/search.html:41
+#: opencourse/profiles/models.py:76 opencourse/templates/courses/search.html:41
 msgid "Professors"
 msgstr "Les professeurs"
 
-#: opencourse/profiles/models.py:96
+#: opencourse/profiles/models.py:95
 #: opencourse/templates/profiles/professor_detail.html:164
 msgid "Review"
 msgstr "Examen"
 
-#: opencourse/profiles/models.py:97
+#: opencourse/profiles/models.py:96
 #: opencourse/templates/profiles/professor_detail.html:155
 msgid "Reviews"
 msgstr "Commentaires"
