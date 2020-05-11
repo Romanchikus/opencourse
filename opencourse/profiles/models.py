@@ -60,8 +60,8 @@ class Profile(models.Model):
 
 class Student(Profile):
     class Meta:
-        verbose_name = _('Student')
-        verbose_name_plural = _('Students')
+        verbose_name = _("Student")
+        verbose_name_plural = _("Students")
 
 
 class Professor(Profile):
@@ -73,8 +73,8 @@ class Professor(Profile):
     feespaid = models.NullBooleanField()
 
     class Meta:
-        verbose_name = _('Professor')
-        verbose_name_plural = _('Professors')
+        verbose_name = _("Professor")
+        verbose_name_plural = _("Professors")
 
     @property
     def average_score(self):
@@ -93,8 +93,8 @@ class Review(models.Model):
     author = GenericForeignKey("content_type", "author_id")
 
     class Meta:
-        verbose_name = _('Review')
-        verbose_name_plural = _('Reviews')
+        verbose_name = _("Review")
+        verbose_name_plural = _("Reviews")
 
     def __str__(self):
         return self.text

@@ -115,10 +115,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGES = (
     ("en", _("English")),
-    ("ru", _("Russian")),
+    ("fr", _("French")),
 )
 LANGUAGE_CODE = "en"
-MODELTRANSLATION_FALLBACK_LANGUAGES = ["en", "ru"]
+MODELTRANSLATION_FALLBACK_LANGUAGES = ["en", "fr"]
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale/")]
 
 TIME_ZONE = "UTC"
