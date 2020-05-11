@@ -39,8 +39,6 @@ class Profile(models.Model):
     )
     email_verified = models.BooleanField(_("Email verified"), default=False)
 
-    first_name_ar = models.CharField(max_length=10, blank=True, null=True)
-    last_name_ar = models.CharField(max_length=100, blank=True, null=True)
     address = models.CharField(max_length=255, blank=True, null=True)
     city = models.CharField(max_length=60, blank=True, null=True)
     dob = models.DateField(blank=True, null=True)
@@ -61,7 +59,9 @@ class Profile(models.Model):
 
 
 class Student(Profile):
-    pass
+    class Meta:
+        verbose_name = _('Student')
+        verbose_name_plural = _('Students')
 
 
 class Professor(Profile):
@@ -71,6 +71,10 @@ class Professor(Profile):
     dateexpir = models.DateTimeField(blank=True, null=True)
     listed = models.NullBooleanField()
     feespaid = models.NullBooleanField()
+
+    class Meta:
+        verbose_name = _('Professor')
+        verbose_name_plural = _('Professors')
 
     @property
     def average_score(self):
@@ -87,6 +91,10 @@ class Review(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     author_id = models.PositiveIntegerField()
     author = GenericForeignKey("content_type", "author_id")
+
+    class Meta:
+        verbose_name = _('Review')
+        verbose_name_plural = _('Reviews')
 
     def __str__(self):
         return self.text

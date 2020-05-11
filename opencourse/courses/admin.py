@@ -1,6 +1,5 @@
 from django.contrib import admin
-from django.contrib.auth.models import Permission
-
+from modeltranslation.admin import TranslationAdmin
 from opencourse.courses import models
 
 
@@ -16,11 +15,10 @@ class CourseAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.Currency)
-admin.site.register(Permission)
 
-admin.site.register(models.CourseArea)
-admin.site.register(models.City)
-admin.site.register(models.CourseLevel)
-admin.site.register(models.CourseAge)
-admin.site.register(models.CourseLanguage)
-admin.site.register(models.CourseLocationType)
+admin.site.register(models.CourseArea, TranslationAdmin)
+admin.site.register(models.City, TranslationAdmin)
+admin.site.register(models.CourseLevel, TranslationAdmin)
+admin.site.register(models.CourseAge, TranslationAdmin)
+admin.site.register(models.CourseLanguage, TranslationAdmin)
+admin.site.register(models.CourseLocationType, TranslationAdmin)

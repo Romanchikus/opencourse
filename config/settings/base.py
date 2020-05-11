@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "modeltranslation",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -49,7 +50,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "django_filters",
-    "modeltranslation",
     "opencourse.courses.apps.CoursesConfig",
     "opencourse.profiles.apps.ProfilesConfig",
 ]
@@ -117,7 +117,7 @@ LANGUAGES = (
     ("en", _("English")),
     ("ru", _("Russian")),
 )
-LANGUAGE_CODE = "ru"
+LANGUAGE_CODE = "en"
 MODELTRANSLATION_FALLBACK_LANGUAGES = ["en", "ru"]
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale/")]
 

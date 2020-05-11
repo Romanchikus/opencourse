@@ -150,13 +150,13 @@ def import_data():
     from django.contrib.auth.models import Group
 
     auth_group_1 = Group()
-    auth_group_1.name = 'students'
+    auth_group_1.name = 'Students'
     auth_group_1 = importer.save_or_locate(auth_group_1)
 
     auth_group_1.permissions.add(auth_permission_78)
 
     auth_group_2 = Group()
-    auth_group_2.name = 'professors'
+    auth_group_2.name = 'Professors'
     auth_group_2 = importer.save_or_locate(auth_group_2)
 
     auth_group_2.permissions.add(auth_permission_77)
