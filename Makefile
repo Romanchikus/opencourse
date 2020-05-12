@@ -26,7 +26,8 @@ deploy:
 	git fetch origin
 	git reset origin/master --hard
 
-	./manage.py makemessages -i venv
 	./manage.py compilemessages -i venv
-
+	./manage.py collectstatic --noinput
 	./manage.py migrate
+
+	systemctl restart nginx gunicorn.socket gunicorn.service gunicorn

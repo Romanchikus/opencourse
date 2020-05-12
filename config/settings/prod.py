@@ -23,3 +23,5 @@ SECURE_BROWSER_XSS_FILTER = True
 INSTALLED_APPS += [
     # "django_extensions",
 ]
+EMAIL_CONFIG = env.email_url("EMAIL_URL")
+vars().update(EMAIL_CONFIG)

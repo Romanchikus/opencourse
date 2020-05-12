@@ -1,8 +1,10 @@
 from django import forms
+from django.db import transaction
 from django.forms.models import inlineformset_factory
 from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Permission
+from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from allauth.account.forms import SignupForm
 from . import models
@@ -19,22 +21,25 @@ class ProfileCreateForm(SignupForm):
         model = User
 
     def save(self, request):
-        user = super().save(request)
+        with transaction.atomic():
+            user = super().save(request)
 
-        user_type = self.cleaned_data["user_type"]
-        user_type_class_map = {
-            "professor": models.Professor,
-            "student": models.Student,
-        }
-        user_class = user_type_class_map[user_type]
-        profile = user_class()
-        setattr(user, user_type, profile)
-        user.save()
-        profile.save()
+            user_type = self.cleaned_data["user_type"]
+            user_type_class_map = {
+                "professor": models.Professor,
+                "student": models.Student,
+            }
+            user_class = user_type_class_map[user_type]
+            profile = user_class()
+            setattr(user, user_type, profile)
 
-        group = Group.objects.get(name=f"{user_type}s")
-        group.user_set.add(user)
-        group.save()
+            permission = get_object_or_404(
+                Permission, codename=f"access_{user_type}_pages"
+            )
+            user.user_permissions.add(permission)
+
+            user.save()
+            profile.save()
         return user
 
 
