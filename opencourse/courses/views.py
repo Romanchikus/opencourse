@@ -1,6 +1,10 @@
+from django.db import transaction
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, FormView, UpdateView, DetailView
+
 from django_filters.views import FilterView
+from guardian.mixins import PermissionRequiredMixin
+from guardian.shortcuts import assign_perm
 
 from . import forms, models, filters
 from .mixins import FormsetMixin
@@ -8,7 +12,18 @@ from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
 
-class CourseEditView(ProfessorRequiredMixin, FormsetMixin, UpdateView):
+class CourseEditView(PermissionRequiredMixin, FormsetMixin, UpdateView):
+    model = models.Course
+    form_class = forms.CourseForm
+    formset_class = forms.CourseLocationFormset
+    template_name = "courses/edit.html"
+    exclude = ["professor"]
+    success_url = reverse_lazy("courses:list")
+    permission_required = "courses.manage_course"
+    return_403 = True
+
+
+class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
     model = models.Course
     form_class = forms.CourseForm
     formset_class = forms.CourseLocationFormset
@@ -16,17 +31,13 @@ class CourseEditView(ProfessorRequiredMixin, FormsetMixin, UpdateView):
     exclude = ["professor"]
     success_url = reverse_lazy("courses:list")
 
-
-class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
-    form_class = forms.CourseForm
-    formset_class = forms.CourseLocationFormset
-    template_name = "courses/edit.html"
-    exclude = ["professor"]
-    success_url = reverse_lazy("courses:list")
-
     def form_valid(self, form):
-        form.instance.professor = self.request.user.professor
-        return super().form_valid(form)
+        with transaction.atomic():
+            form.instance.professor = self.request.user.professor
+            response = super().form_valid(form)
+            course = self.object
+            assign_perm("manage_course", course.professor.user, course)
+            return response
 
 
 class CourseListView(ProfessorRequiredMixin, ListView):

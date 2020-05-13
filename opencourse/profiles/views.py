@@ -8,7 +8,7 @@ from django.views.generic import (
     TemplateView,
 )
 from django.contrib.auth import get_user_model
-from django.views.generic.detail import SingleObjectMixin, DetailView
+from django.views.generic.detail import SingleObjectMixin
 from braces.views import LoginRequiredMixin
 
 from . import forms, models
@@ -108,4 +108,4 @@ class ContactRequestView(SingleObjectMixin, View):
 
 
 class ForbiddenView(TemplateView):
-    template_name = "profiles/forbidden.html"
+    template_name = "profiles/403.html"

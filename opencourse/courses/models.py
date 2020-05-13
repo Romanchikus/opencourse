@@ -129,6 +129,7 @@ class Course(models.Model):
     class Meta:
         verbose_name = _("Course")
         verbose_name_plural = _("Courses")
+        permissions = (("manage_course", _("Manage course")),)
 
     def __str__(self):
         return self.title or ""

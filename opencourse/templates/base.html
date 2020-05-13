@@ -43,7 +43,7 @@
       <ul class="navbar-nav ml-auto">
         <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">{% trans "Home" %}</a></li>
         {% if user.is_authenticated %}
-          {% if user.is_professor %}
+          {% if user.professor %}
             <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "List courses" %}</a></li>

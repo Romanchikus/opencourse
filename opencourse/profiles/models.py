@@ -5,9 +5,10 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 from autoslug import AutoSlugField
+from guardian.mixins import GuardianUserMixin
 
 
-class User(AbstractUser):
+class User(GuardianUserMixin, AbstractUser):
     @property
     def profile(self):
         if hasattr(self, "professor"):
@@ -17,17 +18,11 @@ class User(AbstractUser):
         else:
             return self
 
-    @property
-    def is_professor(self):
-        if hasattr(self, "professor"):
-            return True
-        return False
-
-    @property
-    def is_student(self):
-        if hasattr(self, "student"):
-            return True
-        return False
+    class Meta(AbstractUser.Meta):
+        permissions = (
+            ("access_professor_pages", _("Access professor pages")),
+            ("access_student_pages", _("Access student pages")),
+        )
 
 
 class Profile(models.Model):
@@ -58,7 +53,7 @@ class Profile(models.Model):
 
 
 class Student(Profile):
-    class Meta:
+    class Meta(Profile.Meta):
         verbose_name = _("Student")
         verbose_name_plural = _("Students")
 
@@ -71,7 +66,7 @@ class Professor(Profile):
     listed = models.NullBooleanField()
     feespaid = models.NullBooleanField()
 
-    class Meta:
+    class Meta(Profile.Meta):
         verbose_name = _("Professor")
         verbose_name_plural = _("Professors")
 

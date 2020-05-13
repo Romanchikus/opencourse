@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount",
     "crispy_forms",
     "django_filters",
+    "guardian",
     "django_extensions",
     "opencourse.courses.apps.CoursesConfig",
     "opencourse.profiles.apps.ProfilesConfig",
@@ -141,6 +142,7 @@ AUTH_USER_MODEL = "profiles.User"
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
+    "guardian.backends.ObjectPermissionBackend",
 )
 SITE_ID = 1
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -153,6 +155,10 @@ LOGIN_REDIRECT_URL = "profiles:dispatch_login"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
+
+GUARDIAN_RENDER_403 = True
+GUARDIAN_TEMPLATE_403 = "profiles/403.html"
+GUARDIAN_MONKEY_PATCH = False
 
 # Security settings
 CSRF_COOKIE_HTTPONLY = True
