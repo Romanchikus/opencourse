@@ -126,7 +126,7 @@ msgstr "Type de Lieu"
 
 #: opencourse/courses/models.py:142
 msgid "Location Types"
-msgstr "D'Emplacement"
+msgstr "Lieux"
 
 #: opencourse/courses/models.py:155
 msgid "Currencies"
@@ -149,7 +149,7 @@ msgstr "Téléphone"
 #: opencourse/profiles/forms.py:69 opencourse/profiles/forms.py:88
 #: opencourse/templates/courses/detail.html:53
 msgid "Date of birth"
-msgstr "Date de  naissance"
+msgstr "Date de naissance"
 
 #: opencourse/profiles/forms.py:71
 msgid "Biography"
@@ -226,8 +226,8 @@ msgid "Create course"
 msgstr "Créer un cours"
 
 #: opencourse/templates/base.html:49 opencourse/templates/courses/list.html:5
-msgid "List courses"
-msgstr "Créer un cours"
+msgid "Courses List"
+msgstr "Liste des cours"
 
 #: opencourse/templates/base.html:53
 #: opencourse/templates/courses/search_results.html:11
