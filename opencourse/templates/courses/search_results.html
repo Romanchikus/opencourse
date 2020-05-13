@@ -12,6 +12,17 @@
         </div>
       </div>
       <div class="row block-9">
+        <div class="col-lg-4 sidebar">
+          <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
+            <h3 class="heading-sidebar">{% trans "Filters" %}</h3>
+            <form action="" class="bg-white contact-form" method="get">
+              {{ filter.form|crispy }}
+              <div class="form-group">
+                <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
+              </div>
+            </form>
+          </div>
+        </div>
         <div class="col-lg-8 pr-lg-4">
           <div class="row">
             {% for course in page_obj %}
@@ -64,17 +75,6 @@
               </div>
             </div>
           {% endif %}
-        </div>
-        <div class="col-lg-4 sidebar">
-          <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
-            <h3 class="heading-sidebar">{% trans "Filters" %}</h3>
-            <form action="" class="bg-white contact-form" method="get">
-              {{ filter.form|crispy }}
-              <div class="form-group">
-                <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
-              </div>
-            </form>
-          </div>
         </div>
       </div>
     </div>
