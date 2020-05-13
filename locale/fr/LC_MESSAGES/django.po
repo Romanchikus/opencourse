@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 19:08+0300\n"
+"POT-Creation-Date: 2020-05-13 19:53+0000\n"
 "PO-Revision-Date: 2020-05-11 02:39+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,11 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Translated-Using: django-rosetta 0.9.4\n"
 
-#: config/settings/base.py:111
+#: config/settings/base.py:112
 msgid "English"
 msgstr "Anglaise"
 
-#: config/settings/base.py:112
+#: config/settings/base.py:113
 msgid "French"
 msgstr "Français"
 
@@ -59,7 +59,7 @@ msgstr "L'âge"
 msgid "Language"
 msgstr "Langue"
 
-#: opencourse/courses/filters.py:27 opencourse/courses/models.py:176
+#: opencourse/courses/filters.py:27 opencourse/courses/models.py:177
 msgid "Location"
 msgstr "Emplacement"
 
@@ -80,7 +80,7 @@ msgstr "Des informations supplémentaires"
 msgid "Duration"
 msgstr "Durée"
 
-#: opencourse/courses/forms.py:51 opencourse/courses/models.py:154
+#: opencourse/courses/forms.py:51 opencourse/courses/models.py:155
 msgid "Currency"
 msgstr "Monnaie"
 
@@ -120,19 +120,23 @@ msgstr "Langues"
 msgid "Course"
 msgstr "Cours"
 
-#: opencourse/courses/models.py:141
+#: opencourse/courses/models.py:132
+msgid "Manage course"
+msgstr "Gérer le cours"
+
+#: opencourse/courses/models.py:142
 msgid "Location Type"
 msgstr "Type de Lieu"
 
-#: opencourse/courses/models.py:142
+#: opencourse/courses/models.py:143
 msgid "Location Types"
 msgstr "Lieux"
 
-#: opencourse/courses/models.py:155
+#: opencourse/courses/models.py:156
 msgid "Currencies"
 msgstr "Monnaies"
 
-#: opencourse/courses/models.py:177
+#: opencourse/courses/models.py:178
 #: opencourse/templates/courses/detail.html:102
 #: opencourse/templates/courses/edit.html:15
 msgid "Locations"
@@ -175,36 +179,44 @@ msgstr "Score"
 msgid "Text"
 msgstr "Texte"
 
-#: opencourse/profiles/models.py:37
+#: opencourse/profiles/models.py:23
+msgid "Access professor pages"
+msgstr "Accéder aux pages des professeurs"
+
+#: opencourse/profiles/models.py:24
+msgid "Access student pages"
+msgstr "Accéder aux pages des étudiants"
+
+#: opencourse/profiles/models.py:32
 msgid "Profile picture"
 msgstr "Photo de profil"
 
-#: opencourse/profiles/models.py:39
+#: opencourse/profiles/models.py:34
 msgid "Email verified"
 msgstr "E-mail vérifiée"
 
-#: opencourse/profiles/models.py:62
+#: opencourse/profiles/models.py:57
 msgid "Student"
 msgstr "Étudiant"
 
-#: opencourse/profiles/models.py:63 opencourse/templates/courses/search.html:54
+#: opencourse/profiles/models.py:58 opencourse/templates/courses/search.html:54
 msgid "Students"
 msgstr "Les étudiants"
 
-#: opencourse/profiles/models.py:75 opencourse/templates/courses/detail.html:36
+#: opencourse/profiles/models.py:70 opencourse/templates/courses/detail.html:36
 msgid "Professor"
 msgstr "Professeur"
 
-#: opencourse/profiles/models.py:76 opencourse/templates/courses/search.html:41
+#: opencourse/profiles/models.py:71 opencourse/templates/courses/search.html:41
 msgid "Professors"
 msgstr "Professeurs"
 
-#: opencourse/profiles/models.py:95
+#: opencourse/profiles/models.py:90
 #: opencourse/templates/courses/detail.html:162
 msgid "Review"
 msgstr "Evaluer"
 
-#: opencourse/profiles/models.py:96
+#: opencourse/profiles/models.py:91
 #: opencourse/templates/courses/detail.html:153
 msgid "Reviews"
 msgstr "Commentaires"
@@ -349,11 +361,11 @@ msgstr "Filtre"
 msgid "Details"
 msgstr "Détails"
 
-#: opencourse/templates/profiles/forbidden.html:5
+#: opencourse/templates/profiles/403.html:5
 msgid "Forbidden"
 msgstr "Interdit"
 
-#: opencourse/templates/profiles/forbidden.html:12
+#: opencourse/templates/profiles/403.html:12
 #, python-format
 msgid ""
 "You have no rights to access this page. <br>\n"

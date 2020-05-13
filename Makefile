@@ -16,11 +16,6 @@ translate:
 dumpdb:
 	./manage.py dumpscript courses profiles account.EmailAddress > scripts/db_dump.py
 
-initdb:
-	./manage.py makemigrations
-	./manage.py migrate
-	./manage.py runscript opencourse_data
-
 deploy:
 	git fetch origin
 	git reset origin/master --hard
@@ -34,3 +29,16 @@ deploy:
 migr:
 	./manage.py makemigrations
 	./manage.py migrate
+
+blankdb:
+	rm db.sqlite3 -f
+	./manage.py makemigrations
+	./manage.py migrate
+	./manage.py runscript help_data
+
+testdb:
+	rm db.sqlite3 -f
+	./manage.py makemigrations
+	./manage.py migrate
+	./manage.py runscript help_data
+	./manage.py runscript opencourse_data

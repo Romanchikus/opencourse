@@ -14,7 +14,7 @@ User = get_user_model()
 
 
 class ProfileCreateForm(SignupForm):
-    USER_TYPES = [("student", "student"), ("professor", "professor")]
+    USER_TYPES = [("professor", "professor"), ("student", "student")]
     user_type = forms.ChoiceField(choices=USER_TYPES)
 
     class Meta(auth_forms.UserCreationForm.Meta):
