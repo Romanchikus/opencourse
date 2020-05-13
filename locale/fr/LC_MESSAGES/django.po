@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 14:40+0000\n"
+"POT-Creation-Date: 2020-05-13 19:08+0300\n"
 "PO-Revision-Date: 2020-05-11 02:39+0000\n"
 "Last-Translator: b'  <>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -312,7 +312,7 @@ msgstr "Cours"
 msgid "Submit"
 msgstr "Envoyer"
 
-#: opencourse/templates/courses/list.html:13
+#: opencourse/templates/courses/list.html:16
 #: opencourse/templates/courses/search_results.html:63
 msgid "No courses yet."
 msgstr "Pas de cours encore."
@@ -362,6 +362,10 @@ msgstr ""
 "Vous n'avez pas le droit d' accéder à cette page. <br / >\n"
 " Vous pouvez <a href='%(search_url)s'>retourner</a> a la page d'accueil."
 
-#: opencourse/templates/profiles/profile.html:18
+#: opencourse/templates/profiles/profile.html:12
+msgid "Manage emails"
+msgstr "Gérer les e-mails"
+
+#: opencourse/templates/profiles/profile.html:19
 msgid "Update"
 msgstr "Mise à jour"

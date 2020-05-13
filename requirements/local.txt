@@ -2,4 +2,3 @@
 
 black
 django-debug-toolbar
-python-dateutil

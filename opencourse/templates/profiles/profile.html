@@ -9,6 +9,7 @@
 {% block content %}
   <form action="" class="bg-white p-5 contact-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
+    <a class="btn btn-outline-primary mb-3" href="{% url "account_email" %}" role="button">{% trans "Manage emails" %}</a>
     {{ formset.management_form }}
     {{ form|crispy }}
     {% for profile_form in formset %}
