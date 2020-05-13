@@ -8,7 +8,7 @@ from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
 
-class CourseUpdateView(ProfessorRequiredMixin, FormsetMixin, UpdateView):
+class CourseEditView(ProfessorRequiredMixin, FormsetMixin, UpdateView):
     model = models.Course
     form_class = forms.CourseForm
     formset_class = forms.CourseLocationFormset
