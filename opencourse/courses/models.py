@@ -1,7 +1,10 @@
 from django.db import models
-from autoslug import AutoSlugField
-from opencourse.profiles.models import Professor
 from django.utils.translation import ugettext_lazy as _
+
+from autoslug import AutoSlugField
+
+from .managers import CourseManager
+from opencourse.profiles.models import Professor
 
 
 class City(models.Model):
@@ -120,6 +123,8 @@ class Course(models.Model):
     age = models.ManyToManyField(CourseAge)
     area = models.ManyToManyField(CourseArea)
     language = models.ManyToManyField(CourseLanguage)
+
+    objects = CourseManager()
 
     class Meta:
         verbose_name = _("Course")

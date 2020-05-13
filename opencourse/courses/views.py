@@ -29,9 +29,12 @@ class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
 
 
 class CourseListView(ProfessorRequiredMixin, ListView):
-    model = models.Course
     template_name = "courses/list.html"
     paginate_by = 100  # if pagination is desired
+
+    def get_queryset(self):
+        professor = self.request.user.professor
+        return models.Course.objects.created_by(professor=professor)
 
 
 class CourseSearchView(FormView):
