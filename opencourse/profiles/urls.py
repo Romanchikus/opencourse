@@ -17,5 +17,5 @@ urlpatterns = [
         name="contact_request",
     ),
     path("student/", views.StudentUpdateView.as_view(), name="student"),
-    path("forbidden/", views.ForbiddenView.as_view(), name="forbidden"),
+    path("403/", views.ForbiddenView.as_view(), name="403"),
 ]

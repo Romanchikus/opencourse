@@ -1,6 +1,13 @@
 from django.db import transaction
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, FormView, UpdateView, DetailView
+from django.views.generic import (
+    CreateView,
+    ListView,
+    FormView,
+    UpdateView,
+    DetailView,
+    DeleteView,
+)
 
 from django_filters.views import FilterView
 from guardian.mixins import PermissionRequiredMixin
@@ -12,7 +19,12 @@ from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
 
-class CourseEditView(PermissionRequiredMixin, FormsetMixin, UpdateView):
+class CoursePermissionRequiredMixin(PermissionRequiredMixin):
+    permission_required = "courses.manage_course"
+    return_403 = True
+
+
+class CourseEditView(CoursePermissionRequiredMixin, FormsetMixin, UpdateView):
     model = models.Course
     form_class = forms.CourseForm
     formset_class = forms.CourseLocationFormset
@@ -59,6 +71,12 @@ class CourseDetailView(DetailView):
         kwargs["professor"] = self.object.professor
         kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:10]
         return super().get_context_data(**kwargs)
+
+
+class CourseDeleteView(CoursePermissionRequiredMixin, DeleteView):
+    model = models.Course
+    success_url = reverse_lazy("courses:list")
+    template_name = "courses/confirm_delete.html"
 
 
 class CourseSearchView(FormView):
