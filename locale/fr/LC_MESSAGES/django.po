@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-13 19:53+0000\n"
-"PO-Revision-Date: 2020-05-11 02:39+0000\n"
-"Last-Translator: b'  <>'\n"
+"POT-Creation-Date: 2020-05-13 21:15+0000\n"
+"PO-Revision-Date: 2020-05-13 22:13+0000\n"
+"Last-Translator: b'  <admin@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -199,15 +199,18 @@ msgstr "E-mail vérifiée"
 msgid "Student"
 msgstr "Étudiant"
 
-#: opencourse/profiles/models.py:58 opencourse/templates/courses/search.html:54
+#: opencourse/profiles/models.py:58
+#: opencourse/templates/courses/search.html:54
 msgid "Students"
 msgstr "Les étudiants"
 
-#: opencourse/profiles/models.py:70 opencourse/templates/courses/detail.html:36
+#: opencourse/profiles/models.py:70
+#: opencourse/templates/courses/detail.html:36
 msgid "Professor"
 msgstr "Professeur"
 
-#: opencourse/profiles/models.py:71 opencourse/templates/courses/search.html:41
+#: opencourse/profiles/models.py:71
+#: opencourse/templates/courses/search.html:41
 msgid "Professors"
 msgstr "Professeurs"
 
@@ -238,7 +241,7 @@ msgid "Create course"
 msgstr "Créer un cours"
 
 #: opencourse/templates/base.html:49 opencourse/templates/courses/list.html:5
-msgid "Courses List"
+msgid "List courses"
 msgstr "Liste des cours"
 
 #: opencourse/templates/base.html:53
@@ -274,6 +277,16 @@ msgstr "Copyright"
 #: opencourse/templates/base.html:135
 msgid "All rights reserved | This template is made with"
 msgstr "Tous droits réservés | This template is made with"
+
+#: opencourse/templates/courses/confirm_delete.html:5
+#, fuzzy
+#| msgid "Extra information"
+msgid "Confirmation"
+msgstr "Des informations supplémentaires"
+
+#: opencourse/templates/courses/confirm_delete.html:12
+msgid "Are you sure you want to delete"
+msgstr "Êtes-vous sûr que vous voulez supprimer"
 
 #: opencourse/templates/courses/detail.html:14
 #: opencourse/templates/courses/detail.html:60
@@ -324,18 +337,18 @@ msgstr "Cours"
 msgid "Submit"
 msgstr "Envoyer"
 
+#: opencourse/templates/courses/list.html:14
+msgid "Delete"
+msgstr "Expulser"
+
 #: opencourse/templates/courses/list.html:16
+msgid "Edit"
+msgstr "Éditer"
+
+#: opencourse/templates/courses/list.html:19
 #: opencourse/templates/courses/search_results.html:63
 msgid "No courses yet."
 msgstr "Pas de cours encore."
-
-#: opencourse/templates/courses/search.html:16
-msgid ""
-"From math tutoring to yoga, Superprof is the best and fastest way to find "
-"high-quality teachers."
-msgstr ""
-"De mathématiques a cours de yoga, SuperProf est le meilleur moyen et le plus "
-"rapide pour trouver des enseignants de haute qualité."
 
 #: opencourse/templates/courses/search.html:17
 msgid "What do you want to learn?"
@@ -348,6 +361,14 @@ msgstr "Trouver un Professeur"
 #: opencourse/templates/courses/search.html:83
 msgid "Search"
 msgstr "Recherche"
+
+#: opencourse/templates/courses/search.html:91
+msgid ""
+"From math tutoring to yoga, Superprof is the best and fastest way to find "
+"high-quality teachers."
+msgstr ""
+"De mathématiques a cours de yoga, SuperProf est le meilleur moyen et le plus"
+" rapide pour trouver des enseignants de haute qualité."
 
 #: opencourse/templates/courses/search_results.html:17
 msgid "Filters"

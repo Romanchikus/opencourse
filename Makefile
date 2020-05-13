@@ -9,7 +9,7 @@ reset:
 	./manage.py runscript auth_data
 	./manage.py runscript opencourse_data
 
-translate:
+trans:
 	./manage.py makemessages -i venv -i */account
 	./manage.py compilemessages -i venv -l fr
 
@@ -20,6 +20,7 @@ deploy:
 	git fetch origin
 	git reset origin/master --hard
 
+	pip install -r requirements/prod.txt
 	./manage.py compilemessages -i venv
 	./manage.py collectstatic --noinput
 	./manage.py migrate

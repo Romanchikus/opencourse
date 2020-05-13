@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from email.utils import parseaddr
+
 import environ
 from django.utils.translation import ugettext_lazy as _
 
@@ -137,6 +139,7 @@ MEDIA_ROOT = str(BASE_DIR("media"))
 
 # Project adjustments
 AUTH_USER_MODEL = "profiles.User"
+ADMINS = tuple(parseaddr(email) for email in env.tuple("DJANGO_ADMINS"))
 
 # Third-party opencourse settings
 AUTHENTICATION_BACKENDS = (

@@ -9,7 +9,7 @@ from django.views.generic import (
 )
 from django.contrib.auth import get_user_model
 from django.views.generic.detail import SingleObjectMixin
-from braces.views import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from . import forms, models
 from .mixins import (

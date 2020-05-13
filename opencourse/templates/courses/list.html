@@ -10,8 +10,10 @@
     {% for course in object_list %}
       <li class="list-group-item">
         <a href="{% url 'courses:detail' course.slug %}">{{ course }}</a>
-        <a class="btn btn-outline-danger btn-sm float-right ml-2" href="{% url 'courses:delete' course.slug %}" role="button">Delete</a>
-        <a class="btn btn-outline-primary btn-sm float-right" href="{% url 'courses:edit' course.slug %}" role="button">Edit</a>
+        <a class="btn btn-outline-danger btn-sm float-right ml-2" href="{% url 'courses:delete' course.slug %}"
+           role="button">{% trans "Delete" %}</a>
+        <a class="btn btn-outline-primary btn-sm float-right" href="{% url 'courses:edit' course.slug %}"
+           role="button">{% trans "Edit" %}</a>
       </li>
     {% empty %}
       <li class="list-group-item">{% trans "No courses yet." %}</li>

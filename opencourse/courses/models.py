@@ -105,7 +105,7 @@ class CourseLanguage(models.Model):
 
 
 class Course(models.Model):
-    slug = AutoSlugField(populate_from="title")
+    slug = AutoSlugField(populate_from="title", unique=True)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100)

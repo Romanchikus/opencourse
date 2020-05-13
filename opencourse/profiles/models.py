@@ -26,7 +26,7 @@ class User(GuardianUserMixin, AbstractUser):
 
 
 class Profile(models.Model):
-    slug = AutoSlugField(populate_from="user")
+    slug = AutoSlugField(populate_from="user", unique=True)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     picture = models.ImageField(
         _("Profile picture"), upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True,
