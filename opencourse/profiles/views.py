@@ -3,13 +3,12 @@ from django.urls import reverse_lazy
 from django.views.generic import (
     UpdateView,
     RedirectView,
-    ListView,
     CreateView,
     View,
     TemplateView,
 )
 from django.contrib.auth import get_user_model
-from django.views.generic.detail import SingleObjectMixin
+from django.views.generic.detail import SingleObjectMixin, DetailView
 from braces.views import LoginRequiredMixin
 
 from . import forms, models
@@ -20,25 +19,6 @@ from .mixins import (
 from opencourse.courses.models import Course
 
 User = get_user_model()
-
-
-class ProfessorDetailView(ListView):
-    model = Course
-    template_name = "profiles/professor_detail.html"
-    paginate_by = 10
-
-    def get_context_data(self, **kwargs):
-        slug = self.kwargs["slug"]
-        professor = models.Professor.objects.filter(slug=slug).first()
-        kwargs["professor"] = professor
-        kwargs["review_form"] = forms.ReviewForm()
-        kwargs["reviews"] = professor.review_set.order_by("-id")[:10]
-        return super().get_context_data(**kwargs)
-
-    def get_queryset(self):
-        slug = self.kwargs["slug"]
-        queryset = self.model.objects.filter(professor__slug=slug)
-        return queryset
 
 
 class ProfileUpdateView(LoginRequiredMixin, UpdateView):
@@ -107,13 +87,13 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         slug = self.kwargs["slug"]
-        return reverse_lazy("profiles:professor_detail", args=[slug])
+        return reverse_lazy("courses:detail", args=[slug])
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
         slug = self.kwargs["slug"]
-        professor = models.Professor.objects.filter(slug=slug).first()
-        form.instance.professor = professor
+        course = Course.objects.filter(slug=slug).first()
+        form.instance.professor = course.professor
         return super().form_valid(form)
 
 

@@ -7,11 +7,6 @@ urlpatterns = [
     path("dispatch-login/", views.DispatchLoginView.as_view(), name="dispatch_login",),
     path("professor/", views.ProfessorUpdateView.as_view(), name="professor"),
     path(
-        "professor/<slug:slug>/",
-        views.ProfessorDetailView.as_view(),
-        name="professor_detail",
-    ),
-    path(
         "professor/<slug:slug>/add-review",
         views.ReviewCreateView.as_view(),
         name="review_create",

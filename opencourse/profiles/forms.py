@@ -66,7 +66,7 @@ class ProfessorForm(forms.ModelForm):
         ]
         labels = {
             "tel": _("Telephone"),
-            "dob": _("Data of birth"),
+            "dob": _("Date of birth"),
             "city": _("City"),
             "bio": _("Biography"),
             "edulevel": _("Education level"),
@@ -85,7 +85,7 @@ class StudentForm(forms.ModelForm):
             "picture",
         ]
         labels = {
-            "dob": _("Data of birth"),
+            "dob": _("Date of birth"),
             "city": _("City"),
             "picture": _("Picture"),
         }

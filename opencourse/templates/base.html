@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{% trans "Superprof" %}</title>
+  <title>{% trans "SuperProf" %}</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -32,7 +32,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container-fluid px-md-4	">
-    <a class="navbar-brand" href="{% url 'courses:search' %}">Superprof</a>
+    <a class="navbar-brand" href="{% url 'courses:search' %}">SuperProf</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@
               <li class="nav-item"><a class="nav-link"
                                       href="{% url 'courses:search_results' %}">{% trans "Search results" %}</a></li>
               <li class="nav-item"><a class="nav-link"
-                                      href="{% url 'profiles:professor_detail' user.professor.slug %}">{% trans "Professor courses" %}</a>
+                                      href="{% url 'courses:detail' user.professor.slug %}">{% trans "Professor courses" %}</a>
               </li>
 
             {% endif %}

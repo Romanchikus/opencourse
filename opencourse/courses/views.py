@@ -1,9 +1,10 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, FormView, UpdateView
+from django.views.generic import CreateView, ListView, FormView, UpdateView, DetailView
 from django_filters.views import FilterView
 
 from . import forms, models, filters
 from .mixins import FormsetMixin
+from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
 
@@ -35,6 +36,18 @@ class CourseListView(ProfessorRequiredMixin, ListView):
     def get_queryset(self):
         professor = self.request.user.professor
         return models.Course.objects.created_by(professor=professor)
+
+
+class CourseDetailView(DetailView):
+    model = models.Course
+    template_name = "courses/detail.html"
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        kwargs["review_form"] = ReviewForm()
+        kwargs["professor"] = self.object.professor
+        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:10]
+        return super().get_context_data(**kwargs)
 
 
 class CourseSearchView(FormView):
