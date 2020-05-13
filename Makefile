@@ -19,7 +19,6 @@ dumpdb:
 initdb:
 	./manage.py makemigrations
 	./manage.py migrate
-	./manage.py runscript auth_data
 	./manage.py runscript opencourse_data
 
 deploy:
@@ -31,3 +30,7 @@ deploy:
 	./manage.py migrate
 
 	systemctl restart nginx gunicorn.socket gunicorn.service gunicorn
+
+migr:
+	./manage.py makemigrations
+	./manage.py migrate

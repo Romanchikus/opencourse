@@ -1,4 +1,5 @@
 from django.contrib import admin
+from guardian.admin import GuardedModelAdmin
 from modeltranslation.admin import TranslationAdmin
 from opencourse.courses import models
 
@@ -7,7 +8,7 @@ class CourseInline(admin.TabularInline):
     model = models.CourseLocation
 
 
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(GuardedModelAdmin):
     inlines = [
         CourseInline,
     ]

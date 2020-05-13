@@ -694,28 +694,28 @@ def import_data():
     courses_courselocation_2.courseenddate = None
     courses_courselocation_2 = importer.save_or_locate(courses_courselocation_2)
 
+    # Processing model: django.contrib.auth.models.Group
+
+    from django.contrib.auth.models import Group
+    from django.contrib.auth.models import Permission
+
+    professor_permission = Permission.objects.get(codename="access_professor_pages")
+    students_permission = Permission.objects.get(codename="access_student_pages")
+
+    auth_group_1 = Group()
+    auth_group_1.name = 'Students'
+    auth_group_1 = importer.save_or_locate(auth_group_1)
+
+    auth_group_1.permissions.add(students_permission)
+
+    auth_group_2 = Group()
+    auth_group_2.name = 'Professors'
+    auth_group_2 = importer.save_or_locate(auth_group_2)
+
+    auth_group_2.permissions.add(professor_permission)
+    auth_group_2.permissions.add(students_permission)
+
     # Re-processing model: opencourse.profiles.models.User
 
-    profiles_user_1.groups.add(
-        importer.locate_object(
-            Group, "id", Group, "id", 2, {"id": 2, "name": "professors"}
-        )
-    )
-
-    profiles_user_3.groups.add(
-        importer.locate_object(
-            Group, "id", Group, "id", 1, {"id": 1, "name": "students"}
-        )
-    )
-
-    # Re-processing model: opencourse.profiles.models.Student
-
-    # Re-processing model: opencourse.profiles.models.Professor
-
-    # Re-processing model: opencourse.profiles.models.Review
-
-    # Re-processing model: allauth.account.models.EmailAddress
-
-    # Re-processing model: opencourse.courses.models.Course
-
-    # Re-processing model: opencourse.courses.models.CourseLocation
+    profiles_user_1.groups.add(auth_group_2)
+    profiles_user_3.groups.add(auth_group_1)
