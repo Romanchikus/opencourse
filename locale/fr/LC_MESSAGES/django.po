@@ -35,7 +35,7 @@ msgstr "Cours"
 #: opencourse/courses/filters.py:22 opencourse/courses/forms.py:24
 #: opencourse/courses/forms.py:45 opencourse/courses/models.py:85
 msgid "Area"
-msgstr "La zone"
+msgstr "Activité"
 
 #: opencourse/courses/filters.py:23 opencourse/courses/forms.py:30
 #: opencourse/courses/forms.py:42 opencourse/courses/models.py:38
@@ -86,7 +86,7 @@ msgstr "Monnaie"
 
 #: opencourse/courses/forms.py:58
 msgid "Location type"
-msgstr "D'emplacement"
+msgstr "Type de Lieu"
 
 #: opencourse/courses/forms.py:59
 msgid "Price"
@@ -110,7 +110,7 @@ msgstr "Les âges"
 
 #: opencourse/courses/models.py:86
 msgid "Areas"
-msgstr "Les zones"
+msgstr "Les activités"
 
 #: opencourse/courses/models.py:98
 msgid "Languages"
@@ -122,7 +122,7 @@ msgstr "Cours"
 
 #: opencourse/courses/models.py:136
 msgid "Location Type"
-msgstr "D'Emplacement"
+msgstr "Type de Lieu"
 
 #: opencourse/courses/models.py:137
 msgid "Location Types"
@@ -135,7 +135,7 @@ msgstr "Monnaies"
 #: opencourse/courses/models.py:172 opencourse/templates/courses/edit.html:15
 #: opencourse/templates/profiles/professor_detail.html:103
 msgid "Locations"
-msgstr "Emplacements"
+msgstr "Lieux"
 
 #: opencourse/profiles/apps.py:7
 msgid "Profiles"
@@ -148,8 +148,8 @@ msgstr "Téléphone"
 
 #: opencourse/profiles/forms.py:64 opencourse/profiles/forms.py:83
 #: opencourse/templates/profiles/professor_detail.html:53
-msgid "Data of birth"
-msgstr "Les données de naissance"
+msgid "Date of birth"
+msgstr "Date de  naissance"
 
 #: opencourse/profiles/forms.py:66
 msgid "Biography"
@@ -157,11 +157,11 @@ msgstr "Biographie"
 
 #: opencourse/profiles/forms.py:67
 msgid "Education level"
-msgstr "Le niveau d'éducation"
+msgstr "Niveau d'éducation"
 
 #: opencourse/profiles/forms.py:68
 msgid "Years of experience"
-msgstr "Ans d'expérience"
+msgstr "Années d'expérience"
 
 #: opencourse/profiles/forms.py:69 opencourse/profiles/forms.py:85
 msgid "Picture"
@@ -194,16 +194,16 @@ msgstr "Les étudiants"
 #: opencourse/profiles/models.py:75
 #: opencourse/templates/profiles/professor_detail.html:36
 msgid "Professor"
-msgstr "Le professeur"
+msgstr "Professeur"
 
 #: opencourse/profiles/models.py:76 opencourse/templates/courses/search.html:41
 msgid "Professors"
-msgstr "Les professeurs"
+msgstr "Professeurs"
 
 #: opencourse/profiles/models.py:95
 #: opencourse/templates/profiles/professor_detail.html:164
 msgid "Review"
-msgstr "Examen"
+msgstr "Evaluer"
 
 #: opencourse/profiles/models.py:96
 #: opencourse/templates/profiles/professor_detail.html:155
@@ -211,8 +211,8 @@ msgid "Reviews"
 msgstr "Commentaires"
 
 #: opencourse/templates/base.html:6
-msgid "OpenCourse"
-msgstr "OpenCourse"
+msgid "SuperProf"
+msgstr "SuperProf"
 
 #: opencourse/templates/base.html:39
 msgid "Menu"
@@ -220,14 +220,14 @@ msgstr "Menu"
 
 #: opencourse/templates/base.html:44
 msgid "Home"
-msgstr "La maison"
+msgstr "Page d'accueil"
 
 #: opencourse/templates/base.html:47
 msgid "Create course"
-msgstr "Créer un parcours"
+msgstr "Créer un cours"
 
 #: opencourse/templates/base.html:49 opencourse/templates/courses/list.html:5
-msgid "List courses"
+msgid "Courses list"
 msgstr "Liste des cours"
 
 #: opencourse/templates/base.html:53
@@ -237,7 +237,7 @@ msgstr "Résultats de la recherche"
 
 #: opencourse/templates/base.html:55
 msgid "Professor courses"
-msgstr "Le professeur de cours de"
+msgstr "Cours du professeur"
 
 #: opencourse/templates/base.html:89
 #: opencourse/templates/profiles/profile.html:6
@@ -258,11 +258,11 @@ msgstr "Inscription"
 
 #: opencourse/templates/base.html:134
 msgid "Copyright"
-msgstr "Droits d'auteur"
+msgstr "Copyright"
 
 #: opencourse/templates/base.html:135
-msgid "All rights reserved | This template is made with"
-msgstr "Tous droits réservés | Ce modèle est fait avec"
+msgid "All rights reserved"
+msgstr "Tous droits réservés"
 
 #: opencourse/templates/courses/edit.html:7
 msgid "Сourse"
@@ -270,7 +270,7 @@ msgstr "Cours"
 
 #: opencourse/templates/courses/edit.html:27
 msgid "Submit"
-msgstr "Soumettre"
+msgstr "Envoyer"
 
 #: opencourse/templates/courses/list.html:13
 #: opencourse/templates/courses/search_results.html:52
@@ -279,11 +279,11 @@ msgstr "Pas de cours encore."
 
 #: opencourse/templates/courses/search.html:16
 msgid ""
-"From math tutoring to yoga, OpenCourse is the best and fastest way to find "
+"From math tutoring to yoga, SuperProf is the best and fastest way to find "
 "high-quality teachers."
 msgstr ""
-"De mathématiques, cours de yoga, OpenCourse est le meilleur et le moyen le "
-"plus rapide pour trouver de haute qualité des enseignants."
+"De mathématiques a cours de yoga, SuperProf est le meilleur moyen et le "
+"plus rapide pour trouver des enseignants de haute qualité."
 
 #: opencourse/templates/courses/search.html:17
 msgid "What do you want to learn?"
@@ -303,7 +303,7 @@ msgstr "Détails"
 
 #: opencourse/templates/courses/search_results.html:70
 msgid "Filters"
-msgstr "Les filtres"
+msgstr "Filtres"
 
 #: opencourse/templates/courses/search_results.html:74
 msgid "Filter"
@@ -319,8 +319,8 @@ msgid ""
 "You have no rights to access this page. <br>\n"
 "      You can <a href='%(search_url)s'>return</a> to the home page."
 msgstr ""
-"Vous n'avez pas les droits pour accéder à cette page. <br / >\n"
-" Vous pouvez <a href='%(search_url)s'>retour</a> pour la page d'accueil."
+"Vous n'avez pas le droit d' accéder à cette page. <br / >\n"
+" Vous pouvez <a href='%(search_url)s'>retourner</a> a la page d'accueil."
 
 #: opencourse/templates/profiles/professor_detail.html:14
 #: opencourse/templates/profiles/professor_detail.html:60
@@ -333,7 +333,7 @@ msgstr "Ok"
 
 #: opencourse/templates/profiles/professor_detail.html:54
 msgid "years of experience"
-msgstr "ans d'expérience"
+msgstr "Années d'expérience"
 
 #: opencourse/templates/profiles/professor_detail.html:65
 msgid "About me"
@@ -349,11 +349,11 @@ msgstr "Pas de professeur trouvés."
 
 #: opencourse/templates/profiles/professor_detail.html:119
 msgid "Student level"
-msgstr "Des étudiants de niveau"
+msgstr "Niveau d'étudiant"
 
 #: opencourse/templates/profiles/professor_detail.html:129
 msgid "The class is taught in"
-msgstr "La classe est enseignée dans les"
+msgstr "La classe est enseignée en"
 
 #: opencourse/templates/profiles/professor_detail.html:158
 msgid "Add review"
@@ -361,7 +361,7 @@ msgstr "Ajouter un commentaire"
 
 #: opencourse/templates/profiles/professor_detail.html:177
 msgid "No reviews yet"
-msgstr "Pas encore de reviews"
+msgstr "Aucun review"
 
 #: opencourse/templates/profiles/profile.html:18
 msgid "Update"
