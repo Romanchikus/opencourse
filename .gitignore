@@ -325,6 +325,6 @@ everycheese/media/
 scripts/
 media/
 .env
-.env.prod
-.env.local
+prod.env
+local.env
 db.sqlite3

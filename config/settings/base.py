@@ -141,6 +141,11 @@ MEDIA_ROOT = str(BASE_DIR("media"))
 AUTH_USER_MODEL = "profiles.User"
 ADMINS = tuple(parseaddr(email) for email in env.tuple("DJANGO_ADMINS"))
 
+EMAIL_CONFIG = env.email_url("DJANGO_EMAIL_URL", None)
+vars().update(EMAIL_CONFIG)
+
+SERVER_EMAIL = EMAIL_CONFIG["EMAIL_HOST_USER"]
+
 # Third-party opencourse settings
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
@@ -156,7 +161,6 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_FORMS = {"signup": "opencourse.profiles.forms.ProfileCreateForm"}
 LOGIN_REDIRECT_URL = "profiles:dispatch_login"
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
 
 GUARDIAN_RENDER_403 = True
