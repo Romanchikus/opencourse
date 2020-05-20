@@ -1,8 +1,6 @@
 from .base import *  # noqa
 from .base import env
 
-DATABASES = {"default": env.db("DJANGO_DATABASE_URL")}
-
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 ADMIN_URL = env.str("DJANGO_ADMIN_URL")
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")

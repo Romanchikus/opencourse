@@ -20,7 +20,7 @@ deploy:
 	git fetch origin
 	git reset origin/master --hard
 
-	pip install -r requirements/prod.txt
+	pip install -r requirements/production.txt
 	./manage.py compilemessages -i venv
 	./manage.py collectstatic --noinput
 	./manage.py migrate

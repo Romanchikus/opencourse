@@ -91,7 +91,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {"default": env.db(default="sqlite:///db.sqlite3")}
+DATABASES = {"default": env.db("DATABASE_URL")}
 
 
 # Password validation
@@ -171,5 +171,5 @@ GUARDIAN_MONKEY_PATCH = False
 CSRF_COOKIE_HTTPONLY = True
 ADMIN_URL = "admin/"
 
-# Delete on prod
+# Delete on production
 ACCOUNT_LOGOUT_ON_GET = True

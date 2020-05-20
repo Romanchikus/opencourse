@@ -703,13 +703,13 @@ def import_data():
     students_permission = Permission.objects.get(codename="access_student_pages")
 
     auth_group_1 = Group()
-    auth_group_1.name = 'Students'
+    auth_group_1.name = "Students"
     auth_group_1 = importer.save_or_locate(auth_group_1)
 
     auth_group_1.permissions.add(students_permission)
 
     auth_group_2 = Group()
-    auth_group_2.name = 'Professors'
+    auth_group_2.name = "Professors"
     auth_group_2 = importer.save_or_locate(auth_group_2)
 
     auth_group_2.permissions.add(professor_permission)
