@@ -22,3 +22,8 @@ ROSETTA_ENABLE_TRANSLATION_SUGGESTIONS = True
 YANDEX_TRANSLATE_KEY = env.str("DJANGO_YANDEX_TRANSLATE_KEY", None)
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
+
+ADMINS = (
+    ("Admin", "admin@gmail.com"),
+    ("Owner", "owner@gmail.com"),
+)
