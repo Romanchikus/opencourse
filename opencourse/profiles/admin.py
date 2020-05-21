@@ -1,7 +1,12 @@
 from django.contrib import admin
 from . import models
 
-admin.site.register(models.Professor)
-admin.site.register(models.Student)
-admin.site.register(models.Review)
-admin.site.register(models.User)
+model_objects = (
+    models.Professor,
+    models.Student,
+    models.Review,
+    models.User,
+)
+
+for m in model_objects:
+    admin.site.register(m)

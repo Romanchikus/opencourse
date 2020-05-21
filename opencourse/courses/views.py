@@ -18,6 +18,8 @@ from .mixins import FormsetMixin
 from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
+REVIEW_COUNT = 10
+
 
 class CoursePermissionRequiredMixin(PermissionRequiredMixin):
     permission_required = "courses.manage_course"
@@ -69,7 +71,9 @@ class CourseDetailView(DetailView):
     def get_context_data(self, **kwargs):
         kwargs["review_form"] = ReviewForm()
         kwargs["professor"] = self.object.professor
-        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:10]
+        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[
+            :REVIEW_COUNT
+        ]
         return super().get_context_data(**kwargs)
 
 
