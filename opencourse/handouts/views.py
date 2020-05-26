@@ -45,12 +45,12 @@ class UpdateHandoutView(ProfessorRequiredMixin, UpdateView):
     model = models.Handout
     template_name = "enrollments/handout.html"
     form_class = forms.HandoutForm
-    # success_url = reverse_lazy("enrollments:list_handouts")
+    # success_url = reverse_lazy("handouts:list_handouts")
 
     def get_success_url(self):
         handout_pk = self.kwargs.get("handout_pk")
         course = get_object_or_404(models.Course, handout__pk=handout_pk)
-        return reverse("enrollments:list_handouts", kwargs={"slug": course.slug})
+        return reverse("handouts:list_handouts", kwargs={"slug": course.slug})
 
 
 class DeleteHandoutView(ProfessorRequiredMixin, DeleteView):
@@ -59,7 +59,7 @@ class DeleteHandoutView(ProfessorRequiredMixin, DeleteView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("handout_pk")
         course = get_object_or_404(models.Course, handout__pk=handout_pk)
-        return reverse("enrollments:list_handouts", kwargs={"slug": course.slug})
+        return reverse("handouts:list_handouts", kwargs={"slug": course.slug})
 
     def get(self, request, *args, **kwargs):
         return self.post(request, *args, **kwargs)

@@ -162,7 +162,7 @@
                                             <button class="btn btn-outline-success float-right btn-sm enroll_ask" onclick='enroll_ask("{{course.slug}}")' tabindex="-1" data-toggle="modal" data-target="#stud_ask" data-slug='{{course.slug}}'>
                                         {% trans "Enroll in a course" %}</button> {% endif %}
                                         {% if user.professor or active_enroll == True %}
-                                            <a class="btn btn-primary btn-sm float-right button_list" href="{% url 'enrollments:list_handouts' course.slug %}" role="button">
+                                            <a class="btn btn-primary btn-sm float-right button_list" href="{% url 'handouts:list_handouts' course.slug %}" role="button">
                                                 <span>{% trans "Show handouts" %}</span></a>{% endif %}
                                         {% if has_enroll %}
                                             {% if active_enroll == None %}
@@ -233,7 +233,7 @@
             }
             $.ajax({
                 type: "post",
-                url: '{% url "enrollments:post" %}',
+                url: '{% url "handouts:post" %}',
                 data: data,
                 // success: function(data) {
                 //     $('#cart_count').html(data.cart_total)

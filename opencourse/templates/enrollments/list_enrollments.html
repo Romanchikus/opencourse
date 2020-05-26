@@ -20,7 +20,7 @@
             <span class="float-sm-center text-success font-weight-bold">{{ enrollment.student }} - </span>            
             
             {% endif %} 
-            <a href="{% url 'enrollments:list_handouts' enrollment.course.slug %}" >{{ enrollment.course }}</a> 
+            <a href="{% url 'handouts:list_handouts' enrollment.course.slug %}" >{{ enrollment.course }}</a>
             
         </li> {% endfor %}
         

@@ -15,7 +15,7 @@ from guardian.shortcuts import assign_perm
 
 from . import forms, models, filters
 from .mixins import FormsetMixin
-from opencourse.enrollments.models import Enrollment
+from opencourse.handouts.models import Enrollment
 from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin
 
