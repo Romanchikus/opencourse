@@ -32,7 +32,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container-fluid px-md-4	">
-    <a class="navbar-brand" href="{% url 'courses:search' %}"><img src="{% static 'images/logosm.png' %}" alt= "Super-Prof"></a>
+    <a class="navbar-brand" href="{% url 'courses:search' %}"><img src="{% static 'images/logosm.png' %}"
+                                                                   alt="Super-Prof"></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav"
             aria-expanded="false" aria-label="Toggle navigation">
@@ -40,30 +41,33 @@
     </button>
 
     <div class="collapse navbar-collapse" id="ftco-nav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">{% trans "Home" %}</a></li>
-              {% if user.is_authenticated %}
-              {% if request.user.student %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'handouts:student_list' %}">{% trans "List enrollments" %}</a></li>
-              {% endif %} {% endif %}
-              {% if user.is_authenticated %}
-                  {% if user.professor %}
-              <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">{% trans "Home" %}</a></li>
+        {% if user.is_authenticated %}
+          {% if request.user.student %}
+            <li class="nav-item"><a class="nav-link"
+                                    href="{% url 'handouts:student_list' %}">{% trans "List enrollments" %}</a></li>
+          {% endif %} {% endif %}
+        {% if user.is_authenticated %}
+          {% if user.professor %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "List courses" %}</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'handouts:list' %}">{% trans "List enrollments" %}</a>
+            </li>
+
+
+
+            {% if user.is_superuser %}
+              <li class="nav-item"><a class="nav-link"
+                                      href="{% url 'courses:search_results' %}">{% trans "Search results" %}</a></li>
+              <li class="nav-item"><a class="nav-link"
+                                      href="{% url 'courses:detail' user.professor.slug %}">{% trans "Professor courses" %}</a>
               </li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "List courses" %}</a></li>
-              <li class="nav-item"><a class="nav-link" href="{% url 'handouts:list' %}">{% trans "List enrollments" %}</a></li>
 
-
-
-              {% if user.is_superuser %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'courses:search_results' %}">{% trans "Search results" %}</a></li>
-                <li class="nav-item"><a class="nav-link"
-                   href="{% url 'courses:detail' user.professor.slug %}">{% trans "Professor courses" %}</a>
-                </li>
-
-              {% endif %}
             {% endif %}
           {% endif %}
+        {% endif %}
 
         <li class="nav-item dropdown show">
           {% get_current_language as LANGUAGE_CODE %}
@@ -175,43 +179,41 @@
 {% block project_js %}
   <script src={% static "js/main.js" %}></script>
 {% endblock project_js %}
-    <script>
-        $(document).ready(function() {
-            $('.add_enrollment').on("click", function(e) {
-                e.preventDefault()
-                action = $(this).attr('data-bool')
-                id_button = $(this).attr('id')
-                enrol_slug = $(this).attr('data-slug')
-                course_slug = $(this).attr('course_slug')
-                    // txt = document.getElementById('example').value
-                    
-                data = {
-                    enrol_slug: enrol_slug,
-                    action: action,
-                    course_slug: course_slug
-                }
-                a= document.getElementsByClassName(id_button)
-                var len = a.length;
-                for (var i = 0; i < len; i++) {
-                    a[i].disabled = true;
-                    console.log(a[i]);
-                }
-                document.getElementById(id_button).disabled = true;
-                console.log('#li_'.concat(id_button))
-                $.ajax({
-                    type: "put",
-                    url: '{% url "handouts:post" %}',
-                    data: data,
-                    success: function(data) {
-                        
-                    }
-                })
+<script>
+  $(document).ready(function () {
+    $('.add_enrollment').on("click", function (e) {
+      e.preventDefault()
+      action = $(this).attr('data-bool')
+      id_button = $(this).attr('id')
+      enrol_slug = $(this).attr('data-slug')
+      course_slug = $(this).attr('course_slug')
+      // txt = document.getElementById('example').value
 
-                
-                
-                
-            })
-        })
-    </script>
+      data = {
+        enrol_slug: enrol_slug,
+        action: action,
+        course_slug: course_slug
+      }
+      a = document.getElementsByClassName(id_button)
+      var len = a.length;
+      for (var i = 0; i < len; i++) {
+        a[i].disabled = true;
+        console.log(a[i]);
+      }
+      document.getElementById(id_button).disabled = true;
+      console.log('#li_'.concat(id_button))
+      $.ajax({
+        type: "put",
+        url: '{% url "handouts:post" %}',
+        data: data,
+        success: function (data) {
+
+        }
+      })
+
+
+    })
+  })
+</script>
 </body>
 </html>
