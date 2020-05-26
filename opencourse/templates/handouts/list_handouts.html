@@ -1,51 +1,39 @@
-{% extends "base.html" %} {% load i18n %} {% load static %}
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
 {% block content_title %}
+  {% if user.professor %}
+    <a class="btn  btn-outline-success btn-sm" href="{% url 'handouts:create_handouts' course.slug %}" role="button">
+      {% trans "Create handout" %}
+    </a>
+  {% endif %}
+{% endblock content_title %}
 
-<h2 class="h3">{% trans "List handout" %} 
-         {% if user.professor %} {% if user.is_authenticated %}
-        <a class="btn  btn-outline-success btn-sm" style="margin-left: 2rem"
-            href="{% url 'handouts:create_handouts' course.slug %}"
-            role="button"> <img src="{% static 'images/plus.png' %}" style='margin-bottom: 3px' alt="">
-            {% trans "Create new handout" %} 
-        </a>
-        {% endif %}{% endif %}
-    </h2>
-
-{% endblock content_title %} {% block content %}
-{% if user.is_authenticated %}{% if user.professor or  is_active == True %}
-<ul class="list-group">
-        {% regroup object_list by section as sections %}
-        {% for section in sections %}
-            <p class="float-sm-center font-weight-bold" style="color: #1B1BB3">{{ section.grouper }}</p>
-        
-    <li class="list-group-item">
+{% block content %}
+  {% if user.professor %}
+    {% regroup object_list by section as sections %}
+    {% for section in sections %}
+      <h2 class="h2 mt-3">{{ section.grouper }}</h2>
+      <ul class="list-group">
         {% for handout in section.list %}
-        
-        <p style=" margin-bottom: 0 !important ">
-            <span class="font-italic font-weight-bold">{{ handout.name }} - </span>
-       <span class="font-italic  font-weight-bold {% if section.grouper == 'PDF' %}  text-warning 
-            {% elif section.grouper == 'docx' %}  text-danger
-            {% elif section.grouper == 'Photo' %}   text-success {% endif %}"> 
-            {{  handout.file }}</span> - {{ handout.description }}
-        </p>
-        
-        <a class="btn btn-primary btn-sm float-right"  href="{% url 'handouts:download_handout' handout.pk %}" value='{{handout.name}}' href="#" role="button" style="margin-left: 0.5rem">{% trans "Download" %}</a>
-        {% if user.professor %}        
-            <a class="btn btn-warning btn-sm float-right" href="{% url 'handouts:update_handout' handout.pk %}" role="button" style="margin-left: 0.5rem">{% trans "Edit" %}</a>
-            <a class="btn btn-danger btn-sm float-right" href="{% url 'handouts:delete_handout' handout.pk %}" role="button"  style="margin-left: 0.5rem" >{% trans "Delete" %}</a>
-        {% endif %}
-
+          <li class="list-group-item">
+            <span><b>{{ handout.name }}</b> - {{ handout.description }}</span>
+            {% if user.professor %}
+              <a class="btn btn-danger btn-sm float-right mr-2" href="{% url 'handouts:delete_handout' handout.pk %}"
+                 role="button">{% trans "Delete" %}</a>
+              <a class="btn btn-warning btn-sm float-right mr-2" href="{% url 'handouts:update_handout' handout.pk %}"
+                 role="button">{% trans "Edit" %}</a>
+              <a class="btn btn-primary btn-sm float-right mr-2" href="{% url 'handouts:download_handout' handout.pk %}"
+                 value='{{ handout.name }}' href="#" role="button">{% trans "Download" %}</a>
+            {% endif %}
+          </li>
         {% endfor %}
-    </li>
+      </ul>
     {% empty %}
+      <ul class="list-group">
         <li class="list-group-item">{% trans "No handouts yet." %}</li>
+      </ul>
     {% endfor %}
-    {% endif %}{% endif %}
-</ul>
-<style>
-    td {
-        line-height: 15px;
-    }
-        </style>
-
+  {% endif %}
 {% endblock content %}

@@ -54,14 +54,12 @@ class UpdateHandoutView(ProfessorRequiredMixin, UpdateView):
 
 class DeleteHandoutView(ProfessorRequiredMixin, DeleteView):
     model = models.Handout
+    template_name = "confirm_delete.html"
 
     def get_success_url(self):
-        handout_pk = self.kwargs.get("handout_pk")
-        course = get_object_or_404(models.Course, handout__pk=handout_pk)
+        handout_pk = self.kwargs.get("pk")
+        course = get_object_or_404(models.Course, handout=handout_pk)
         return reverse("handouts:list_handouts", kwargs={"slug": course.slug})
-
-    def get(self, request, *args, **kwargs):
-        return self.post(request, *args, **kwargs)
 
 
 class CreateHandoutView(ProfessorRequiredMixin, CreateView):

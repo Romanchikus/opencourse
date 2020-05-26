@@ -91,7 +91,7 @@ class CourseDetailView(DetailView):
 class CourseDeleteView(CoursePermissionRequiredMixin, DeleteView):
     model = models.Course
     success_url = reverse_lazy("courses:list")
-    template_name = "courses/confirm_delete.html"
+    template_name = "confirm_delete.html"
 
 
 class CourseSearchView(FormView):
