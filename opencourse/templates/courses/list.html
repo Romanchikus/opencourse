@@ -9,18 +9,13 @@
   <ul class="list-group">
     {% for course in object_list %}
       <li class="list-group-item">
-          <a href="{% url 'courses:detail' course.slug %}" >{{ course }}</a>
-          
-          <a class="btn btn-primary btn-sm float-right button_list" style="margin-right: 20px" href="{% url 'enrollments:list_handouts' course.slug %}" role="button">
-              <span>{% trans "Show handouts" %}</span></a>
-        <a class="btn btn-outline-danger btn-sm float-right ml-2" href="{% url 'courses:delete' course.slug %}"
+        <a href="{% url 'courses:detail' course.slug %}">{{ course }}</a>
+        <a class="btn btn-outline-danger btn-sm float-right" href="{% url 'courses:delete' course.slug %}"
            role="button">{% trans "Delete" %}</a>
-           
-        <a class="btn btn-outline-primary btn-sm float-right" href="{% url 'courses:edit' course.slug %}"
+        <a class="btn btn-outline-primary btn-sm float-right mr-2" href="{% url 'courses:edit' course.slug %}"
            role="button">{% trans "Edit" %}</a>
-           
-           
-        
+        <a class="btn btn-outline-info btn-sm float-right mr-2"
+           href="{% url 'enrollments:list_handouts' course.slug %}" role="button">{% trans "Handouts" %}</a>
       </li>
     {% empty %}
       <li class="list-group-item">{% trans "No courses yet." %}</li>

@@ -1,6 +1,5 @@
 from django.contrib import admin
 from guardian.admin import GuardedModelAdmin
-from modeltranslation.admin import TranslationAdmin
 from opencourse.courses import models
 
 
@@ -14,16 +13,16 @@ class CourseAdmin(GuardedModelAdmin):
     ]
 
 
-admin.site.register(models.Course, CourseAdmin)
-admin.site.register(models.Currency)
-admin.site.register(models.CourseDuration)
 model_objects = (
+    models.Course,
     models.CourseArea,
     models.City,
     models.CourseLevel,
     models.CourseAge,
     models.CourseLanguage,
     models.CourseLocationType,
+    models.Currency,
+    models.CourseDuration
 )
 
 for m in model_objects:

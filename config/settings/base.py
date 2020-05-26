@@ -167,5 +167,5 @@ GUARDIAN_MONKEY_PATCH = False
 CSRF_COOKIE_HTTPONLY = True
 ADMIN_URL = "admin/"
 
-# Delete on prod
+# Delete on production
 ACCOUNT_LOGOUT_ON_GET = True

@@ -68,7 +68,6 @@ target/
 .venv
 venv/
 ENV/
-env/
 
 # Rope project settings
 .ropeproject
@@ -327,10 +326,12 @@ opencourse/media/
 
 .pytest_cache/
 
-
 .ipython/
 prod.env
 local.env
 db.sqlite3
 mydatabase
 action.txt
+
+.env
+.envs/*
