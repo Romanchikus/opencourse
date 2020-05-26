@@ -20,15 +20,12 @@ class HandoutForm(forms.ModelForm):
         fields = [
             "name",
             "description",
-            "file",
+            "attachment",
             "section",
         ]
         labels = {
             "name": _("Name"),
             "description": _("Description"),
-            "file": _("File"),
+            "attachment": _("Attachment"),
             "section": _("Section"),
-        }
-        widgets = {
-            "file": forms.FileInput(attrs={"class": "btn btn-primary"}),
         }

@@ -25,27 +25,19 @@ class Enrollment(models.Model):
         return "Enrollment_of_{}".format(self.student)
 
 
+class HandoutSection(models.Model):
+    name = models.CharField(max_length=40)
+
+    def __str__(self):
+        return str(self.name)
+
+
 class Handout(models.Model):
-
-    SECTION_CHOICES = [
-        ("PDF", "PDF"),
-        ("docx", "docx"),
-        ("Photo", "Photo"),
-    ]
-
-    def user_directory_path(self, instance, filename):
-        # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
-        filename = instance.slug + "." + filename.split(".")[1]
-        return "handouts_files/{}/{}".format(instance.slug, filename)
-
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    name = models.CharField(max_length=40, blank=True, null=True)
+    name = models.CharField(max_length=40)
     description = models.TextField(max_length=255, blank=True, null=True)
-    file = models.FileField(upload_to="files")
-    section = models.CharField(max_length=15, choices=SECTION_CHOICES, default="PDF",)
-
-    def get_absolute_url(self):
-        return reverse("courses:detail", args=[self.course.slug])
+    attachment = models.FileField(upload_to="handouts/%Y-%m-%d/")
+    section = models.ForeignKey(HandoutSection, on_delete=models.PROTECT)
 
     objects = HandoutManager()
 
@@ -53,3 +45,6 @@ class Handout(models.Model):
         verbose_name = _("Handout")
         verbose_name_plural = _("Handout")
         permissions = (("manage_handout", _("Manage handout")),)
+
+    def __str__(self):
+        return str(self.name)

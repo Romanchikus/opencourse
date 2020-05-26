@@ -22,7 +22,7 @@ model_objects = (
     models.CourseLanguage,
     models.CourseLocationType,
     models.Currency,
-    models.CourseDuration
+    models.CourseDuration,
 )
 
 for m in model_objects:

@@ -15,12 +15,12 @@ from django.http import HttpResponse, QueryDict, HttpResponseForbidden
 
 class ShowHandoutView(DetailView):
     model = models.Handout
-    template_name = "enrollments/handout.html"
+    template_name = "handouts/handout.html"
 
 
 class ListHandoutsView(ListView):
     model = models.Handout
-    template_name = "enrollments/list_handouts.html"
+    template_name = "handouts/list_handouts.html"
 
     def get_queryset(self):
         slug = self.kwargs.get("slug")
@@ -43,13 +43,12 @@ class ListHandoutsView(ListView):
 
 class UpdateHandoutView(ProfessorRequiredMixin, UpdateView):
     model = models.Handout
-    template_name = "enrollments/handout.html"
     form_class = forms.HandoutForm
-    # success_url = reverse_lazy("handouts:list_handouts")
+    template_name = "handouts/handout.html"
 
     def get_success_url(self):
-        handout_pk = self.kwargs.get("handout_pk")
-        course = get_object_or_404(models.Course, handout__pk=handout_pk)
+        handout_pk = self.kwargs.get("pk")
+        course = get_object_or_404(models.Course, handout=handout_pk)
         return reverse("handouts:list_handouts", kwargs={"slug": course.slug})
 
 
@@ -68,8 +67,7 @@ class DeleteHandoutView(ProfessorRequiredMixin, DeleteView):
 class CreateHandoutView(ProfessorRequiredMixin, CreateView):
     model = models.Handout
     form_class = forms.HandoutForm
-    template_name = "enrollments/handout.html"
-    # success_url =  reverse_lazy('courses:detail')
+    template_name = "handouts/handout.html"
 
     def form_valid(self, form):
         form = form.save(commit=False)
@@ -79,7 +77,9 @@ class CreateHandoutView(ProfessorRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("courses:detail", kwargs={"slug": self.kwargs.get("slug")})
+        return reverse(
+            "handouts:list_handouts", kwargs={"slug": self.kwargs.get("slug")}
+        )
 
 
 import os
@@ -97,7 +97,7 @@ class FileDownloadView(View):
 
     def get(self, request, pk):
         handout = get_object_or_404(models.Handout, pk=pk)
-        file_path = os.path.join(self.folder_path, str(handout.file))
+        file_path = os.path.join(self.folder_path, str(handout.attachment))
         filename = os.path.basename(file_path)
         if os.path.exists(file_path):
             with open(file_path, "rb") as fh:
@@ -144,7 +144,7 @@ class CreateEnrollmentView(UpdateView):
 
 class StudentListEnrollmentsView(StudentRequiredMixin, ListView):
     model = models.Enrollment
-    template_name = "enrollments/list_enrollments.html"
+    template_name = "handouts/list_enrollments.html"
 
     def get_queryset(self):
         try:
@@ -158,7 +158,7 @@ class StudentListEnrollmentsView(StudentRequiredMixin, ListView):
 
 class ListEnrollmentView(ProfessorRequiredMixin, ListView):
     model = models.Enrollment
-    template_name = "enrollments/list_enrollments.html"
+    template_name = "handouts/list_enrollments.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

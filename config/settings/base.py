@@ -136,7 +136,7 @@ STATICFILES_DIRS = [str(BASE_DIR("opencourse/static"))]
 STATIC_ROOT = str(BASE_DIR("static"))
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = str(BASE_DIR("media"))
+MEDIA_ROOT = str(BASE_DIR("opencourse/media"))
 
 # Project adjustments
 AUTH_USER_MODEL = "profiles.User"
