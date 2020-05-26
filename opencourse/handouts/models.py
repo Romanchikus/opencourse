@@ -1,9 +1,8 @@
-from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from autoslug import AutoSlugField
+
 from opencourse.courses.models import Course
 from opencourse.profiles.models import Student
-from django.urls import reverse
 from .managers import *
 
 
@@ -11,7 +10,7 @@ class Enrollment(models.Model):
 
     slug = AutoSlugField(unique=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    is_active = models.NullBooleanField(default=None)
+    accepted = models.NullBooleanField(default=None)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     objects = EnrollmentManager()

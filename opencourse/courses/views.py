@@ -82,7 +82,7 @@ class CourseDetailView(DetailView):
             if kwargs["has_enroll"]:
                 kwargs["active_enroll"] = Enrollment.objects.get(
                     student=self.request.user.student, course=self.object
-                ).is_active
+                ).accepted
         except:
             pass
         return super().get_context_data(**kwargs)

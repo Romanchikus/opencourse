@@ -7,11 +7,11 @@
 
 {% block content %}
   <ul class="list-group">
-    {% for handout in object_list %}
+    {% for enrollment in object_list %}
       <li class="list-group-item">
-        {{ handout }}
-        <button type="button" class="btn btn-outline-danger btn-sm float-right">Decline</button>
-        <button type="button" class="btn btn-outline-success btn-sm float-right mr-2">Accept</button>
+        {{ enrollment.slug }}
+        <button type="button" class="btn btn-outline-danger btn-sm float-right {% if enrollment.accepted is True %}disabled{% endif %}">Decline</button>
+        <button type="button" class="btn btn-outline-success btn-sm float-right mr-2 {% if enrollment.accepted is False %}disabled{% endif %}">Accept</button>
       </li>
     {% empty %}
       <li class="list-group-item">{% trans "No courses yet." %}</li>

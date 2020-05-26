@@ -18,7 +18,7 @@ class ShowHandoutView(DetailView):
     template_name = "handouts/handout.html"
 
 
-class ListHandoutsView(ListView):
+class HandoutsListView(ListView):
     model = models.Handout
     template_name = "handouts/list_handouts.html"
 
@@ -33,15 +33,15 @@ class ListHandoutsView(ListView):
         slug = self.kwargs.get("slug")
         context["course"] = get_object_or_404(models.Course, slug=slug)
         try:
-            context["is_active"] = models.Enrollment.objects.get(
+            context["accepted"] = models.Enrollment.objects.get(
                 course=context["course"], student=self.request.user.student
-            ).is_active
+            ).accepted
         except:
             pass
         return context
 
 
-class UpdateHandoutView(ProfessorRequiredMixin, UpdateView):
+class HandoutUpdateView(ProfessorRequiredMixin, UpdateView):
     model = models.Handout
     form_class = forms.HandoutForm
     template_name = "handouts/handout.html"
@@ -52,7 +52,7 @@ class UpdateHandoutView(ProfessorRequiredMixin, UpdateView):
         return reverse("handouts:list_handouts", kwargs={"slug": course.slug})
 
 
-class DeleteHandoutView(ProfessorRequiredMixin, DeleteView):
+class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
     model = models.Handout
     template_name = "confirm_delete.html"
 
@@ -62,7 +62,7 @@ class DeleteHandoutView(ProfessorRequiredMixin, DeleteView):
         return reverse("handouts:list_handouts", kwargs={"slug": course.slug})
 
 
-class CreateHandoutView(ProfessorRequiredMixin, CreateView):
+class HandoutCreateView(ProfessorRequiredMixin, CreateView):
     model = models.Handout
     form_class = forms.HandoutForm
     template_name = "handouts/handout.html"
@@ -112,7 +112,7 @@ class FileDownloadView(View):
                 return response
 
 
-class CreateEnrollmentView(UpdateView):
+class EnrollmentCreateView(UpdateView):
     def post(self, request):
         post = QueryDict(request.body)
         student = self.request.user.profile
@@ -122,7 +122,7 @@ class CreateEnrollmentView(UpdateView):
             student=student, course=course
         ).exists():
             model = models.Enrollment.objects.get_or_create(
-                student=student, course=course, is_active=None
+                student=student, course=course, accepted=None
             )
         return HttpResponse()
 
@@ -132,15 +132,15 @@ class CreateEnrollmentView(UpdateView):
         enrollment = get_object_or_404(models.Enrollment, slug=put.get("enrol_slug"))
         action = put.get("action")
         if action == "True":
-            enrollment.is_active = True
+            enrollment.accepted = True
         else:
-            enrollment.is_active = False
+            enrollment.accepted = False
         enrollment.save()
 
         return HttpResponse([1, 2, 3])
 
 
-class StudentListEnrollmentsView(StudentRequiredMixin, ListView):
+class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
     model = models.Enrollment
     template_name = "handouts/list_enrollments.html"
 
@@ -148,13 +148,13 @@ class StudentListEnrollmentsView(StudentRequiredMixin, ListView):
         try:
             object_list = self.model.objects.filter(
                 student=self.request.user.student
-            ).order_by("is_active")
+            ).order_by("accepted")
             return object_list
         except:
             return HttpResponseForbidden()
 
 
-class ListEnrollmentView(ProfessorRequiredMixin, ListView):
+class EnrollmentListView(ProfessorRequiredMixin, ListView):
     model = models.Enrollment
     template_name = "handouts/list_enrollments.html"
 
@@ -168,7 +168,7 @@ class ListEnrollmentView(ProfessorRequiredMixin, ListView):
         try:
             object_list = self.model.objects.filter(
                 course__professor=self.request.user.profile
-            ).order_by("is_active")
+            ).order_by("accepted")
             return object_list
         except:
             return HttpResponseForbidden()

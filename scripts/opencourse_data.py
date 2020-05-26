@@ -472,7 +472,7 @@ def import_data():
     profiles_user_1.last_name = ""
     profiles_user_1.email = "professor@gmail.com"
     profiles_user_1.is_staff = False
-    profiles_user_1.is_active = True
+    profiles_user_1.accepted = True
     profiles_user_1.date_joined = dateutil.parser.parse(
         "2020-05-10T20:19:13.787163+00:00"
     )
@@ -491,7 +491,7 @@ def import_data():
     profiles_user_2.last_name = ""
     profiles_user_2.email = "admin@gmail.com"
     profiles_user_2.is_staff = True
-    profiles_user_2.is_active = True
+    profiles_user_2.accepted = True
     profiles_user_2.date_joined = dateutil.parser.parse(
         "2020-05-10T20:19:57.067332+00:00"
     )
@@ -510,7 +510,7 @@ def import_data():
     profiles_user_3.last_name = ""
     profiles_user_3.email = "student@gmail.com"
     profiles_user_3.is_staff = False
-    profiles_user_3.is_active = True
+    profiles_user_3.accepted = True
     profiles_user_3.date_joined = dateutil.parser.parse(
         "2020-05-10T20:31:18.694372+00:00"
     )

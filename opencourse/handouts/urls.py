@@ -3,19 +3,19 @@ from . import views
 
 app_name = "handouts"
 urlpatterns = [
-    path("list/", views.ListEnrollmentView.as_view(), name="list"),
+    path("list/", views.EnrollmentListView.as_view(), name="list"),
     path(
-        "student_list/", views.StudentListEnrollmentsView.as_view(), name="student_list"
+        "student_list/", views.StudentEnrollmentsListView.as_view(), name="student_list"
     ),
-    path("post/", views.CreateEnrollmentView.as_view(), name="post"),
+    path("post/", views.EnrollmentCreateView.as_view(), name="post"),
     path(
         "<slug:slug>/create_handouts/",
-        views.CreateHandoutView.as_view(),
+        views.HandoutCreateView.as_view(),
         name="create_handouts",
     ),
     path(
         "<slug:slug>/list_handouts/",
-        views.ListHandoutsView.as_view(),
+        views.HandoutsListView.as_view(),
         name="list_handouts",
     ),
     path(
@@ -25,12 +25,12 @@ urlpatterns = [
     ),
     path(
         "<int:pk>/update_handout/",
-        views.UpdateHandoutView.as_view(),
+        views.HandoutUpdateView.as_view(),
         name="update_handout",
     ),
     path(
         "<int:pk>/delete_handout/",
-        views.DeleteHandoutView.as_view(),
+        views.HandoutDeleteView.as_view(),
         name="delete_handout",
     ),
     path(
