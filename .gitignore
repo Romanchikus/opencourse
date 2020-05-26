@@ -68,6 +68,7 @@ target/
 .venv
 venv/
 ENV/
+env/
 
 # Rope project settings
 .ropeproject
@@ -328,5 +329,8 @@ opencourse/media/
 
 
 .ipython/
-.env
-.envs/*
+prod.env
+local.env
+db.sqlite3
+mydatabase
+action.txt

@@ -16,7 +16,7 @@ class CourseAdmin(GuardedModelAdmin):
 
 admin.site.register(models.Course, CourseAdmin)
 admin.site.register(models.Currency)
-
+admin.site.register(models.CourseDuration)
 model_objects = (
     models.CourseArea,
     models.City,
