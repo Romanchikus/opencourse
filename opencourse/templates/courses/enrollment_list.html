@@ -27,7 +27,7 @@
 
         <a href="{% url 'courses:handout_list' enrollment.course.pk %}"
            class="btn btn-outline-info btn-sm float-right"
-           role="button">Handouts
+           role="button">{% trans "Handouts" %}
         </a>
       </li>
     {% empty %}

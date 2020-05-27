@@ -34,7 +34,7 @@ class CourseEditView(CoursePermissionRequiredMixin, FormsetMixin, UpdateView):
     model = models.Course
     form_class = forms.CourseForm
     formset_class = forms.CourseLocationFormset
-    template_name = "courses/edit.html"
+    template_name = "courses/course_edit.html"
     exclude = ["professor"]
     success_url = reverse_lazy("courses:list")
     permission_required = "courses.manage_course"
@@ -45,7 +45,7 @@ class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
     model = models.Course
     form_class = forms.CourseForm
     formset_class = forms.CourseLocationFormset
-    template_name = "courses/edit.html"
+    template_name = "courses/course_edit.html"
     exclude = ["professor"]
     success_url = reverse_lazy("courses:list")
 
@@ -69,13 +69,15 @@ class CourseListView(ProfessorRequiredMixin, ListView):
 
 class CourseDetailView(DetailView):
     model = models.Course
-    template_name = "courses/detail.html"
+    template_name = "courses/course_detail.html"
     paginate_by = 10
 
     def get_context_data(self, **kwargs):
         kwargs["review_form"] = ReviewForm()
         kwargs["professor"] = self.object.professor
-        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:REVIEW_COUNT]
+        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[
+            :REVIEW_COUNT
+        ]
         kwargs["enrollment_form"] = forms.EnrollmentCreateForm(
             initial={"course": self.object, "student": self.request.user.student},
         )
@@ -94,14 +96,14 @@ class CourseDeleteView(CoursePermissionRequiredMixin, DeleteView):
 
 
 class CourseSearchView(FormView):
-    template_name = "courses/search.html"
+    template_name = "courses/course_search.html"
     form_class = forms.CourseSearchForm
     success_url = reverse_lazy("courses:search")
 
 
 class CourseSearchResultsView(FilterView):
     filterset_class = filters.CourseFilter
-    template_name = "courses/search_results.html"
+    template_name = "courses/course_search_results.html"
     paginate_by = 10
 
 
@@ -125,7 +127,7 @@ class HandoutListView(LoginRequiredMixin, ListView):
 class HandoutUpdateView(ProfessorRequiredMixin, UpdateView):
     model = models.Handout
     form_class = forms.HandoutForm
-    template_name = "courses/handout.html"
+    template_name = "courses/handout_edit.html"
 
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
@@ -146,7 +148,7 @@ class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
 class HandoutCreateView(ProfessorRequiredMixin, CreateView):
     model = models.Handout
     form_class = forms.HandoutForm
-    template_name = "courses/handout.html"
+    template_name = "courses/handout_edit.html"
 
     def form_valid(self, form):
         pk = self.kwargs.get("pk")
@@ -173,7 +175,9 @@ class EnrollmentStudentListView(StudentRequiredMixin, ListView):
     template_name = "courses/enrollment_list.html"
 
     def get_queryset(self):
-        object_list = self.model.objects.filter(student=self.request.user.student, accepted=True)
+        object_list = self.model.objects.filter(
+            student=self.request.user.student, accepted=True
+        )
         return object_list
 
 

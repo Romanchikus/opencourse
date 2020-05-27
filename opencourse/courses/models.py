@@ -8,14 +8,30 @@ from opencourse.profiles.models import Professor, Student
 class City(models.Model):
     codepostal = models.CharField(max_length=8, blank=True, null=True)
     name = models.CharField(max_length=60, blank=True, null=True)
-    latitude_south = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    latitude_north = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    longitude_west = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    longitude_east = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    latitude_southa = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    latitude_northa = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    longitude_westa = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
-    longitude_easta = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=4)
+    latitude_south = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    latitude_north = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    longitude_west = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    longitude_east = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    latitude_southa = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    latitude_northa = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    longitude_westa = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
+    longitude_easta = models.DecimalField(
+        blank=True, null=True, max_digits=8, decimal_places=4
+    )
     category_1 = models.SmallIntegerField(blank=True, null=True)
     category_2 = models.SmallIntegerField(blank=True, null=True)
 
@@ -141,8 +157,12 @@ class Currency(models.Model):
 
 
 class CourseLocation(models.Model):
-    location_type = models.ForeignKey(CourseLocationType, on_delete=models.PROTECT, null=True)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="locations")
+    location_type = models.ForeignKey(
+        CourseLocationType, on_delete=models.PROTECT, null=True
+    )
+    course = models.ForeignKey(
+        Course, on_delete=models.CASCADE, related_name="locations"
+    )
     description = models.CharField(max_length=100, blank=True, null=True)
     price = models.SmallIntegerField()
     currency = models.ForeignKey(Currency, on_delete=models.PROTECT)
