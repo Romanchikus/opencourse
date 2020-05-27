@@ -23,12 +23,15 @@
               data-off="{% trans 'Off' %}">
         {% endif %}
 
-        <a href="{% url 'courses:handout_list' enrollment.course.pk %}" class="ml-3">
-          {{ enrollment.course }}: {{ enrollment.student }}
+        <span class="ml-3">{{ enrollment.course }}: {{ enrollment.student }}</span>
+
+        <a href="{% url 'courses:handout_list' enrollment.course.pk %}"
+           class="btn btn-outline-info btn-sm float-right"
+           role="button">Handouts
         </a>
       </li>
-    {% empty %}1
-      <li class="list-group-item">{% trans "No enrollments yet." %}</li>
+    {% empty %}
+      <li class="list-group-item">{% trans "No approved enrollments yet." %}</li>
     {% endfor %}
   </ul>
 {% endblock content %}

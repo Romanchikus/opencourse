@@ -3,9 +3,9 @@
 {% load static %}
 
 {% block content_title %}
-  <h2 class="h2 mb-0">Handouts for {{ course }}</h2>
+  <h2 class="h2 mb-0">Handouts: {{ course }}</h2>
   {% if user.professor %}
-    <a class="btn  btn-primary btn-sm" href="{% url 'courses:handout_create' course.pk %}" role="button">
+    <a class="btn  btn-primary" href="{% url 'courses:handout_create' course.pk %}" role="button">
       {% trans "Create handout" %}
     </a>
   {% endif %}
@@ -27,9 +27,8 @@
             <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:handout_update' handout.pk %}"
                role="button">{% trans "Edit" %}</a>
           {% endif %}
-          <a class="btn btn-outline-info btn-sm float-right mr-2"
-             href="{% url 'courses:handout_download' handout.pk %}"
-             value='{{ handout.name }}' href="#" role="button">{% trans "Download" %}</a>
+          <a class="btn btn-outline-info btn-sm float-right mr-2" href="{{handout.attachment.url}}"
+             role="button" download>{% trans "Download" %}</a>
         </li>
       {% endfor %}
     </ul>

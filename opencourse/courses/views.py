@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404
@@ -75,20 +76,14 @@ class CourseDetailView(DetailView):
         kwargs["review_form"] = ReviewForm()
         kwargs["professor"] = self.object.professor
         kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:REVIEW_COUNT]
-        kwargs["enrollment_form"] = forms.EnrollmentForm(
-            initial={"course": self.object, "student": self.request.user.student}
+        kwargs["enrollment_form"] = forms.EnrollmentCreateForm(
+            initial={"course": self.object, "student": self.request.user.student},
         )
+        enrollment = models.Enrollment.objects.filter(
+            course=self.object, student=self.request.user.student
+        ).first()
+        kwargs["enrollment_accepted"] = getattr(enrollment, "accepted", "not_existing")
 
-        try:
-            kwargs["has_enroll"] = models.Enrollment.objects.filter(
-                student=self.request.user.student, course=self.object
-            ).exists()
-            if kwargs["has_enroll"]:
-                kwargs["active_enroll"] = models.Enrollment.objects.get(
-                    student=self.request.user.student, course=self.object
-                ).accepted
-        except:
-            pass
         return super().get_context_data(**kwargs)
 
 
@@ -110,7 +105,7 @@ class CourseSearchResultsView(FilterView):
     paginate_by = 10
 
 
-class HandoutListView(ListView):
+class HandoutListView(LoginRequiredMixin, ListView):
     model = models.Handout
     template_name = "courses/handout_list.html"
 
@@ -163,44 +158,14 @@ class HandoutCreateView(ProfessorRequiredMixin, CreateView):
         return reverse("courses:handout_list", kwargs={"slug": self.kwargs.get("slug")})
 
 
-import os
-from django.conf import settings
-from urllib.parse import quote
-
-
-class FileDownloadView(View):
-    # Set FILE_STORAGE_PATH value in settings.py
-    folder_path = settings.MEDIA_ROOT
-    # Here set the name of the file with extension
-    file_name = ""
-    # Set the content type value
-    content_type_value = "text/plain"
-
-    def get(self, request, pk):
-        handout = get_object_or_404(models.Handout, pk=pk)
-        file_path = os.path.join(self.folder_path, str(handout.attachment))
-        filename = os.path.basename(file_path)
-        if os.path.exists(file_path):
-            with open(file_path, "rb") as fh:
-                print(os.path.basename(file_path))
-                response = HttpResponse(fh.read(), content_type="application/force-download")
-                try:
-                    filename.encode("ascii")
-                    file_expr = 'filename="{}"'.format(filename)
-                except UnicodeEncodeError:
-                    file_expr = "filename*=utf-8''{}".format(quote(filename))
-                response["Content-Disposition"] = "attachment; {}".format(file_expr)
-                return response
-
-
-class EnrollmentUpdateView(JsonFormMixin, UpdateView):
+class EnrollmentUpdateStatusView(ProfessorRequiredMixin, JsonFormMixin, UpdateView):
     model = models.Enrollment
     fields = ["accepted"]
 
 
-class EnrollmentCreateView(JsonFormMixin, CreateView):
+class EnrollmentCreateView(LoginRequiredMixin, JsonFormMixin, CreateView):
     model = models.Enrollment
-    form_class = forms.EnrollmentForm
+    form_class = forms.EnrollmentCreateForm
 
 
 class EnrollmentStudentListView(StudentRequiredMixin, ListView):
@@ -208,13 +173,8 @@ class EnrollmentStudentListView(StudentRequiredMixin, ListView):
     template_name = "courses/enrollment_list.html"
 
     def get_queryset(self):
-        try:
-            object_list = self.model.objects.filter(student=self.request.user.student).order_by(
-                "accepted"
-            )
-            return object_list
-        except:
-            return HttpResponseForbidden()
+        object_list = self.model.objects.filter(student=self.request.user.student, accepted=True)
+        return object_list
 
 
 class EnrollmentProfessorListView(ProfessorRequiredMixin, ListView):

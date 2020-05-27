@@ -169,6 +169,7 @@ class Enrollment(models.Model):
         verbose_name = _("Enrollment")
         verbose_name_plural = _("Enrollment")
         permissions = (("manage_enrollment", _("Manage enrollment")),)
+        unique_together = ("course", "student")
 
     def __str__(self):
         return "{}: {} ({})".format(self.course, self.student, self.accepted)

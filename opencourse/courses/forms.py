@@ -87,7 +87,7 @@ class HandoutForm(forms.ModelForm):
         }
 
 
-class EnrollmentForm(forms.ModelForm):
+class EnrollmentCreateForm(forms.ModelForm):
     class Meta:
         model = models.Enrollment
-        fields = ["course", "student"]
+        fields = ["id", "course", "student"]

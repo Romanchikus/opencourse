@@ -24,7 +24,11 @@ enrollment_patterns = [
         views.EnrollmentStudentListView.as_view(),
         name="enrollment_student_list",
     ),
-    path("enrollments/<int:pk>/", views.EnrollmentUpdateView.as_view(), name="update_enrollment",),
+    path(
+        "enrollments/<int:pk>/",
+        views.EnrollmentUpdateStatusView.as_view(),
+        name="update_enrollment",
+    ),
     path("enrollments/create", views.EnrollmentCreateView.as_view(), name="enrollment_create"),
 ]
 
@@ -33,9 +37,6 @@ handout_patterns = [
     path("<int:pk>/handouts/create/", views.HandoutCreateView.as_view(), name="handout_create",),
     path("handouts/<int:pk>/update/", views.HandoutUpdateView.as_view(), name="handout_update",),
     path("handouts/<int:pk>/delete/", views.HandoutDeleteView.as_view(), name="handout_delete",),
-    path(
-        "handouts/<int:pk>/download/", views.FileDownloadView.as_view(), name="handout_download",
-    ),
 ]
 
 urlpatterns = course_patterns + enrollment_patterns + handout_patterns

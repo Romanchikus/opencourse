@@ -75,7 +75,6 @@
                       </p>
                       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contacts"
                               data-ajax-target='{% url "profiles:contact_request" professor.pk %}'
-                              onclick="contact_request()"
                               id="contact_request">
                         {% trans "Contact" %}
                       </button>
@@ -161,9 +160,25 @@
                         {% csrf_token %}
                         {{ enrollment_form }}
                       </form>
-                      <button type="button" class="btn btn-primary" onclick="enrollment_request()">Enroll</button>
+                      {% if enrollment_accepted is None %}
+                        <div class="alert alert-primary" role="alert">
+                          Your enrollment is under review.
+                        </div>
+                      {% elif enrollment_accepted is True %}
+                        <div class="alert alert-success" role="alert">
+                          Your enrollment was accepted.
+                        </div>
+                      {% elif enrollment_accepted is False %}
+                        <div class="alert alert-warning" role="alert">
+                          Your enrollment was rejected.
+                        </div>
+                      {% elif enrollment_accepted == "not_existing" %}
+                        <button id="enroll" type="button" class="btn btn-primary">Enroll</button>
+                        <div id="enrollment-sent-alert" class="alert alert-primary d-none" role="alert">
+                          Your enrollment request was sent.
+                        </div>
+                      {% endif %}
                     {% endif %}
-
                   </div>
                 </div>
               </div>
