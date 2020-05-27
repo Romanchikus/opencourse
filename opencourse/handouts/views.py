@@ -10,7 +10,7 @@ from django.views.generic import (
     ListView,
 )
 from django.urls import reverse, reverse_lazy
-from django.http import HttpResponse, QueryDict, HttpResponseForbidden
+from django.http import HttpResponse, QueryDict, HttpResponseForbidden, JsonResponse
 
 
 class ShowHandoutView(DetailView):
@@ -33,9 +33,9 @@ class HandoutsListView(ListView):
         slug = self.kwargs.get("slug")
         context["course"] = get_object_or_404(models.Course, slug=slug)
         try:
-            context["accepted"] = models.Enrollment.objects.get(
+            context["status"] = models.Enrollment.objects.get(
                 course=context["course"], student=self.request.user.student
-            ).accepted
+            ).status
         except:
             pass
         return context
@@ -112,6 +112,17 @@ class FileDownloadView(View):
                 return response
 
 
+class EnrollmentUpdateView(UpdateView):
+    model = models.Enrollment
+    fields = ["status"]
+
+    def form_valid(self, form):
+        """If the form is valid, save the associated model."""
+        self.object = form.save()
+        # breakpoint()
+        return JsonResponse({1: 1})
+
+
 class EnrollmentCreateView(UpdateView):
     def post(self, request):
         post = QueryDict(request.body)
@@ -148,27 +159,18 @@ class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
         try:
             object_list = self.model.objects.filter(
                 student=self.request.user.student
-            ).order_by("accepted")
+            ).order_by("status")
             return object_list
         except:
             return HttpResponseForbidden()
 
 
-class EnrollmentListView(ProfessorRequiredMixin, ListView):
+class ProfessorEnrollmentsListView(ProfessorRequiredMixin, ListView):
     model = models.Enrollment
     template_name = "handouts/list_enrollments.html"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        new_context_entry = self.kwargs.get("slug")
-        context["course_slug"] = new_context_entry
-        return context
-
     def get_queryset(self):
-        try:
-            object_list = self.model.objects.filter(
-                course__professor=self.request.user.profile
-            ).order_by("accepted")
-            return object_list
-        except:
-            return HttpResponseForbidden()
+        object_list = self.model.objects.filter(
+            course__professor=self.request.user.professor
+        ).order_by("status")
+        return object_list

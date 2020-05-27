@@ -7,10 +7,10 @@ class EnrollmentView(forms.ModelForm):
     class Meta:
         model = models.Enrollment
         fields = [
-            "accepted",
+            "status",
         ]
         labels = {
-            "accepted": _("Is active"),
+            "status": _("Status"),
         }
 
 

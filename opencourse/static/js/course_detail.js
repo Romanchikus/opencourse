@@ -10,5 +10,4 @@ function contact_request() {
 
   var url = $("#contact_request").attr("data-ajax-target")
   $.post(url)
-  console.log(url)
 };
