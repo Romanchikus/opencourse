@@ -49,13 +49,7 @@ class BasicImportHelper(object):
         return the_obj
 
     def locate_object(
-        self,
-        original_class,
-        original_pk_name,
-        the_class,
-        pk_name,
-        pk_value,
-        obj_content,
+        self, original_class, original_pk_name, the_class, pk_name, pk_value, obj_content,
     ):
         # You may change this function to do specific lookup for specific objects
         #
@@ -110,9 +104,7 @@ try:
 
     # We need this so ImportHelper can extend BasicImportHelper, although import_helper.py
     # has no knowlodge of this class
-    importer = type(
-        "DynamicImportHelper", (import_helper.ImportHelper, BasicImportHelper), {}
-    )()
+    importer = type("DynamicImportHelper", (import_helper.ImportHelper, BasicImportHelper), {})()
 except ImportError as e:
     # From Python 3.3 we can check e.name - string match is for backward compatibility.
     if "import_helper" in str(e):
@@ -463,9 +455,7 @@ def import_data():
     profiles_user_1.password = (
         "pbkdf2_sha256$180000$cwXsrztq2kJE$S0uNCeGQ+FvIIi/LlodoNOIBkurUaDpFLoPpstMEetA="
     )
-    profiles_user_1.last_login = dateutil.parser.parse(
-        "2020-05-10T20:46:18.956512+00:00"
-    )
+    profiles_user_1.last_login = dateutil.parser.parse("2020-05-10T20:46:18.956512+00:00")
     profiles_user_1.is_superuser = False
     profiles_user_1.username = "professor@gmail.com"
     profiles_user_1.first_name = ""
@@ -473,18 +463,14 @@ def import_data():
     profiles_user_1.email = "professor@gmail.com"
     profiles_user_1.is_staff = False
     profiles_user_1.accepted = True
-    profiles_user_1.date_joined = dateutil.parser.parse(
-        "2020-05-10T20:19:13.787163+00:00"
-    )
+    profiles_user_1.date_joined = dateutil.parser.parse("2020-05-10T20:19:13.787163+00:00")
     profiles_user_1 = importer.save_or_locate(profiles_user_1)
 
     profiles_user_2 = User()
     profiles_user_2.password = (
         "pbkdf2_sha256$180000$jQbED5mRC3FC$rGHmLPbEnbCrOGGHpIxdbpEjAWH76Dj4auzItGjxy3Y="
     )
-    profiles_user_2.last_login = dateutil.parser.parse(
-        "2020-05-10T20:20:06.664503+00:00"
-    )
+    profiles_user_2.last_login = dateutil.parser.parse("2020-05-10T20:20:06.664503+00:00")
     profiles_user_2.is_superuser = True
     profiles_user_2.username = "admin"
     profiles_user_2.first_name = ""
@@ -492,18 +478,14 @@ def import_data():
     profiles_user_2.email = "admin@gmail.com"
     profiles_user_2.is_staff = True
     profiles_user_2.accepted = True
-    profiles_user_2.date_joined = dateutil.parser.parse(
-        "2020-05-10T20:19:57.067332+00:00"
-    )
+    profiles_user_2.date_joined = dateutil.parser.parse("2020-05-10T20:19:57.067332+00:00")
     profiles_user_2 = importer.save_or_locate(profiles_user_2)
 
     profiles_user_3 = User()
     profiles_user_3.password = (
         "pbkdf2_sha256$180000$GPo9wAK6xKK7$NERotmMpKK7hKesccmfbreFEjUBtlB+iMk1n1lR/mvc="
     )
-    profiles_user_3.last_login = dateutil.parser.parse(
-        "2020-05-10T20:31:45.395920+00:00"
-    )
+    profiles_user_3.last_login = dateutil.parser.parse("2020-05-10T20:31:45.395920+00:00")
     profiles_user_3.is_superuser = False
     profiles_user_3.username = "student@gmail.com"
     profiles_user_3.first_name = ""
@@ -511,9 +493,7 @@ def import_data():
     profiles_user_3.email = "student@gmail.com"
     profiles_user_3.is_staff = False
     profiles_user_3.accepted = True
-    profiles_user_3.date_joined = dateutil.parser.parse(
-        "2020-05-10T20:31:18.694372+00:00"
-    )
+    profiles_user_3.date_joined = dateutil.parser.parse("2020-05-10T20:31:18.694372+00:00")
     profiles_user_3 = importer.save_or_locate(profiles_user_3)
 
     # Processing model: opencourse.profiles.models.Student

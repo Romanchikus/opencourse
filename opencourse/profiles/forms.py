@@ -33,9 +33,7 @@ class ProfileCreateForm(SignupForm):
             profile = user_class()
             setattr(user, user_type, profile)
 
-            permission = get_object_or_404(
-                Permission, codename=f"access_{user_type}_pages"
-            )
+            permission = get_object_or_404(Permission, codename=f"access_{user_type}_pages")
             user.user_permissions.add(permission)
 
             user.save()

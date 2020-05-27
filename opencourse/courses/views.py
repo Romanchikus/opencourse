@@ -58,7 +58,7 @@ class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
 
 
 class CourseListView(ProfessorRequiredMixin, ListView):
-    template_name = "courses/list.html"
+    template_name = "courses/course_list.html"
     paginate_by = 100  # if pagination is desired
 
     def get_queryset(self):
@@ -74,9 +74,7 @@ class CourseDetailView(DetailView):
     def get_context_data(self, **kwargs):
         kwargs["review_form"] = ReviewForm()
         kwargs["professor"] = self.object.professor
-        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[
-            :REVIEW_COUNT
-        ]
+        kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:REVIEW_COUNT]
         try:
             kwargs["has_enroll"] = models.Enrollment.objects.filter(
                 student=self.request.user.student, course=self.object
@@ -113,9 +111,9 @@ class ShowHandoutView(DetailView):
     template_name = "courses/handout.html"
 
 
-class HandoutsListView(ListView):
+class HandoutListView(ListView):
     model = models.Handout
-    template_name = "courses/list_handouts.html"
+    template_name = "courses/handout_list.html"
 
     def get_queryset(self):
         slug = self.kwargs.get("slug")
@@ -170,9 +168,7 @@ class HandoutCreateView(ProfessorRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse(
-            "courses:list_handouts", kwargs={"slug": self.kwargs.get("slug")}
-        )
+        return reverse("courses:list_handouts", kwargs={"slug": self.kwargs.get("slug")})
 
 
 import os
@@ -195,9 +191,7 @@ class FileDownloadView(View):
         if os.path.exists(file_path):
             with open(file_path, "rb") as fh:
                 print(os.path.basename(file_path))
-                response = HttpResponse(
-                    fh.read(), content_type="application/force-download"
-                )
+                response = HttpResponse(fh.read(), content_type="application/force-download")
                 try:
                     filename.encode("ascii")
                     file_expr = 'filename="{}"'.format(filename)
@@ -235,9 +229,7 @@ class EnrollmentCreateView(UpdateView):
         student = self.request.user.profile
         course = post.get("course")
         course = get_object_or_404(models.Course, slug=course)
-        if not models.Enrollment.objects.filter(
-            student=student, course=course
-        ).exists():
+        if not models.Enrollment.objects.filter(student=student, course=course).exists():
             model = models.Enrollment.objects.get_or_create(
                 student=student, course=course, accepted=None
             )
@@ -263,9 +255,9 @@ class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
 
     def get_queryset(self):
         try:
-            object_list = self.model.objects.filter(
-                student=self.request.user.student
-            ).order_by("accepted")
+            object_list = self.model.objects.filter(student=self.request.user.student).order_by(
+                "accepted"
+            )
             return object_list
         except:
             return HttpResponseForbidden()

@@ -9,9 +9,7 @@ class FormsetMixin(ModelFormMixin):
         context = super().get_context_data(**kwargs)
         instance = getattr(self, "object", None)
         if self.request.POST:
-            context["formset"] = self.formset_class(
-                self.request.POST, instance=instance
-            )
+            context["formset"] = self.formset_class(self.request.POST, instance=instance)
         else:
             context["formset"] = self.formset_class(instance=instance)
         return context

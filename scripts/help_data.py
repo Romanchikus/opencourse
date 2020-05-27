@@ -49,13 +49,7 @@ class BasicImportHelper(object):
         return the_obj
 
     def locate_object(
-        self,
-        original_class,
-        original_pk_name,
-        the_class,
-        pk_name,
-        pk_value,
-        obj_content,
+        self, original_class, original_pk_name, the_class, pk_name, pk_value, obj_content,
     ):
         # You may change this function to do specific lookup for specific objects
         #
@@ -110,9 +104,7 @@ try:
 
     # We need this so ImportHelper can extend BasicImportHelper, although import_helper.py
     # has no knowlodge of this class
-    importer = type(
-        "DynamicImportHelper", (import_helper.ImportHelper, BasicImportHelper), {}
-    )()
+    importer = type("DynamicImportHelper", (import_helper.ImportHelper, BasicImportHelper), {})()
 except ImportError as e:
     # From Python 3.3 we can check e.name - string match is for backward compatibility.
     if "import_helper" in str(e):

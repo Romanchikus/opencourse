@@ -2,7 +2,9 @@
 {% load i18n %}
 
 {% block content_title %}
-  <h2 class="h3">{% trans "List courses" %}</h2>
+  <h2 class="h3">{% trans "Courses" %}</h2>
+  <a class="btn btn-outline-secondary btn-sm" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
+
 {% endblock content_title %}
 
 {% block content %}
@@ -14,7 +16,7 @@
            role="button">{% trans "Delete" %}</a>
         <a class="btn btn-outline-secondary btn-sm float-right mr-2" href="{% url 'courses:edit' course.slug %}"
            role="button">{% trans "Edit" %}</a>
-        <a class="btn btn-outline-info btn-sm float-right mr-2"
+        <a class="btn btn-outline-secondary btn-sm float-right mr-2"
            href="{% url 'courses:list_handouts' course.slug %}" role="button">{% trans "Handouts" %}</a>
       </li>
     {% empty %}
