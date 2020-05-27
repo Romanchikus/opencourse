@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
-from autoslug import AutoSlugField
 from guardian.mixins import GuardianUserMixin
 
 
@@ -26,7 +25,6 @@ class User(GuardianUserMixin, AbstractUser):
 
 
 class Profile(models.Model):
-    slug = AutoSlugField(populate_from="user", unique=True)
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     picture = models.ImageField(
         _("Profile picture"), upload_to="profile_pics/%Y-%m-%d/", null=True, blank=True,

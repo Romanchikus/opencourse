@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from autoslug import AutoSlugField
 
 from . import managers
 from opencourse.profiles.models import Professor, Student
@@ -88,7 +87,6 @@ class CourseLanguage(models.Model):
 
 
 class Course(models.Model):
-    slug = AutoSlugField(populate_from="title", unique=True)
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=100)
@@ -161,7 +159,6 @@ class CourseLocation(models.Model):
 
 
 class Enrollment(models.Model):
-    slug = AutoSlugField(unique=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     accepted = models.NullBooleanField()
     student = models.ForeignKey(Student, on_delete=models.CASCADE)

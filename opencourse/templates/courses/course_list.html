@@ -3,7 +3,7 @@
 
 {% block content_title %}
   <h2 class="h3">{% trans "Courses" %}</h2>
-  <a class="btn btn-outline-secondary btn-sm" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
+  <a class="btn btn-primary btn-sm" href="{% url 'courses:create' %}">{% trans "Create course" %}</a>
 
 {% endblock content_title %}
 
@@ -11,13 +11,13 @@
   <ul class="list-group">
     {% for course in object_list %}
       <li class="list-group-item">
-        <a href="{% url 'courses:detail' course.slug %}">{{ course }}</a>
-        <a class="btn btn-outline-secondary btn-sm float-right" href="{% url 'courses:delete' course.slug %}"
+        <a href="{% url 'courses:detail' course.pk %}">{{ course }}</a>
+        <a class="btn btn-outline-danger btn-sm float-right" href="{% url 'courses:delete' course.pk %}"
            role="button">{% trans "Delete" %}</a>
-        <a class="btn btn-outline-secondary btn-sm float-right mr-2" href="{% url 'courses:edit' course.slug %}"
+        <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:edit' course.pk %}"
            role="button">{% trans "Edit" %}</a>
-        <a class="btn btn-outline-secondary btn-sm float-right mr-2"
-           href="{% url 'courses:list_handouts' course.slug %}" role="button">{% trans "Handouts" %}</a>
+        <a class="btn btn-outline-info btn-sm float-right mr-2"
+           href="{% url 'courses:handout_list' course.pk %}" role="button">{% trans "Handouts" %}</a>
       </li>
     {% empty %}
       <li class="list-group-item">{% trans "No courses yet." %}</li>

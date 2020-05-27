@@ -3,24 +3,29 @@
 {% load i18n %}
 
 {% block content_title %}
-  <h2 class="h3">{% trans "Professor enrollments" %}</h2>
+  <h2 class="h3">{% trans "Enrollments" %}</h2>
 {% endblock content_title %}
 
 {% block content %}
   <ul class="list-group">
     {% for enrollment in object_list %}
       <li class="list-group-item">
-        <input id="chkToggle"
-               type="checkbox"
-               data-toggle="toggle"
-               data-size="xs"
-               class="status-toggle mr-3"
-               data-ajax-target="{% url "courses:update_enrollment" enrollment.slug %}"
-            {% if enrollment.accepted %} checked {% endif %}
-               data-on="{% trans 'On' %}"
-               data-off="{% trans 'Off' %}"
-        >
-        <span class="ml-3">{{ enrollment.course }}: {{ enrollment.student }}</span>
+        {% if user.professor %}
+          <input
+              id="chkToggle"
+              type="checkbox"
+              data-toggle="toggle"
+              data-size="xs"
+              class="status-toggle mr-3"
+              data-ajax-target="{% url "courses:update_enrollment" enrollment.pk %}"
+              {% if enrollment.accepted %} checked {% endif %}
+              data-on="{% trans 'On' %}"
+              data-off="{% trans 'Off' %}">
+        {% endif %}
+
+        <a href="{% url 'courses:handout_list' enrollment.course.pk %}" class="ml-3">
+          {{ enrollment.course }}: {{ enrollment.student }}
+        </a>
       </li>
     {% empty %}1
       <li class="list-group-item">{% trans "No enrollments yet." %}</li>

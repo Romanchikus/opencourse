@@ -501,7 +501,6 @@ def import_data():
     from opencourse.profiles.models import Student
 
     profiles_student_1 = Student()
-    profiles_student_1.slug = "studentgmailcom"
     profiles_student_1.user = profiles_user_3
     profiles_student_1.picture = ""
     profiles_student_1.email_verified = False
@@ -523,7 +522,6 @@ def import_data():
     from opencourse.profiles.models import Professor
 
     profiles_professor_1 = Professor()
-    profiles_professor_1.slug = "professorgmailcom"
     profiles_professor_1.user = profiles_user_1
     profiles_professor_1.picture = ""
     profiles_professor_1.email_verified = False
@@ -603,7 +601,6 @@ def import_data():
     from opencourse.courses.models import Course
 
     courses_course_1 = Course()
-    courses_course_1.slug = "algebra-for-beginners"
     courses_course_1.professor = profiles_professor_1
     courses_course_1.city = courses_city_1
     courses_course_1.title = "Algebra for beginners"
@@ -626,7 +623,6 @@ def import_data():
     courses_course_1.language.add(courses_courselanguage_1)
 
     courses_course_2 = Course()
-    courses_course_2.slug = "course"
     courses_course_2.professor = profiles_professor_1
     courses_course_2.city = courses_city_2
     courses_course_2.title = "Термодинамика"

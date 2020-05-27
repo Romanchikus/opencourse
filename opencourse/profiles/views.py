@@ -86,13 +86,13 @@ class ReviewCreateView(LoginRequiredMixin, CreateView):
     form_class = forms.ReviewForm
 
     def get_success_url(self):
-        slug = self.kwargs["slug"]
-        return reverse_lazy("courses:detail", args=[slug])
+        pk = self.kwargs["pk"]
+        return reverse_lazy("courses:detail", args=[pk])
 
     def form_valid(self, form):
         form.instance.author = self.request.user.profile
-        slug = self.kwargs["slug"]
-        course = Course.objects.filter(slug=slug).first()
+        pk = self.kwargs["pk"]
+        course = Course.objects.filter(pk=pk).first()
         form.instance.professor = course.professor
         return super().form_valid(form)
 

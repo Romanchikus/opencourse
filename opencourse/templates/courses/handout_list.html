@@ -3,37 +3,39 @@
 {% load static %}
 
 {% block content_title %}
+  <h2 class="h2 mb-0">Handouts for {{ course }}</h2>
   {% if user.professor %}
-    <a class="btn  btn-outline-success btn-sm" href="{% url 'courses:create_handouts' course.slug %}" role="button">
+    <a class="btn  btn-primary btn-sm" href="{% url 'courses:handout_create' course.pk %}" role="button">
       {% trans "Create handout" %}
     </a>
   {% endif %}
 {% endblock content_title %}
 
 {% block content %}
-  {% if user.professor %}
-    {% regroup object_list by section as sections %}
-    {% for section in sections %}
-      <h2 class="h2 mt-3">{{ section.grouper }}</h2>
-      <ul class="list-group">
-        {% for handout in section.list %}
-          <li class="list-group-item">
-            <span><b>{{ handout.name }}</b> - {{ handout.description }}</span>
-            {% if user.professor %}
-              <a class="btn btn-danger btn-sm float-right mr-2" href="{% url 'courses:delete_handout' handout.pk %}"
-                 role="button">{% trans "Delete" %}</a>
-              <a class="btn btn-warning btn-sm float-right mr-2" href="{% url 'courses:update_handout' handout.pk %}"
-                 role="button">{% trans "Edit" %}</a>
-              <a class="btn btn-primary btn-sm float-right mr-2" href="{% url 'courses:download_handout' handout.pk %}"
-                 value='{{ handout.name }}' href="#" role="button">{% trans "Download" %}</a>
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
-    {% empty %}
-      <ul class="list-group">
-        <li class="list-group-item">{% trans "No handouts yet." %}</li>
-      </ul>
-    {% endfor %}
-  {% endif %}
+  {% regroup object_list by section as sections %}
+  {% for section in sections %}
+    <h4 class="h4 mt-3">{{ section.grouper }}</h4>
+    <ul class="list-group">
+      {% for handout in section.list %}
+        <li class="list-group-item">
+          <a href="{% url 'courses:handout_update' handout.pk %}"></a>
+          <span><b>{{ handout.name }}</b> - {{ handout.description }}</span>
+          {% if user.professor %}
+            <a class="btn btn-outline-danger btn-sm float-right mr-2"
+               href="{% url 'courses:handout_delete' handout.pk %}"
+               role="button">{% trans "Delete" %}</a>
+            <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:handout_update' handout.pk %}"
+               role="button">{% trans "Edit" %}</a>
+          {% endif %}
+          <a class="btn btn-outline-info btn-sm float-right mr-2"
+             href="{% url 'courses:handout_download' handout.pk %}"
+             value='{{ handout.name }}' href="#" role="button">{% trans "Download" %}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% empty %}
+    <ul class="list-group">
+      <li class="list-group-item">{% trans "No handouts yet." %}</li>
+    </ul>
+  {% endfor %}
 {% endblock content %}

@@ -23,13 +23,13 @@ from opencourse.profiles.views import ProfileView
 
 urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
-    path("courses/", include("opencourse.courses.urls", namespace="courses")),
     path("accounts/", include("allauth.urls")),
     path("accounts/profile/", ProfileView.as_view()),
     path("profiles/", include("opencourse.profiles.urls", namespace="profiles")),
     path("jsi18n/", JavaScriptCatalog.as_view(), name="javascript-catalog"),
     path("i18n/", include("django.conf.urls.i18n")),
     path("", RedirectView.as_view(pattern_name="courses:search")),
+    path("", include("opencourse.courses.urls", namespace="courses")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:

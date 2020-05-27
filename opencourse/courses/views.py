@@ -106,31 +106,20 @@ class CourseSearchResultsView(FilterView):
     paginate_by = 10
 
 
-class ShowHandoutView(DetailView):
-    model = models.Handout
-    template_name = "courses/handout.html"
-
-
 class HandoutListView(ListView):
     model = models.Handout
     template_name = "courses/handout_list.html"
 
     def get_queryset(self):
-        slug = self.kwargs.get("slug")
-        course = get_object_or_404(models.Course, slug=slug)
+        pk = self.kwargs.get("pk")
+        course = get_object_or_404(models.Course, pk=pk)
         object_list = self.model.objects.filter(course=course).order_by("section")
         return object_list
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        slug = self.kwargs.get("slug")
-        context["course"] = get_object_or_404(models.Course, slug=slug)
-        try:
-            context["accepted"] = models.Enrollment.objects.get(
-                course=context["course"], student=self.request.user.student
-            ).accepted
-        except:
-            pass
+        pk = self.kwargs.get("pk")
+        context["course"] = get_object_or_404(models.Course, pk=pk)
         return context
 
 
@@ -142,7 +131,7 @@ class HandoutUpdateView(ProfessorRequiredMixin, UpdateView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
         course = get_object_or_404(models.Course, handout=handout_pk)
-        return reverse("courses:list_handouts", kwargs={"slug": course.slug})
+        return reverse("courses:handout_list", kwargs={"pk": course.pk})
 
 
 class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
@@ -152,7 +141,7 @@ class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
         course = get_object_or_404(models.Course, handout=handout_pk)
-        return reverse("courses:list_handouts", kwargs={"slug": course.slug})
+        return reverse("courses:handout_list", kwargs={"pk": course.pk})
 
 
 class HandoutCreateView(ProfessorRequiredMixin, CreateView):
@@ -161,14 +150,13 @@ class HandoutCreateView(ProfessorRequiredMixin, CreateView):
     template_name = "courses/handout.html"
 
     def form_valid(self, form):
-        form = form.save(commit=False)
-        slug = self.kwargs.get("slug")
-        form.course = get_object_or_404(models.Course, slug=slug)
+        pk = self.kwargs.get("pk")
+        form.course = get_object_or_404(models.Course, pk=pk)
         form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("courses:list_handouts", kwargs={"slug": self.kwargs.get("slug")})
+        return reverse("courses:handout_list", kwargs={"slug": self.kwargs.get("slug")})
 
 
 import os
@@ -223,35 +211,9 @@ class EnrollmentUpdateView(UpdateView):
         return JsonResponse(data, status=400)
 
 
-class EnrollmentCreateView(UpdateView):
-    def post(self, request):
-        post = QueryDict(request.body)
-        student = self.request.user.profile
-        course = post.get("course")
-        course = get_object_or_404(models.Course, slug=course)
-        if not models.Enrollment.objects.filter(student=student, course=course).exists():
-            model = models.Enrollment.objects.get_or_create(
-                student=student, course=course, accepted=None
-            )
-        return HttpResponse()
-
-    def put(self, request):
-
-        put = QueryDict(request.body)
-        enrollment = get_object_or_404(models.Enrollment, slug=put.get("enrol_slug"))
-        action = put.get("action")
-        if action == "True":
-            enrollment.accepted = True
-        else:
-            enrollment.accepted = False
-        enrollment.save()
-
-        return HttpResponse([1, 2, 3])
-
-
-class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
+class EnrollmentStudentListView(StudentRequiredMixin, ListView):
     model = models.Enrollment
-    template_name = "courses/professor_list_enrollments.html"
+    template_name = "courses/enrollment_list.html"
 
     def get_queryset(self):
         try:
@@ -263,9 +225,9 @@ class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
             return HttpResponseForbidden()
 
 
-class ProfessorEnrollmentsListView(ProfessorRequiredMixin, ListView):
+class EnrollmentProfessorListView(ProfessorRequiredMixin, ListView):
     model = models.Enrollment
-    template_name = "courses/professor_list_enrollments.html"
+    template_name = "courses/enrollment_list.html"
 
     def get_queryset(self):
         object_list = self.model.objects.filter(
