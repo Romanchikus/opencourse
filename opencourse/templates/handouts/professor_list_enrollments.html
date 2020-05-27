@@ -2,25 +2,28 @@
 {% load static %}
 {% load i18n %}
 
-{% block css %}
-  {{ block.super }}
-{% endblock css %}
-
 {% block content_title %}
-  <h2 class="h3">{% trans "List enrollments" %}</h2>
+  <h2 class="h3">{% trans "Professor enrollments" %}</h2>
 {% endblock content_title %}
 
 {% block content %}
   <ul class="list-group">
     {% for enrollment in object_list %}
       <li class="list-group-item">
-        <input id="chkToggle" type="checkbox" data-toggle="toggle" data-size="xs" class="status-toggle mr-3"
+        <input id="chkToggle"
+               type="checkbox"
+               data-toggle="toggle"
+               data-size="xs"
+               class="status-toggle mr-3"
                data-ajax-target="{% url "handouts:update_enrollment" enrollment.slug %}"
-               {% if enrollment.status == "accepted" %}checked{% endif %}>
+            {% if enrollment.accepted %} checked {% endif %}
+               data-on="{% trans 'On' %}"
+               data-off="{% trans 'Off' %}"
+        >
         <span class="ml-3">{{ enrollment.course }}: {{ enrollment.student }}</span>
       </li>
     {% empty %}1
-      <li class="list-group-item">{% trans "No courses yet." %}</li>
+      <li class="list-group-item">{% trans "No enrollments yet." %}</li>
     {% endfor %}
   </ul>
 {% endblock content %}
@@ -28,6 +31,7 @@
 {% block project_js %}
   {{ block.super }}
   <script src={% static "js/list_enrollments.js" %}></script>
-  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+        rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 {% endblock %}

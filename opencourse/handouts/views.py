@@ -33,9 +33,9 @@ class HandoutsListView(ListView):
         slug = self.kwargs.get("slug")
         context["course"] = get_object_or_404(models.Course, slug=slug)
         try:
-            context["status"] = models.Enrollment.objects.get(
+            context["accepted"] = models.Enrollment.objects.get(
                 course=context["course"], student=self.request.user.student
-            ).status
+            ).accepted
         except:
             pass
         return context
@@ -114,13 +114,24 @@ class FileDownloadView(View):
 
 class EnrollmentUpdateView(UpdateView):
     model = models.Enrollment
-    fields = ["status"]
+    fields = ["accepted"]
+
+    def post(self, request, *args, **kwargs):
+        # breakpoint()
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         """If the form is valid, save the associated model."""
         self.object = form.save()
         # breakpoint()
-        return JsonResponse({1: 1})
+        return JsonResponse(form.cleaned_data)
+
+    def form_invalid(self, form):
+        data = {
+            "success": False,
+            "errors": {k: v[0] for k, v in form.errors.items()},
+        }
+        return JsonResponse(data, status=400)
 
 
 class EnrollmentCreateView(UpdateView):
@@ -153,13 +164,13 @@ class EnrollmentCreateView(UpdateView):
 
 class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
     model = models.Enrollment
-    template_name = "handouts/list_enrollments.html"
+    template_name = "handouts/professor_list_enrollments.html"
 
     def get_queryset(self):
         try:
             object_list = self.model.objects.filter(
                 student=self.request.user.student
-            ).order_by("status")
+            ).order_by("accepted")
             return object_list
         except:
             return HttpResponseForbidden()
@@ -167,10 +178,10 @@ class StudentEnrollmentsListView(StudentRequiredMixin, ListView):
 
 class ProfessorEnrollmentsListView(ProfessorRequiredMixin, ListView):
     model = models.Enrollment
-    template_name = "handouts/list_enrollments.html"
+    template_name = "handouts/professor_list_enrollments.html"
 
     def get_queryset(self):
         object_list = self.model.objects.filter(
             course__professor=self.request.user.professor
-        ).order_by("status")
+        ).order_by("accepted")
         return object_list

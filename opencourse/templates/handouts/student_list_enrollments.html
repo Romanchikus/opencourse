@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content_title %}
+  <h2 class="h3">{% trans "Student enrollments" %}</h2>
+{% endblock content_title %}
+
+{% block content %}
+  <ul class="list-group">
+    {% for enrollment in object_list %}
+      <li class="list-group-item">
+        <span class="ml-3">{{ enrollment.course }}: {{ enrollment.student }}</span>
+      </li>
+    {% empty %}1
+      <li class="list-group-item">{% trans "No courses yet." %}</li>
+    {% endfor %}
+  </ul>
+{% endblock content %}

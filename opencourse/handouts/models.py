@@ -7,13 +7,9 @@ from .managers import *
 
 
 class Enrollment(models.Model):
-    class Statuses(models.TextChoices):
-        ACCEPTED = "accepted", _("Accepted")
-        REJECTED = "rejected", _("Rejected")
-
     slug = AutoSlugField(unique=True)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
-    status = models.CharField(max_length=10, choices=Statuses.choices)
+    accepted = models.NullBooleanField()
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
 
     objects = EnrollmentManager()
@@ -24,7 +20,7 @@ class Enrollment(models.Model):
         permissions = (("manage_enrollment", _("Manage enrollment")),)
 
     def __str__(self):
-        return "{}: {} ({})".format(self.course, self.student, self.status)
+        return "{}: {} ({})".format(self.course, self.student, self.accepted)
 
 
 class HandoutSection(models.Model):
