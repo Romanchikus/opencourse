@@ -85,3 +85,9 @@ class HandoutForm(forms.ModelForm):
             "attachment": _("Attachment"),
             "section": _("Section"),
         }
+
+
+class EnrollmentForm(forms.ModelForm):
+    class Meta:
+        model = models.Enrollment
+        fields = ["course", "student"]

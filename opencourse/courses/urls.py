@@ -25,9 +25,7 @@ enrollment_patterns = [
         name="enrollment_student_list",
     ),
     path("enrollments/<int:pk>/", views.EnrollmentUpdateView.as_view(), name="update_enrollment",),
-    path(
-        "enrollments/create", views.EnrollmentStudentListView.as_view(), name="enrollment_create"
-    ),
+    path("enrollments/create", views.EnrollmentCreateView.as_view(), name="enrollment_create"),
 ]
 
 handout_patterns = [

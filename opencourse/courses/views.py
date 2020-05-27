@@ -1,5 +1,5 @@
 from django.db import transaction
-from django.http import HttpResponse, QueryDict, HttpResponseForbidden, JsonResponse
+from django.http import HttpResponse, HttpResponseForbidden
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import (
@@ -17,7 +17,7 @@ from guardian.mixins import PermissionRequiredMixin
 from guardian.shortcuts import assign_perm
 
 from . import forms, models, filters
-from .mixins import FormsetMixin
+from .mixins import FormsetMixin, JsonFormMixin
 from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin, StudentRequiredMixin
 
@@ -75,6 +75,10 @@ class CourseDetailView(DetailView):
         kwargs["review_form"] = ReviewForm()
         kwargs["professor"] = self.object.professor
         kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[:REVIEW_COUNT]
+        kwargs["enrollment_form"] = forms.EnrollmentForm(
+            initial={"course": self.object, "student": self.request.user.student}
+        )
+
         try:
             kwargs["has_enroll"] = models.Enrollment.objects.filter(
                 student=self.request.user.student, course=self.object
@@ -189,26 +193,14 @@ class FileDownloadView(View):
                 return response
 
 
-class EnrollmentUpdateView(UpdateView):
+class EnrollmentUpdateView(JsonFormMixin, UpdateView):
     model = models.Enrollment
     fields = ["accepted"]
 
-    def post(self, request, *args, **kwargs):
-        # breakpoint()
-        return super().post(request, *args, **kwargs)
 
-    def form_valid(self, form):
-        """If the form is valid, save the associated model."""
-        self.object = form.save()
-        # breakpoint()
-        return JsonResponse(form.cleaned_data)
-
-    def form_invalid(self, form):
-        data = {
-            "success": False,
-            "errors": {k: v[0] for k, v in form.errors.items()},
-        }
-        return JsonResponse(data, status=400)
+class EnrollmentCreateView(JsonFormMixin, CreateView):
+    model = models.Enrollment
+    form_class = forms.EnrollmentForm
 
 
 class EnrollmentStudentListView(StudentRequiredMixin, ListView):

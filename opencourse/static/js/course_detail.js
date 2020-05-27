@@ -12,24 +12,15 @@ function contact_request() {
   $.post(url)
 }
 
-function enroll_ask(course) {
-  data = {
-    course: course
-  }
-  $.ajax({
-    type: "post",
-    url: '{% url "courses:enrollment_create" %}',
-    data: data,
-    // success: function(data) {
-    //     $('#cart_count').html(data.cart_total)
-    // }
-  })
-  setInterval(dis_butt, 500);
-  $('.enroll_ask').removeAttr('onclick');
-  console.log(course)
+function enrollment_request() {
+  var form = $("#enrollment-form")
+  var url = form.attr('action');
 
-}
-
-function dis_butt() {
-  $('.enroll_ask').prop('disabled', true)
+  $.post({
+    url: url,
+    data: form.serialize(), // serializes the form's elements.
+    success: function (data) {
+      console.log(data); // show response from the php script.
+    }
+  });
 }

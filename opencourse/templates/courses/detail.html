@@ -155,24 +155,14 @@
                       </tbody>
                     </table>
 
-                    <p>
-                      {% if not user.professor and not has_enroll %}
-                        <button class="btn btn-outline-success float-right btn-sm enroll_ask"
-                                onclick='enroll_ask("{{ course.pk }}")' tabindex="-1" data-toggle="modal"
-                                data-target="#stud_ask" data-slug='{{ course.pk }}'>
-                          {% trans "Enroll in a course" %}</button> {% endif %}
-                      {% if user.professor or active_enroll == True %}
-                        <a class="btn btn-primary btn-sm float-right button_list"
-                           href="{% url 'courses:handout_list' course.pk %}" role="button">
-                          <span>{% trans "Show handouts" %}</span></a>{% endif %}
-                      {% if has_enroll %}
-                        {% if active_enroll == None %}
-                          <p class="float-sm-right text-success font-weight-bold">{% trans "Your request under consideration" %}</p>
-                        {% elif active_enroll == False %}
-                          <p class="float-sm-right text-danger font-weight-bold">{% trans "Your request rejected" %}</p>
-                        {% endif %}
-                      {% endif %}
-                    </p>
+                    {% if user.student %}
+                      <form action="{% url 'courses:enrollment_create' %}" method="post" class="d-none"
+                            id="enrollment-form">
+                        {% csrf_token %}
+                        {{ enrollment_form }}
+                      </form>
+                      <button type="button" class="btn btn-primary" onclick="enrollment_request()">Enroll</button>
+                    {% endif %}
 
                   </div>
                 </div>
