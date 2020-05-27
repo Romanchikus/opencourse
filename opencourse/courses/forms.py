@@ -63,3 +63,31 @@ class CourseLocationForm(forms.ModelForm):
 CourseLocationFormset = inlineformset_factory(
     models.Course, models.CourseLocation, form=CourseLocationForm, extra=1,
 )
+
+
+class EnrollmentView(forms.ModelForm):
+    class Meta:
+        model = models.Enrollment
+        fields = [
+            "accepted",
+        ]
+        labels = {
+            "accepted": _("accepted"),
+        }
+
+
+class HandoutForm(forms.ModelForm):
+    class Meta:
+        model = models.Handout
+        fields = [
+            "name",
+            "description",
+            "attachment",
+            "section",
+        ]
+        labels = {
+            "name": _("Name"),
+            "description": _("Description"),
+            "attachment": _("Attachment"),
+            "section": _("Section"),
+        }

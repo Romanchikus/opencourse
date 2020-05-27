@@ -23,6 +23,9 @@ model_objects = (
     models.CourseLocationType,
     models.Currency,
     models.CourseDuration,
+    models.Enrollment,
+    models.HandoutSection,
+    models.Handout,
 )
 
 for m in model_objects:

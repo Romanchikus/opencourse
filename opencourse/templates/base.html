@@ -46,12 +46,12 @@
         <li class="nav-item"><a href="{% url 'courses:search' %}" class="nav-link">{% trans "Home" %}</a></li>
         {% if user.student %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'handouts:student_list' %}">{% trans "Enrollments" %}</a>
+            <a class="nav-link" href="{% url 'courses:student_list' %}">{% trans "Enrollments" %}</a>
           </li>
         {% elif user.professor %}
           <li class="nav-item"><a class="nav-link" href="{% url 'courses:create' %}">{% trans "Create course" %}</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "Courses" %}</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'handouts:list' %}">{% trans "Enrollments" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "Enrollments" %}</a></li>
         {% endif %}
         {% if user.is_superuser %}
           <li class="nav-item">
@@ -197,7 +197,7 @@
       console.log('#li_'.concat(id_button))
       $.ajax({
         type: "put",
-        url: '{% url "handouts:post" %}',
+        url: '{% url "courses:post" %}',
         data: data,
         success: function (data) {
 

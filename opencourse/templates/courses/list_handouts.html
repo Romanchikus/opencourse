@@ -4,7 +4,7 @@
 
 {% block content_title %}
   {% if user.professor %}
-    <a class="btn  btn-outline-success btn-sm" href="{% url 'handouts:create_handouts' course.slug %}" role="button">
+    <a class="btn  btn-outline-success btn-sm" href="{% url 'courses:create_handouts' course.slug %}" role="button">
       {% trans "Create handout" %}
     </a>
   {% endif %}
@@ -20,11 +20,11 @@
           <li class="list-group-item">
             <span><b>{{ handout.name }}</b> - {{ handout.description }}</span>
             {% if user.professor %}
-              <a class="btn btn-danger btn-sm float-right mr-2" href="{% url 'handouts:delete_handout' handout.pk %}"
+              <a class="btn btn-danger btn-sm float-right mr-2" href="{% url 'courses:delete_handout' handout.pk %}"
                  role="button">{% trans "Delete" %}</a>
-              <a class="btn btn-warning btn-sm float-right mr-2" href="{% url 'handouts:update_handout' handout.pk %}"
+              <a class="btn btn-warning btn-sm float-right mr-2" href="{% url 'courses:update_handout' handout.pk %}"
                  role="button">{% trans "Edit" %}</a>
-              <a class="btn btn-primary btn-sm float-right mr-2" href="{% url 'handouts:download_handout' handout.pk %}"
+              <a class="btn btn-primary btn-sm float-right mr-2" href="{% url 'courses:download_handout' handout.pk %}"
                  value='{{ handout.name }}' href="#" role="button">{% trans "Download" %}</a>
             {% endif %}
           </li>

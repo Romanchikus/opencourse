@@ -15,7 +15,7 @@
         <a class="btn btn-outline-secondary btn-sm float-right mr-2" href="{% url 'courses:edit' course.slug %}"
            role="button">{% trans "Edit" %}</a>
         <a class="btn btn-outline-info btn-sm float-right mr-2"
-           href="{% url 'handouts:list_handouts' course.slug %}" role="button">{% trans "Handouts" %}</a>
+           href="{% url 'courses:list_handouts' course.slug %}" role="button">{% trans "Handouts" %}</a>
       </li>
     {% empty %}
       <li class="list-group-item">{% trans "No courses yet." %}</li>

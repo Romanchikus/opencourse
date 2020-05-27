@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     "django_extensions",
     "opencourse.courses.apps.CoursesConfig",
     "opencourse.profiles.apps.ProfilesConfig",
-    "opencourse.handouts.apps.HandoutsConfig",
 ]
 
 MIDDLEWARE = [

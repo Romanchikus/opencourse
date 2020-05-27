@@ -15,7 +15,7 @@
                data-toggle="toggle"
                data-size="xs"
                class="status-toggle mr-3"
-               data-ajax-target="{% url "handouts:update_enrollment" enrollment.slug %}"
+               data-ajax-target="{% url "courses:update_enrollment" enrollment.slug %}"
             {% if enrollment.accepted %} checked {% endif %}
                data-on="{% trans 'On' %}"
                data-off="{% trans 'Off' %}"
