@@ -3,7 +3,7 @@ from django.db import transaction
 from django.forms.models import inlineformset_factory
 from django.contrib.auth import get_user_model
 from django.contrib.auth import forms as auth_forms
-from django.contrib.auth.models import Permission
+from django.contrib.auth.models import Permission, Group
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext_lazy as _
 from allauth.account.forms import SignupForm
@@ -37,6 +37,10 @@ class ProfileCreateForm(SignupForm):
                 Permission, codename=f"access_{user_type}_pages"
             )
             user.user_permissions.add(permission)
+
+            group_name = _(f"{user_type}s".capitalize())
+            group, created = Group.objects.get_or_create(name=group_name)
+            user.groups.add(group)
 
             user.save()
             profile.save()
