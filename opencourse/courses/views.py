@@ -112,8 +112,8 @@ class HandoutListView(LoginRequiredMixin, ListView):
     template_name = "courses/handout_list.html"
 
     def get_queryset(self):
-        pk = self.kwargs.get("pk")
-        course = get_object_or_404(models.Course, pk=pk)
+        course_pk = self.kwargs.get("course_pk")
+        course = get_object_or_404(models.Course, pk=course_pk)
         object_list = self.model.objects.filter(course=course).order_by("section")
         return object_list
 
@@ -132,7 +132,7 @@ class HandoutUpdateView(ProfessorRequiredMixin, UpdateView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
         course = get_object_or_404(models.Course, handout=handout_pk)
-        return reverse("courses:handout_list", kwargs={"pk": course.pk})
+        return reverse("courses:handouts:list", kwargs={"pk": course.pk})
 
 
 class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
@@ -142,7 +142,7 @@ class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
         course = get_object_or_404(models.Course, handout=handout_pk)
-        return reverse("courses:handout_list", kwargs={"pk": course.pk})
+        return reverse("courses:handouts:list", kwargs={"pk": course.pk})
 
 
 class HandoutCreateView(ProfessorRequiredMixin, CreateView):
@@ -151,13 +151,15 @@ class HandoutCreateView(ProfessorRequiredMixin, CreateView):
     template_name = "courses/handout_edit.html"
 
     def form_valid(self, form):
-        pk = self.kwargs.get("pk")
-        form.course = get_object_or_404(models.Course, pk=pk)
+        course_pk = self.kwargs.get("course_pk")
+        form.course = get_object_or_404(models.Course, pk=course_pk)
         form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse("courses:handout_list", kwargs={"slug": self.kwargs.get("slug")})
+        return reverse(
+            "courses:handouts:list", kwargs={"slug": self.kwargs.get("slug")}
+        )
 
 
 class EnrollmentUpdateStatusView(ProfessorRequiredMixin, JsonFormMixin, UpdateView):

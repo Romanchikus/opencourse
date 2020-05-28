@@ -5,7 +5,7 @@
 {% block content_title %}
   <h2 class="h2 mb-0">Handouts: {{ course }}</h2>
   {% if user.professor %}
-    <a class="btn  btn-primary" href="{% url 'courses:handout_create' course.pk %}" role="button">
+    <a class="btn  btn-primary" href="{% url 'courses:handouts:create' course.pk %}" role="button">
       {% trans "Create handout" %}
     </a>
   {% endif %}
@@ -18,13 +18,13 @@
     <ul class="list-group">
       {% for handout in section.list %}
         <li class="list-group-item">
-          <a href="{% url 'courses:handout_update' handout.pk %}"></a>
+          <a href="{% url 'courses:handouts:edit' handout.pk %}"></a>
           <span><b>{{ handout.name }}</b> - {{ handout.description }}</span>
           {% if user.professor %}
             <a class="btn btn-outline-danger btn-sm float-right mr-2"
-               href="{% url 'courses:handout_delete' handout.pk %}"
+               href="{% url 'courses:handouts:delete' handout.pk %}"
                role="button">{% trans "Delete" %}</a>
-            <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:handout_update' handout.pk %}"
+            <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:handouts:edit' handout.pk %}"
                role="button">{% trans "Edit" %}</a>
           {% endif %}
           <a class="btn btn-outline-info btn-sm float-right mr-2" href="{{handout.attachment.url}}"

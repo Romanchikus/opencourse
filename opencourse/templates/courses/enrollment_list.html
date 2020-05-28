@@ -17,7 +17,7 @@
               data-toggle="toggle"
               data-size="xs"
               class="status-toggle mr-3"
-              data-ajax-target="{% url "courses:update_enrollment" enrollment.pk %}"
+              data-ajax-target="{% url "courses:enrollments:edit" enrollment.pk %}"
               {% if enrollment.accepted %} checked {% endif %}
               data-on="{% trans 'On' %}"
               data-off="{% trans 'Off' %}">
@@ -25,7 +25,7 @@
 
         <span class="ml-3">{{ enrollment.course }}: {{ enrollment.student }}</span>
 
-        <a href="{% url 'courses:handout_list' enrollment.course.pk %}"
+        <a href="{% url 'courses:handouts:list' enrollment.course.pk %}"
            class="btn btn-outline-info btn-sm float-right"
            role="button">{% trans "Handouts" %}
         </a>
