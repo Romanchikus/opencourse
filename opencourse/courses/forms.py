@@ -39,10 +39,10 @@ class CourseSearchForm(forms.Form):
         self.helper.field_class = "form-field"
 
     city = forms.ModelChoiceField(
-        models.City.objects.order_by('name'), empty_label=_("City"), required=False
+        models.City.objects.order_by("name"), empty_label=_("City"), required=False
     )
     area = forms.ModelChoiceField(
-        models.CourseArea.objects.order_by('name'), empty_label=_("Area"), required=True
+        models.CourseArea.objects.order_by("name"), empty_label=_("Area"), required=True
     )
 
 

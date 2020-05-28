@@ -89,11 +89,12 @@ class CourseDetailView(DetailView):
         kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[
             :REVIEW_COUNT
         ]
+        student = getattr(self.request.user, "student", None)
         kwargs["enrollment_form"] = forms.EnrollmentCreateForm(
-            initial={"course": self.object, "student": self.request.user.student},
+            initial={"course": self.object, "student": student},
         )
         enrollment = models.Enrollment.objects.filter(
-            course=self.object, student=self.request.user.student
+            course=self.object, student=student
         ).first()
         kwargs["enrollment_accepted"] = getattr(enrollment, "accepted", "not_existing")
 
