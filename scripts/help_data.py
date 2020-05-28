@@ -454,3 +454,19 @@ def import_data():
     courses_currency_3.iso_code = "EUR"
     courses_currency_3.symbol = "€"
     courses_currency_3 = importer.save_or_locate(courses_currency_3)
+
+    # Processing model: opencourse.courses.models.HandoutSection
+
+    from opencourse.courses.models import HandoutSection
+
+    courses_handoutsection_1 = HandoutSection()
+    courses_handoutsection_1.name = "Lectures"
+    courses_handoutsection_1 = importer.save_or_locate(courses_handoutsection_1)
+
+    courses_handoutsection_2 = HandoutSection()
+    courses_handoutsection_2.name = "Practice"
+    courses_handoutsection_2 = importer.save_or_locate(courses_handoutsection_2)
+
+    courses_handoutsection_3 = HandoutSection()
+    courses_handoutsection_3.name = "Exams"
+    courses_handoutsection_3 = importer.save_or_locate(courses_handoutsection_3)

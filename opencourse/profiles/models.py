@@ -17,6 +17,10 @@ class User(GuardianUserMixin, AbstractUser):
         else:
             return self
 
+    @property
+    def is_student(self):
+        return hasattr(self, "student")
+
     class Meta(AbstractUser.Meta):
         permissions = (
             ("access_professor_pages", _("Access professor pages")),

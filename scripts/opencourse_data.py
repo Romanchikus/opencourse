@@ -715,3 +715,19 @@ def import_data():
 
     profiles_user_1.groups.add(auth_group_2)
     profiles_user_3.groups.add(auth_group_1)
+
+    # Processing model: opencourse.courses.models.HandoutSection
+
+    from opencourse.courses.models import HandoutSection
+
+    courses_handoutsection_1 = HandoutSection()
+    courses_handoutsection_1.name = "Lectures"
+    courses_handoutsection_1 = importer.save_or_locate(courses_handoutsection_1)
+
+    courses_handoutsection_2 = HandoutSection()
+    courses_handoutsection_2.name = "Practice"
+    courses_handoutsection_2 = importer.save_or_locate(courses_handoutsection_2)
+
+    courses_handoutsection_3 = HandoutSection()
+    courses_handoutsection_3.name = "Exams"
+    courses_handoutsection_3 = importer.save_or_locate(courses_handoutsection_3)

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content_title %}
-  <h2 class="h2 mb-0">Handouts: {{ course }}</h2>
+  <h2 class="h2 mb-0">{{ course }} {% trans "handouts" %} </h2>
   {% if user.professor %}
     <a class="btn  btn-primary" href="{% url 'courses:handouts:create' course.pk %}" role="button">
       {% trans "Create handout" %}

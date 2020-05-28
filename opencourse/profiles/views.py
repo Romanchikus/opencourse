@@ -108,4 +108,4 @@ class ContactRequestView(SingleObjectMixin, View):
 
 
 class ForbiddenView(TemplateView):
-    template_name = "profiles/403.html"
+    template_name = "profiles/../templates/403.html"

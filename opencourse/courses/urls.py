@@ -29,20 +29,13 @@ enrollment_patterns = [
 ]
 
 handout_patterns = [
-    path(
-        "handouts/list/<int:course_pk>/", views.HandoutListView.as_view(), name="list"
-    ),
-    path(
-        "handouts/create/<int:course_pk>/",
-        views.HandoutCreateView.as_view(),
-        name="create",
-    ),
-    path("handouts/edit/<int:pk>/", views.HandoutUpdateView.as_view(), name="edit"),
-    path("handouts/delete/<int:pk>/", views.HandoutDeleteView.as_view(), name="delete"),
+    path("list/<int:course_pk>/", views.HandoutListView.as_view(), name="list"),
+    path("create/<int:course_pk>/", views.HandoutCreateView.as_view(), name="create",),
+    path("edit/<int:pk>/", views.HandoutUpdateView.as_view(), name="edit"),
+    path("delete/<int:pk>/", views.HandoutDeleteView.as_view(), name="delete"),
 ]
 
 urlpatterns = [
-    path("", RedirectView.as_view(pattern_name="courses:search")),
     path("", include(course_patterns)),
     path(
         "enrollments/",

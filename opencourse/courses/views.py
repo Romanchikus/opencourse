@@ -57,6 +57,17 @@ class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
             assign_perm("manage_course", course.professor.user, course)
             return response
 
+    def get_initial(self):
+        initial = {
+            "area": 1,
+            "level": 1,
+            "language": 1,
+            "duration": 1,
+            "age": 1,
+            "city": 1,
+        }
+        return initial
+
 
 class CourseListView(ProfessorRequiredMixin, ListView):
     template_name = "courses/course_list.html"
@@ -119,9 +130,22 @@ class HandoutListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        pk = self.kwargs.get("pk")
-        context["course"] = get_object_or_404(models.Course, pk=pk)
+        course_pk = self.kwargs.get("course_pk")
+        context["course"] = get_object_or_404(models.Course, pk=course_pk)
         return context
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.request.user.is_student:
+            course_pk = self.kwargs.get("course_pk")
+            course = get_object_or_404(models.Course, pk=course_pk)
+            student = self.request.user.student
+            enrollment = models.Enrollment.objects.filter(
+                course=course, student=student
+            ).first()
+            has_access = getattr(enrollment, "accepted", False)
+            if not has_access:
+                return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
 
 class HandoutUpdateView(ProfessorRequiredMixin, UpdateView):
@@ -132,7 +156,7 @@ class HandoutUpdateView(ProfessorRequiredMixin, UpdateView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
         course = get_object_or_404(models.Course, handout=handout_pk)
-        return reverse("courses:handouts:list", kwargs={"pk": course.pk})
+        return reverse("courses:handouts:list", kwargs={"course_pk": course.pk})
 
 
 class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
@@ -142,7 +166,7 @@ class HandoutDeleteView(ProfessorRequiredMixin, DeleteView):
     def get_success_url(self):
         handout_pk = self.kwargs.get("pk")
         course = get_object_or_404(models.Course, handout=handout_pk)
-        return reverse("courses:handouts:list", kwargs={"pk": course.pk})
+        return reverse("courses:handouts:list", kwargs={"course_pk": course.pk})
 
 
 class HandoutCreateView(ProfessorRequiredMixin, CreateView):
@@ -152,14 +176,13 @@ class HandoutCreateView(ProfessorRequiredMixin, CreateView):
 
     def form_valid(self, form):
         course_pk = self.kwargs.get("course_pk")
-        form.course = get_object_or_404(models.Course, pk=course_pk)
+        form.instance.course = get_object_or_404(models.Course, pk=course_pk)
         form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse(
-            "courses:handouts:list", kwargs={"slug": self.kwargs.get("slug")}
-        )
+        course_pk = self.kwargs.get("course_pk")
+        return reverse("courses:handouts:list", kwargs={"course_pk": course_pk})
 
 
 class EnrollmentUpdateStatusView(ProfessorRequiredMixin, JsonFormMixin, UpdateView):
