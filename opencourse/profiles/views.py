@@ -82,7 +82,7 @@ class DispatchLoginView(LoginRequiredMixin, RedirectView):
         return reverse_lazy("courses:search")
 
 
-class ReviewCreateView(LoginRequiredMixin, CreateView):
+class ReviewCreateView(LoginRequiredMixin, StudentRequiredMixin, CreateView):
     form_class = forms.ReviewForm
 
     def get_success_url(self):

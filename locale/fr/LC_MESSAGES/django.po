@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 12:04+0000\n"
+"POT-Creation-Date: 2020-05-19 08:20+0000\n"
 "PO-Revision-Date: 2020-05-13 22:13+0000\n"
 "Last-Translator: b'  <admin@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,41 +27,39 @@ msgstr "Anglaise"
 msgid "French"
 msgstr "Français"
 
-#: opencourse/courses/apps.py:7 opencourse/courses/models.py:128
-#: opencourse/templates/base.html:52
-#: opencourse/templates/courses/course_detail.html:84
-#: opencourse/templates/courses/course_list.html:5
+#: opencourse/courses/apps.py:7 opencourse/courses/models.py:131
+#: opencourse/templates/courses/detail.html:85
 msgid "Courses"
 msgstr "Cours"
 
 #: opencourse/courses/filters.py:22 opencourse/courses/forms.py:24
-#: opencourse/courses/forms.py:45 opencourse/courses/models.py:86
+#: opencourse/courses/forms.py:45 opencourse/courses/models.py:88
 msgid "Area"
 msgstr "Activité"
 
 #: opencourse/courses/filters.py:23 opencourse/courses/forms.py:30
-#: opencourse/courses/forms.py:42 opencourse/courses/models.py:39
-#: opencourse/profiles/forms.py:74 opencourse/profiles/forms.py:93
-#: opencourse/templates/courses/course_detail.html:52
+#: opencourse/courses/forms.py:42 opencourse/courses/models.py:41
+#: opencourse/profiles/forms.py:70 opencourse/profiles/forms.py:89
+#: opencourse/templates/courses/detail.html:52
 msgid "City"
 msgstr "Ville"
 
 #: opencourse/courses/filters.py:24 opencourse/courses/forms.py:26
-#: opencourse/courses/models.py:51
+#: opencourse/courses/models.py:53
 msgid "Level"
 msgstr "Niveau"
 
-#: opencourse/courses/filters.py:25 opencourse/courses/models.py:74
-#: opencourse/templates/courses/course_detail.html:109
+#: opencourse/courses/filters.py:25 opencourse/courses/models.py:76
+#: opencourse/templates/courses/detail.html:110
 msgid "Age"
 msgstr "L'âge"
 
 #: opencourse/courses/filters.py:26 opencourse/courses/forms.py:28
-#: opencourse/courses/models.py:98
+#: opencourse/courses/models.py:100
 msgid "Language"
 msgstr "Langue"
 
-#: opencourse/courses/filters.py:27 opencourse/courses/models.py:174
+#: opencourse/courses/filters.py:27 opencourse/courses/models.py:177
 msgid "Location"
 msgstr "Emplacement"
 
@@ -69,7 +67,7 @@ msgstr "Emplacement"
 msgid "Title"
 msgstr "Titre"
 
-#: opencourse/courses/forms.py:25 opencourse/courses/forms.py:90
+#: opencourse/courses/forms.py:25
 msgid "Description"
 msgstr "Description"
 
@@ -77,12 +75,12 @@ msgstr "Description"
 msgid "Extra information"
 msgstr "Des informations supplémentaires"
 
-#: opencourse/courses/forms.py:29 opencourse/courses/models.py:62
-#: opencourse/templates/courses/course_detail.html:123
+#: opencourse/courses/forms.py:29 opencourse/courses/models.py:64
+#: opencourse/templates/courses/detail.html:124
 msgid "Duration"
 msgstr "Durée"
 
-#: opencourse/courses/forms.py:51 opencourse/courses/models.py:152
+#: opencourse/courses/forms.py:51 opencourse/courses/models.py:155
 msgid "Currency"
 msgstr "Monnaie"
 
@@ -247,18 +245,15 @@ msgstr "E-mail vérifiée"
 msgid "Student"
 msgstr "Étudiant"
 
-#: opencourse/profiles/models.py:60
-#: opencourse/templates/courses/course_search.html:54
+#: opencourse/profiles/models.py:58 opencourse/templates/courses/search.html:54
 msgid "Students"
 msgstr "Les étudiants"
 
-#: opencourse/profiles/models.py:72
-#: opencourse/templates/courses/course_detail.html:36
+#: opencourse/profiles/models.py:70 opencourse/templates/courses/detail.html:36
 msgid "Professor"
 msgstr "Professeur"
 
-#: opencourse/profiles/models.py:73
-#: opencourse/templates/courses/course_search.html:41
+#: opencourse/profiles/models.py:71 opencourse/templates/courses/search.html:41
 msgid "Professors"
 msgstr "Professeurs"
 

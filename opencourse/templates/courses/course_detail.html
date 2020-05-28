@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load static %}
 {% load crispy_forms_tags %}
-
+{% load auth_extras %}
 
 {% block main %}
   <!-- Modal -->
@@ -176,7 +176,7 @@
         </div>
         <div class="col-lg-4 sidebar">
           <h3 class="h3 mb-5">{% trans "Reviews" %}</h3>
-          {% if user.is_authenticated %}
+          {% if user.student %}
             <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
               <h3 class="heading-sidebar">{% trans "Add review" %}</h3>
               <form action="{% url 'profiles:review_create' course.pk %}" class="contact-form signup"

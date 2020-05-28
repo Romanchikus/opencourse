@@ -73,9 +73,14 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             {% for language in languages %}
-              <a class="dropdown-item change-language" href="#"
+          		{% with "images/"|add:language.code|add:".png" as imagestatic %}
+                <a class="dropdown-item change-language" href="#"
                  data-lang-code="{{ language.code }}">{{ language.name_local }}
-                ({{ language.code }})</a>
+                ({{ language.code }}) <img src="{% static imagestatic %}" width="20" height="16" style="float: right;">  </a>
+                {% endwith %}
+              <!--<a class="dropdown-item change-language" href="#"
+                 data-lang-code="{{ language.code }}">{{ language.name_local }}
+                ({{ language.code }})</a> -->
             {% endfor %}
           </div>
         </li>
@@ -131,9 +136,8 @@
     <div class="container">
           <span class="text-muted">
               {% trans "Copyright" %} © <script>document.write(new Date().getFullYear());</script>
-              {% trans "All rights reserved | This template is made with" %}
-              <i class="icon-heart text-danger" aria-hidden="true"></i>
-              <a href="https://colorlib.com" target="_blank">Colorlib</a>
+              {% trans "All rights reserved" %}
+              
           </span>
     </div>
   </footer>

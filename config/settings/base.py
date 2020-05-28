@@ -110,12 +110,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
+#LANGUAGES = (
+#     ("fr", _("French")),
+#     ("ar", _("العربية")),
+#     ("en", _("English")),
+#)
 LANGUAGES = (
-    ("en", _("English")),
     ("fr", _("French")),
+    ("ar", _("العربية")),
+    ("en", _("English")),
 )
+
+
 LANGUAGE_CODE = "fr"
-MODELTRANSLATION_FALLBACK_LANGUAGES = ["en", "fr"]
+MODELTRANSLATION_FALLBACK_LANGUAGES = ["fr", "en"]
 LOCALE_PATHS = [os.path.join(BASE_DIR, "locale/")]
 
 TIME_ZONE = "UTC"
