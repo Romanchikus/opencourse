@@ -9,7 +9,7 @@ reset:
 	./manage.py runscript auth_data
 	./manage.py runscript opencourse_data
 
-trans:
+translate:
 	./manage.py makemessages -i venv -i */account
 	./manage.py compilemessages -i venv -l fr
 

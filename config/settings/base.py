@@ -135,11 +135,14 @@ STATICFILES_DIRS = [str(BASE_DIR("opencourse/static"))]
 STATIC_ROOT = str(BASE_DIR("static"))
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = str(BASE_DIR("opencourse/media"))
+MEDIA_ROOT = str(BASE_DIR("media"))
 
 # Project adjustments
 AUTH_USER_MODEL = "profiles.User"
-ADMINS = tuple(parseaddr(email) for email in env.tuple("DJANGO_ADMINS"))
+admins_data = env.tuple(
+    "DJANGO_ADMINS", default="Open Course <opencourse2020@mail.com>"
+)
+ADMINS = tuple(parseaddr(email) for email in admins_data)
 
 # Third-party opencourse settings
 AUTHENTICATION_BACKENDS = (
