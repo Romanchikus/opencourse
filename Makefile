@@ -17,8 +17,8 @@ dumpdb:
 	./manage.py dumpscript courses profiles account.EmailAddress > scripts/db_dump.py
 
 deploy:
-	git fetch origin production
-	git reset origin/production --hard
+	git fetch origin master
+	git reset origin/master --hard
 
 	pip install -r requirements/production.txt
 	./manage.py compilemessages -i venv
