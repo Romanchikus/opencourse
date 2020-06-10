@@ -9,6 +9,7 @@ class CourseFilter(django_filters.FilterSet):
         fields = [
             "area",
             "city",
+            "center",
             "level",
             "age",
             "language",
@@ -21,6 +22,7 @@ class CourseFilter(django_filters.FilterSet):
         labels = {
             "area": _("Area"),
             "city": _("City"),
+            "center": _("Center"),
             "level": _("Level"),
             "age": _("Age"),
             "language": _("Language"),
@@ -28,3 +30,13 @@ class CourseFilter(django_filters.FilterSet):
         }
         for filt in self.filters.values():
             filt.label = labels[filt.field_name]
+
+
+class CenterFilter(django_filters.FilterSet):
+    name = django_filters.CharFilter(lookup_expr="icontains")
+
+    class Meta:
+        model = models.Center
+        fields = [
+            "name",
+        ]

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block content_title %}
   <h2 class="h3">{% trans "Courses" %}</h2>
@@ -11,13 +12,22 @@
   <ul class="list-group">
     {% for course in object_list %}
       <li class="list-group-item">
-        <a href="{% url 'courses:detail' course.pk %}">{{ course }}</a>
-        <a class="btn btn-outline-danger btn-sm float-right" href="{% url 'courses:delete' course.pk %}"
-           role="button">{% trans "Delete" %}</a>
-        <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:edit' course.pk %}"
-           role="button">{% trans "Edit" %}</a>
-        <a class="btn btn-outline-info btn-sm float-right mr-2"
-           href="{% url 'courses:handouts:list' course.pk %}" role="button">{% trans "Handouts" %}</a>
+        <div class="row">
+          <div class="col-sm-7 float-left" style="padding-right: 1px;">
+          <a class="float-left" href="{% url 'courses:detail' course.pk %}">{{ course }}</a> </div>
+          <div class="col-sm-5 float-right">
+            <a class="btn btn-outline-warning float-right btn-sm  mx-1 my-1" href="{% url 'courses:edit' course.pk %}"
+              role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-info float-right btn-sm  mx-1 my-1"
+              href="{% url 'courses:handouts:list' course.pk %}" role="button">
+              <i class="fa fa-list-alt" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-success float-right btn-sm mx-1 my-1"
+                href="{% url 'courses:students_list' course.pk %}" role="button">
+                <i class="fa fa-users" aria-hidden="true"></i></a>
+            <a class="btn btn-outline-danger float-right mx-1 my-1 btn-sm " href="{% url 'courses:delete' course.pk %}"
+              role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </div>
+          </div>
       </li>
     {% empty %}
       <li class="list-group-item">{% trans "No courses yet." %}</li>

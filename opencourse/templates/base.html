@@ -21,6 +21,7 @@
     <link rel="stylesheet" href={% static "vendor/skillhunt/css/flaticon.css" %}>
     <link rel="stylesheet" href={% static "vendor/skillhunt/css/icomoon.css" %}>
     <link rel="stylesheet" href={% static "vendor/skillhunt/css/style.css" %}>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <link href={% static "vendor/bootstrap-select/bootstrap-select.min.css" %} rel="stylesheet">
     <link href={% static "vendor/bootstrap-star-rating/css/star-rating.css" %} media="all" rel="stylesheet">
@@ -51,6 +52,7 @@
           </li>
         {% elif user.professor %}
           <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "Courses" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'courses:centers:list' %}">{% trans "Centers" %}</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'courses:enrollments:professor_list' %}">{% trans "Enrollments" %}</a></li>
         {% endif %}
         {% if user.is_superuser %}

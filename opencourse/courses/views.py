@@ -18,6 +18,7 @@ from guardian.mixins import PermissionRequiredMixin
 from guardian.shortcuts import assign_perm
 
 from . import forms, models, filters
+from opencourse.profiles.models import Student
 from .mixins import FormsetMixin, JsonFormMixin
 from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin, StudentRequiredMixin
@@ -39,6 +40,11 @@ class CourseEditView(CoursePermissionRequiredMixin, FormsetMixin, UpdateView):
     success_url = reverse_lazy("courses:list")
     permission_required = "courses.manage_course"
     return_403 = True
+
+    def get_form_kwargs(self):
+        kwargs = super(CourseEditView, self).get_form_kwargs()
+        kwargs.update({"professor": self.request.user.professor})
+        return kwargs
 
 
 class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
@@ -65,8 +71,14 @@ class CourseCreateView(ProfessorRequiredMixin, FormsetMixin, CreateView):
             "duration": 1,
             "age": 1,
             "city": 1,
+            "center": 1,
         }
         return initial
+
+    def get_form_kwargs(self):
+        kwargs = super(CourseCreateView, self).get_form_kwargs()
+        kwargs.update({"professor": self.request.user.professor})
+        return kwargs
 
 
 class CourseListView(ProfessorRequiredMixin, ListView):
@@ -89,6 +101,7 @@ class CourseDetailView(DetailView):
         kwargs["reviews"] = self.object.professor.review_set.order_by("-id")[
             :REVIEW_COUNT
         ]
+        kwargs["reviews_count"] = kwargs["reviews"].count()
         student = getattr(self.request.user, "student", None)
         kwargs["enrollment_form"] = forms.EnrollmentCreateForm(
             initial={"course": self.object, "student": student},
@@ -214,5 +227,111 @@ class EnrollmentProfessorListView(ProfessorRequiredMixin, ListView):
     def get_queryset(self):
         object_list = self.model.objects.filter(
             course__professor=self.request.user.professor
+        ).order_by("accepted")
+        return object_list
+
+
+class CourseStudentsListView(ProfessorRequiredMixin, ListView):
+    model = models.Course
+    template_name = "courses/course_students_list.html"
+    paginate_by = 100  # if pagination is desired
+
+    def get_queryset(self):
+        course = get_object_or_404(models.Course, pk=self.kwargs.get("pk"))
+        students = Student.objects.filter(
+            enrollment__course=course, enrollment__accepted=True
+        )
+        return students
+
+
+class CenterCreateView(ProfessorRequiredMixin, CreateView):
+    model = models.Center
+    template_name = "courses/center_edit.html"
+    form_class = forms.CenterForm
+    success_url = reverse_lazy("courses:centers:list")
+
+    def form_valid(self, form):
+        form.instance.admin = self.request.user.professor
+        form.save()
+        return super().form_valid(form)
+
+
+class CenterEditView(ProfessorRequiredMixin, UpdateView):
+    model = models.Center
+    template_name = "courses/center_edit.html"
+    form_class = forms.CenterForm
+    success_url = reverse_lazy("courses:centers:list")
+
+    def form_valid(self, form):
+        form.instance.admin = self.request.user.professor
+        form.save()
+        return super().form_valid(form)
+
+
+class CenterListView(ProfessorRequiredMixin, ListView):
+    template_name = "courses/centers_list.html"
+
+    def get_queryset(self, *args, **kwargs):
+        professor = self.request.user.professor
+        return models.Center.objects.created_by(admin=professor)
+
+    def get_context_data(self, **kwargs):
+        professor = getattr(self.request.user, "professor", None)
+        kwargs["join_centers"] = models.JoinRequest.objects.filter(
+            professor=professor, accepted=True
+        )
+
+        return super().get_context_data(**kwargs)
+
+
+class CenterDetailView(DetailView):
+    model = models.Center
+    template_name = "courses/center_detail.html"
+
+    def get_context_data(self, **kwargs):
+        professor = getattr(self.request.user, "professor", None)
+        kwargs["join_request_form"] = forms.JoinRequestCreateForm(
+            initial={"center": self.object, "professor": professor},
+        )
+        join_request = models.JoinRequest.objects.filter(
+            center=self.object, professor=professor
+        ).first()
+        kwargs["join_request_accepted"] = getattr(
+            join_request, "accepted", "not_existing"
+        )
+
+        return super().get_context_data(**kwargs)
+
+
+class CenterDeleteView(ProfessorRequiredMixin, DeleteView):
+    model = models.Center
+    success_url = reverse_lazy("courses:centers:list")
+    template_name = "confirm_delete.html"
+
+
+class CenterSearchResultsView(FilterView):
+    filterset_class = filters.CenterFilter
+    template_name = "courses/center_search_results.html"
+    paginate_by = 10
+
+
+class JoinRequestCreateView(ProfessorRequiredMixin, JsonFormMixin, CreateView):
+    model = models.JoinRequest
+    form_class = forms.JoinRequestCreateForm
+
+
+class JoinRequestUpdateView(ProfessorRequiredMixin, JsonFormMixin, UpdateView):
+    model = models.JoinRequest
+    fields = ["accepted"]
+
+
+class JoinRequestrListView(ProfessorRequiredMixin, ListView):
+    model = models.JoinRequest
+    template_name = "courses/join_request_list.html"
+    paginate_by = 15
+
+    def get_queryset(self):
+        object_list = self.model.objects.filter(
+            center__admin=self.request.user.professor
         ).order_by("accepted")
         return object_list
