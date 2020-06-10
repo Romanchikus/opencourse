@@ -8,7 +8,7 @@ from django.db.models import Q
 
 class CourseForm(forms.ModelForm):
     center = forms.ModelChoiceField(
-        models.Center.objects.all(), label=_("Centers"), required=False
+        models.Center.objects.all(), label=_("Center"), required=False
     )
 
     class Meta:
@@ -61,8 +61,9 @@ class CourseSearchForm(forms.Form):
     area = forms.ModelChoiceField(
         models.CourseArea.objects.order_by("name"), empty_label=_("Area"), required=True
     )
-    name = forms.CharField(label="", max_length=40,
-            widget=forms.TextInput(attrs={'placeholder': 'Enter Center name'}))
+    name = forms.CharField(
+        label="", widget=forms.TextInput(attrs={"placeholder": "Center name"})
+    )
 
 
 class CourseLocationForm(forms.ModelForm):
@@ -137,4 +138,3 @@ class JoinRequestCreateForm(forms.ModelForm):
     class Meta:
         model = models.JoinRequest
         fields = ["id", "center", "professor"]
-
