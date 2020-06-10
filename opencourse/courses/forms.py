@@ -3,13 +3,19 @@ from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
 from . import models
+from django.db.models import Q
 
 
 class CourseForm(forms.ModelForm):
+    center = forms.ModelChoiceField(
+        models.Center.objects.all(), label=_("Centers"), required=False
+    )
+
     class Meta:
         model = models.Course
         fields = [
             "title",
+            "center",
             "area",
             "descrip",
             "level",
@@ -28,7 +34,18 @@ class CourseForm(forms.ModelForm):
             "language": _("Language"),
             "duration": _("Duration"),
             "city": _("City"),
+            "center": _("Center"),
         }
+
+    def __init__(self, *args, **kwargs):
+        professor = kwargs.pop("professor", None)
+        super(CourseForm, self).__init__(*args, **kwargs)
+
+        if professor:
+            self.fields["center"].queryset = models.Center.objects.filter(
+                Q(joinrequest__professor=professor, joinrequest__accepted=True)
+                | Q(admin=professor)
+            )
 
 
 class CourseSearchForm(forms.Form):
@@ -44,6 +61,8 @@ class CourseSearchForm(forms.Form):
     area = forms.ModelChoiceField(
         models.CourseArea.objects.order_by("name"), empty_label=_("Area"), required=True
     )
+    name = forms.CharField(label="", max_length=40,
+            widget=forms.TextInput(attrs={'placeholder': 'Enter Center name'}))
 
 
 class CourseLocationForm(forms.ModelForm):
@@ -97,3 +116,25 @@ class EnrollmentCreateForm(forms.ModelForm):
     class Meta:
         model = models.Enrollment
         fields = ["id", "course", "student"]
+
+
+class CenterForm(forms.ModelForm):
+    class Meta:
+        model = models.Center
+        fields = [
+            "name",
+            "description",
+            "picture",
+        ]
+        labels = {
+            "name": _("Name"),
+            "description": _("Description"),
+            "picture": _("Picture"),
+        }
+
+
+class JoinRequestCreateForm(forms.ModelForm):
+    class Meta:
+        model = models.JoinRequest
+        fields = ["id", "center", "professor"]
+

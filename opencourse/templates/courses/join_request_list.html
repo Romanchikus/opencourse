@@ -3,46 +3,38 @@
 {% load i18n %}
 
 {% block content_title %}
-  <h2 class="h3">{% trans "Enrollments" %}</h2>
+  <h2 class="h3">{% trans "Join requests"%}</h2>
 {% endblock content_title %}
 
 {% block content %}
   <ul class="list-group">
-    {% for enrollment in object_list %}
+    {% for join_request in object_list %}
       <li class="list-group-item">
-      <div class="row">
-        <div class="col-sm-11">
-        {% if user.professor %}
+        {% if join_request.center.admin == user.professor %}
           <input
               id="chkToggle"
               type="checkbox"
               data-toggle="toggle"
               data-size="xs"
               class="status-toggle mr-3"
-              data-ajax-target="{% url "courses:enrollments:edit" enrollment.pk %}"
-              {% if enrollment.accepted %} checked {% endif %}
+              data-ajax-target="{% url "courses:join_requests:edit" join_request.pk %}"
+              {% if join_request.accepted %} checked {% endif %}
               data-on="{% trans 'On' %}"
               data-off="{% trans 'Off' %}">
         {% endif %}
 
-        <span class="ml-3">{{ enrollment.course }}: {{ enrollment.student }}</span>
-        </div>
-        <div class="col-sm-1">
-        <a href="{% url 'courses:handouts:list' enrollment.course.pk %}"
-          class="btn btn-outline-info btn-sm float-right"
-          role="button"><i class="fa fa-list-alt" aria-hidden="true"></i></a>
-        </div>
-      </div>
+        <span class="ml-3">{{ join_request.center }}: {{ join_request.professor }}</span>
+
       </li>
     {% empty %}
-      <li class="list-group-item">{% trans "No enrollments yet." %}</li>
+      <li class="list-group-item">{% trans "No join requests yet." %}</li>
     {% endfor %}
   </ul>
 {% endblock content %}
 
 {% block project_js %}
   {{ block.super }}
-  <script src={% static "js/list_enrollments.js" %}></script>
+  <script src={% static "js/join_request_list.js" %}></script>
   <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
         rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>

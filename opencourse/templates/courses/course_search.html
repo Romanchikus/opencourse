@@ -64,6 +64,8 @@
                 <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                   <a class="nav-link active mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
                      role="tab" aria-controls="v-pills-1" aria-selected="true">{% trans "Find a Professor" %}</a>
+                  <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2"
+                    role="tab" aria-controls="v-pills-2" aria-selected="false">{% trans "Find a Center" %}</a>
                 </div>
               </div>
               <div class="col-md-12 tab-wrap">
@@ -81,6 +83,23 @@
                           <div class="form-group">
                             <div class="form-field">
                               <button type="submit" class="form-control btn btn-primary">{% trans "Search" %}</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="tab-pane fade" id="v-pills-2" role="tabpanel"
+                    aria-labelledby="v-pills-performance-tab">
+                    <form action="{% url 'courses:centers:search_results' %}" id="center_search" class="search-job" method="get">
+                      <div class="row no-gutters row justify-content-center">
+                        <div class="col-5 mt-1">
+                          {{ form.name|as_crispy_field }}
+                        </div>
+                        <div class="col-3">
+                          <div class="form-group">
+                            <div class="form-field">
+                              <button type="submit" class=" ml-2 form-control btn btn-primary">{% trans "Search" %}</button>
                             </div>
                           </div>
                         </div>

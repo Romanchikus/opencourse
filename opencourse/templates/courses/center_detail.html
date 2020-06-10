@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load auth_extras %}
+
+{% block main %}
+
+<section class="ftco-section ftco-candidates ftco-candidates-2 bg-light pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 pr-lg-4">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="team d-md-fle p-4 bg-white">
+              <div class="px-md-4">
+                <div class="d-md-flex">
+                  <div class="img" style="background-image: url(
+                      {% if center.picture %}
+                          {{ center.picture.url }}
+                      {% else %}
+                          {% static "images/no-avatar.png" %}
+                      {% endif %}
+                      );"></div>
+                  <div class="text px-md-4">
+                    <div class="text-left">
+                      <h1>{{ center }}</h1>
+                      <p>{% trans "Creation date" %}:<span
+                          class="font-weight-bold">{{ center.created|date:"D d M Y" }}</span></p>
+                      <p>{% trans "Created by" %}: 
+                        <span class="font-weight-bold">{{ center.admin }}</span></p>
+                    </div>
+                    <p class="mb-2">{{ center.description }}</p>
+                    {% if user.professor %}
+                      {% if user.professor != center.admin %}
+                        <form action="{% url 'courses:join_requests:create' %}" method="post" class="d-none"
+                          id="join-request-form">
+                          {% csrf_token %}
+                          {{ join_request_form }}
+                        </form>
+                        {% if join_request_accepted is None %}
+                        <div class="alert alert-primary" role="alert">
+                          Your join request is under review.
+                        </div>
+                        {% elif join_request_accepted is True %}
+                        <div class="alert alert-success" role="alert">
+                          Your join request was accepted.
+                        </div>
+                        {% elif join_request_accepted is False %}
+                        <div class="alert alert-warning" role="alert">
+                          Your join request was rejected.
+                        </div>
+                        {% elif join_request_accepted == "not_existing" %}
+                        <button id="join" type="button" class="btn btn-primary">{% trans "Join" %}</button>
+                        <div id="join-request-sent-alert" class="alert alert-primary d-none" role="alert">
+                          Your join request was sent.
+                        </div>
+                        {% endif %}
+                      {% endif %}
+                    {% endif %}
+                  </div>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main %}
+
+{% block project_js %}
+{{ block.super }}
+<script src={% static "js/center_detail.js" %}></script>
+{% endblock project_js %}

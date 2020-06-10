@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+
+
+
+{% block main %}
+<!-- Modal -->
+<section class="ftco-section ftco-candidates ftco-candidates-2 bg-light pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 sidebar">
+        <div class="row">
+          {% if user.professor %}
+          <div class="col-md-12">
+            <div class="team p-4 bg-white">
+            <h1 class="h3">{% trans "Participations"%}</h1>
+            <a class="btn btn-primary mb-4 btn "
+              href="{% url 'courses:centers:search_results' %}">{% trans "Find a center" %}</a>
+              <ul class="list-group">
+                {% for join_requests in join_centers %}
+                <li class="list-group-item">
+                  <a href="{% url 'courses:centers:detail' join_requests.center.pk %}">{{join_requests.center}}</a>
+                </li>
+                {% empty %}
+                <li class="list-group-item">{% trans "No participations in the centers yet." %}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 pr-lg-4">
+        {% if user.professor %}
+        <div class="col-md-12">
+          <div class="team p-4 bg-white">
+            <h1 class="h3">{% trans "Manage centers"%}</h1>
+            <a class="btn btn-primary mr-1 mb-4 btn"
+              href="{% url 'courses:join_requests:admin_list'%}"
+              role="button">{% trans "Join requests" %}</a>
+            <a class="btn btn-primary mb-4 btn" href="{% url 'courses:centers:create' %}">
+              {% trans "Create center" %}</a>
+            <ul class="list-group">
+              {% for center in object_list %}
+              {% if user.professor == center.admin %}
+              <li class="list-group-item">
+                <a href="{% url 'courses:centers:detail' center.pk %}">{{center}}</a>
+                <a class="btn btn-outline-danger btn-sm float-right"
+                  href="{% url 'courses:centers:delete' center.pk %}" role="button">
+                  <i class="fa fa-trash" aria-hidden="true"></i></a>
+                <a class="btn btn-outline-info btn-sm float-right mr-2"
+                  href="{% url 'courses:centers:edit' center.pk %}" role="button">
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+              </li>
+              {% endif %}
+              {% empty %}
+              <li class="list-group-item">{% trans "No your centers yet." %}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {%endif%}
+      </div>
+      {%endif%}
+    </div>
+  </div>
+</section>
+{% endblock main %}
