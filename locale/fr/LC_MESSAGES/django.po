@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-28 14:01+0000\n"
+"POT-Creation-Date: 2020-06-10 06:18+0000\n"
 "PO-Revision-Date: 2020-05-13 22:13+0000\n"
 "Last-Translator: b'  <admin@gmail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,161 +31,202 @@ msgstr ""
 msgid "English"
 msgstr "Anglaise"
 
-#: opencourse/courses/apps.py:7 opencourse/courses/models.py:128
-#: opencourse/templates/base.html:52
+#: opencourse/courses/apps.py:7 opencourse/courses/models.py:150
+#: opencourse/templates/base.html:54
 #: opencourse/templates/courses/course_detail.html:84
-#: opencourse/templates/courses/course_list.html:5
+#: opencourse/templates/courses/course_list.html:6
 msgid "Courses"
 msgstr "Cours"
 
-#: opencourse/courses/filters.py:22 opencourse/courses/forms.py:24
-#: opencourse/courses/forms.py:45 opencourse/courses/models.py:86
+#: opencourse/courses/filters.py:23 opencourse/courses/forms.py:30
+#: opencourse/courses/forms.py:62 opencourse/courses/models.py:87
 msgid "Area"
 msgstr "Activité"
 
-#: opencourse/courses/filters.py:23 opencourse/courses/forms.py:30
-#: opencourse/courses/forms.py:42 opencourse/courses/models.py:39
+#: opencourse/courses/filters.py:24 opencourse/courses/forms.py:36
+#: opencourse/courses/forms.py:59 opencourse/courses/models.py:40
 #: opencourse/profiles/forms.py:74 opencourse/profiles/forms.py:93
 #: opencourse/templates/courses/course_detail.html:52
 msgid "City"
 msgstr "Ville"
 
-#: opencourse/courses/filters.py:24 opencourse/courses/forms.py:26
-#: opencourse/courses/models.py:51
+#: opencourse/courses/filters.py:25 opencourse/courses/forms.py:11
+#: opencourse/courses/forms.py:37 opencourse/courses/models.py:118
+#: opencourse/templates/courses/center_edit.html:7
+#: opencourse/templates/courses/course_detail.html:96
+msgid "Center"
+msgstr ""
+
+#: opencourse/courses/filters.py:26 opencourse/courses/forms.py:32
+#: opencourse/courses/models.py:52
 msgid "Level"
 msgstr "Niveau"
 
-#: opencourse/courses/filters.py:25 opencourse/courses/models.py:74
-#: opencourse/templates/courses/course_detail.html:109
+#: opencourse/courses/filters.py:27 opencourse/courses/models.py:75
+#: opencourse/templates/courses/course_detail.html:113
 msgid "Age"
 msgstr "L'âge"
 
-#: opencourse/courses/filters.py:26 opencourse/courses/forms.py:28
-#: opencourse/courses/models.py:98
+#: opencourse/courses/filters.py:28 opencourse/courses/forms.py:34
+#: opencourse/courses/models.py:99
 msgid "Language"
 msgstr "Langue"
 
-#: opencourse/courses/filters.py:27 opencourse/courses/models.py:174
+#: opencourse/courses/filters.py:29 opencourse/courses/models.py:196
 msgid "Location"
 msgstr "Emplacement"
 
-#: opencourse/courses/forms.py:23
+#: opencourse/courses/forms.py:29
 msgid "Title"
 msgstr "Titre"
 
-#: opencourse/courses/forms.py:25 opencourse/courses/forms.py:90
+#: opencourse/courses/forms.py:31 opencourse/courses/forms.py:110
+#: opencourse/courses/forms.py:132
 msgid "Description"
 msgstr "Description"
 
-#: opencourse/courses/forms.py:27
+#: opencourse/courses/forms.py:33
 msgid "Extra information"
 msgstr "Des informations supplémentaires"
 
-#: opencourse/courses/forms.py:29 opencourse/courses/models.py:62
-#: opencourse/templates/courses/course_detail.html:123
+#: opencourse/courses/forms.py:35 opencourse/courses/models.py:63
+#: opencourse/templates/courses/course_detail.html:127
 msgid "Duration"
 msgstr "Durée"
 
-#: opencourse/courses/forms.py:51 opencourse/courses/models.py:152
+#: opencourse/courses/forms.py:71 opencourse/courses/models.py:174
 msgid "Currency"
 msgstr "Monnaie"
 
-#: opencourse/courses/forms.py:58
+#: opencourse/courses/forms.py:78
 msgid "Location type"
 msgstr "Type de Lieu"
 
-#: opencourse/courses/forms.py:59
+#: opencourse/courses/forms.py:79
 msgid "Price"
 msgstr "Prix"
 
-#: opencourse/courses/forms.py:75
+#: opencourse/courses/forms.py:95
 msgid "accepted"
 msgstr ""
 
-#: opencourse/courses/forms.py:89
+#: opencourse/courses/forms.py:109 opencourse/courses/forms.py:131
 msgid "Name"
 msgstr ""
 
-#: opencourse/courses/forms.py:91
+#: opencourse/courses/forms.py:111
 msgid "Attachment"
 msgstr ""
 
-#: opencourse/courses/forms.py:92
+#: opencourse/courses/forms.py:112
 #, fuzzy
 #| msgid "Location"
 msgid "Section"
 msgstr "Emplacement"
 
-#: opencourse/courses/models.py:40
+#: opencourse/courses/forms.py:133 opencourse/profiles/forms.py:78
+#: opencourse/profiles/forms.py:94
+msgid "Picture"
+msgstr "Image"
+
+#: opencourse/courses/models.py:41
 #: opencourse/templates/courses/course_search.html:28
 msgid "Cities"
 msgstr "Villes"
 
-#: opencourse/courses/models.py:52
+#: opencourse/courses/models.py:53
 msgid "Levels"
 msgstr "Les niveaux"
 
-#: opencourse/courses/models.py:63
+#: opencourse/courses/models.py:64
 msgid "Durations"
 msgstr "Les durées"
 
-#: opencourse/courses/models.py:75
+#: opencourse/courses/models.py:76
 msgid "Ages"
 msgstr "Les âges"
 
-#: opencourse/courses/models.py:87
+#: opencourse/courses/models.py:88
 msgid "Areas"
 msgstr "Les activités"
 
-#: opencourse/courses/models.py:99
+#: opencourse/courses/models.py:100
 msgid "Languages"
 msgstr "Langues"
 
-#: opencourse/courses/models.py:127
+#: opencourse/courses/models.py:119 opencourse/templates/base.html:55
+msgid "Centers"
+msgstr ""
+
+#: opencourse/courses/models.py:120
+#, fuzzy
+#| msgid "Manage course"
+msgid "Manage center"
+msgstr "Gérer le cours"
+
+#: opencourse/courses/models.py:149
 msgid "Course"
 msgstr "Cours"
 
-#: opencourse/courses/models.py:129
+#: opencourse/courses/models.py:151
 msgid "Manage course"
 msgstr "Gérer le cours"
 
-#: opencourse/courses/models.py:139
+#: opencourse/courses/models.py:161
 msgid "Location Type"
 msgstr "Type de Lieu"
 
-#: opencourse/courses/models.py:140
+#: opencourse/courses/models.py:162
 msgid "Location Types"
 msgstr "Lieux"
 
-#: opencourse/courses/models.py:153
+#: opencourse/courses/models.py:175
 msgid "Currencies"
 msgstr "Monnaies"
 
-#: opencourse/courses/models.py:175
-#: opencourse/templates/courses/course_detail.html:101
+#: opencourse/courses/models.py:197
+#: opencourse/templates/courses/course_detail.html:105
 #: opencourse/templates/courses/course_edit.html:15
 msgid "Locations"
 msgstr "Lieux"
 
-#: opencourse/courses/models.py:189 opencourse/courses/models.py:190
+#: opencourse/courses/models.py:211 opencourse/courses/models.py:212
 msgid "Enrollment"
 msgstr ""
 
-#: opencourse/courses/models.py:191
+#: opencourse/courses/models.py:213
 #, fuzzy
 #| msgid "Manage emails"
 msgid "Manage enrollment"
 msgstr "Gérer les e-mails"
 
-#: opencourse/courses/models.py:215 opencourse/courses/models.py:216
+#: opencourse/courses/models.py:237 opencourse/courses/models.py:238
 #: opencourse/templates/courses/handout_edit.html:7
 msgid "Handout"
 msgstr ""
 
-#: opencourse/courses/models.py:217
+#: opencourse/courses/models.py:239
 #, fuzzy
 #| msgid "Manage course"
 msgid "Manage handout"
+msgstr "Gérer le cours"
+
+#: opencourse/courses/models.py:253
+#, fuzzy
+#| msgid "Manage course"
+msgid "Join request"
+msgstr "Gérer le cours"
+
+#: opencourse/courses/models.py:254
+#: opencourse/templates/courses/centers_list.html:40
+#: opencourse/templates/courses/join_request_list.html:6
+msgid "Join requests"
+msgstr ""
+
+#: opencourse/courses/models.py:255
+#, fuzzy
+#| msgid "Manage course"
+msgid "Manage join request"
 msgstr "Gérer le cours"
 
 #: opencourse/profiles/apps.py:7
@@ -218,10 +259,6 @@ msgstr "Niveau d'éducation"
 #: opencourse/profiles/forms.py:77
 msgid "Years of experience"
 msgstr "Années d'expérience"
-
-#: opencourse/profiles/forms.py:78 opencourse/profiles/forms.py:94
-msgid "Picture"
-msgstr "Image"
 
 #: opencourse/profiles/forms.py:113
 msgid "Score"
@@ -267,12 +304,12 @@ msgid "Professors"
 msgstr "Professeurs"
 
 #: opencourse/profiles/models.py:92
-#: opencourse/templates/courses/course_detail.html:187
+#: opencourse/templates/courses/course_detail.html:191
 msgid "Review"
 msgstr "Evaluer"
 
 #: opencourse/profiles/models.py:93
-#: opencourse/templates/courses/course_detail.html:178
+#: opencourse/templates/courses/course_detail.html:182
 msgid "Reviews"
 msgstr "Commentaires"
 
@@ -293,48 +330,49 @@ msgstr ""
 msgid "SuperProf"
 msgstr "SuperProf"
 
-#: opencourse/templates/base.html:41
+#: opencourse/templates/base.html:43
 msgid "Menu"
 msgstr "Menu"
 
-#: opencourse/templates/base.html:46
+#: opencourse/templates/base.html:48
 msgid "Home"
 msgstr "Page d'accueil"
 
-#: opencourse/templates/base.html:49 opencourse/templates/base.html:53
+#: opencourse/templates/base.html:51 opencourse/templates/base.html:56
 #: opencourse/templates/courses/enrollment_list.html:6
 msgid "Enrollments"
 msgstr ""
 
-#: opencourse/templates/base.html:57
+#: opencourse/templates/base.html:60
+#: opencourse/templates/courses/center_search_results.html:11
 #: opencourse/templates/courses/course_search_results.html:11
 msgid "Search results"
 msgstr "Résultats de la recherche"
 
-#: opencourse/templates/base.html:89
+#: opencourse/templates/base.html:92
 #: opencourse/templates/profiles/profile.html:6
 msgid "Profile"
 msgstr "Profil"
 
-#: opencourse/templates/base.html:92
+#: opencourse/templates/base.html:95
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: opencourse/templates/base.html:96
+#: opencourse/templates/base.html:99
 msgid "Login"
 msgstr "Connexion"
 
-#: opencourse/templates/base.html:99
+#: opencourse/templates/base.html:102
 msgid "Signup"
 msgstr "Inscription"
 
-#: opencourse/templates/base.html:138
+#: opencourse/templates/base.html:141
 msgid "Copyright"
 msgstr "Copyright"
 
-#: opencourse/templates/base.html:134
-msgid "All rights reserved | This template is made with"
-msgstr "Tous droits réservés | This template is made with"
+#: opencourse/templates/base.html:142
+msgid "All rights reserved"
+msgstr ""
 
 #: opencourse/templates/confirm_delete.html:5
 #, fuzzy
@@ -345,6 +383,82 @@ msgstr "Des informations supplémentaires"
 #: opencourse/templates/confirm_delete.html:12
 msgid "Are you sure you want to delete"
 msgstr "Êtes-vous sûr que vous voulez supprimer"
+
+#: opencourse/templates/courses/center_detail.html:28
+#, fuzzy
+#| msgid "Location type"
+msgid "Creation date"
+msgstr "Type de Lieu"
+
+#: opencourse/templates/courses/center_detail.html:30
+#, fuzzy
+#| msgid "Create course"
+msgid "Created by"
+msgstr "Créer un cours"
+
+#: opencourse/templates/courses/center_detail.html:54
+msgid "Join"
+msgstr ""
+
+#: opencourse/templates/courses/center_edit.html:16
+#: opencourse/templates/courses/course_edit.html:27
+msgid "Submit"
+msgstr "Envoyer"
+
+#: opencourse/templates/courses/center_search_results.html:17
+#: opencourse/templates/courses/course_search_results.html:17
+msgid "Filters"
+msgstr "Filtres"
+
+#: opencourse/templates/courses/center_search_results.html:21
+#: opencourse/templates/courses/course_search_results.html:21
+msgid "Filter"
+msgstr "Filtre"
+
+#: opencourse/templates/courses/center_search_results.html:45
+#: opencourse/templates/courses/course_search_results.html:54
+msgid "Details"
+msgstr "Détails"
+
+#: opencourse/templates/courses/center_search_results.html:54
+#, fuzzy
+#| msgid "No courses yet."
+msgid "No centers yet."
+msgstr "Pas de cours encore."
+
+#: opencourse/templates/courses/centers_list.html:17
+#, fuzzy
+#| msgid "Durations"
+msgid "Participations"
+msgstr "Les durées"
+
+#: opencourse/templates/courses/centers_list.html:19
+#, fuzzy
+#| msgid "Find a Professor"
+msgid "Find a center"
+msgstr "Trouver un Professeur"
+
+#: opencourse/templates/courses/centers_list.html:26
+msgid "No participations in the centers yet."
+msgstr ""
+
+#: opencourse/templates/courses/centers_list.html:37
+#, fuzzy
+#| msgid "Manage course"
+msgid "Manage centers"
+msgstr "Gérer le cours"
+
+#: opencourse/templates/courses/centers_list.html:42
+#, fuzzy
+#| msgid "Create course"
+msgid "Create center"
+msgstr "Créer un cours"
+
+#: opencourse/templates/courses/centers_list.html:57
+#, fuzzy
+#| msgid "No courses yet."
+msgid "No your centers yet."
+msgstr "Pas de cours encore."
 
 #: opencourse/templates/courses/course_detail.html:14
 #: opencourse/templates/courses/course_detail.html:59
@@ -371,19 +485,19 @@ msgstr "L'éducation"
 msgid "No professor found."
 msgstr "Pas de professeur trouvés."
 
-#: opencourse/templates/courses/course_detail.html:117
+#: opencourse/templates/courses/course_detail.html:121
 msgid "Student level"
 msgstr "Niveau d'étudiant"
 
-#: opencourse/templates/courses/course_detail.html:127
+#: opencourse/templates/courses/course_detail.html:131
 msgid "The class is taught in"
 msgstr "La classe est enseignée en"
 
-#: opencourse/templates/courses/course_detail.html:181
+#: opencourse/templates/courses/course_detail.html:185
 msgid "Add review"
 msgstr "Ajouter un commentaire"
 
-#: opencourse/templates/courses/course_detail.html:200
+#: opencourse/templates/courses/course_detail.html:204
 msgid "No reviews yet"
 msgstr "Aucun review"
 
@@ -391,30 +505,11 @@ msgstr "Aucun review"
 msgid "Сourse"
 msgstr "Cours"
 
-#: opencourse/templates/courses/course_edit.html:27
-msgid "Submit"
-msgstr "Envoyer"
-
-#: opencourse/templates/courses/course_list.html:6
+#: opencourse/templates/courses/course_list.html:7
 msgid "Create course"
 msgstr "Créer un cours"
 
-#: opencourse/templates/courses/course_list.html:16
-#: opencourse/templates/courses/handout_list.html:26
-msgid "Delete"
-msgstr "Expulser"
-
-#: opencourse/templates/courses/course_list.html:18
-#: opencourse/templates/courses/handout_list.html:28
-msgid "Edit"
-msgstr "Éditer"
-
-#: opencourse/templates/courses/course_list.html:20
-#: opencourse/templates/courses/enrollment_list.html:30
-msgid "Handouts"
-msgstr ""
-
-#: opencourse/templates/courses/course_list.html:23
+#: opencourse/templates/courses/course_list.html:33
 #: opencourse/templates/courses/course_search_results.html:63
 msgid "No courses yet."
 msgstr "Pas de cours encore."
@@ -427,11 +522,18 @@ msgstr "Que voulez-vous apprendre?"
 msgid "Find a Professor"
 msgstr "Trouver un Professeur"
 
-#: opencourse/templates/courses/course_search.html:83
+#: opencourse/templates/courses/course_search.html:68
+#, fuzzy
+#| msgid "Find a Professor"
+msgid "Find a Center"
+msgstr "Trouver un Professeur"
+
+#: opencourse/templates/courses/course_search.html:85
+#: opencourse/templates/courses/course_search.html:102
 msgid "Search"
 msgstr "Recherche"
 
-#: opencourse/templates/courses/course_search.html:91
+#: opencourse/templates/courses/course_search.html:110
 msgid ""
 "From math tutoring to yoga, Superprof is the best and fastest way to find "
 "high-quality teachers."
@@ -439,27 +541,27 @@ msgstr ""
 "De mathématiques a cours de yoga, SuperProf est le meilleur moyen et le plus "
 "rapide pour trouver des enseignants de haute qualité."
 
-#: opencourse/templates/courses/course_search_results.html:17
-msgid "Filters"
-msgstr "Filtres"
+#: opencourse/templates/courses/course_students_list.html:6
+msgid "Course participants"
+msgstr ""
 
-#: opencourse/templates/courses/course_search_results.html:21
-msgid "Filter"
-msgstr "Filtre"
+#: opencourse/templates/courses/course_students_list.html:25
+#, fuzzy
+#| msgid "No courses yet."
+msgid "No participants yet."
+msgstr "Pas de cours encore."
 
-#: opencourse/templates/courses/course_search_results.html:54
-msgid "Details"
-msgstr "Détails"
-
-#: opencourse/templates/courses/enrollment_list.html:22
+#: opencourse/templates/courses/enrollment_list.html:24
+#: opencourse/templates/courses/join_request_list.html:22
 msgid "On"
 msgstr ""
 
-#: opencourse/templates/courses/enrollment_list.html:23
+#: opencourse/templates/courses/enrollment_list.html:25
+#: opencourse/templates/courses/join_request_list.html:23
 msgid "Off"
 msgstr ""
 
-#: opencourse/templates/courses/enrollment_list.html:34
+#: opencourse/templates/courses/enrollment_list.html:38
 #, fuzzy
 #| msgid "No courses yet."
 msgid "No enrollments yet."
@@ -479,6 +581,14 @@ msgstr ""
 msgid "Create handout"
 msgstr "Créer un cours"
 
+#: opencourse/templates/courses/handout_list.html:26
+msgid "Delete"
+msgstr "Expulser"
+
+#: opencourse/templates/courses/handout_list.html:28
+msgid "Edit"
+msgstr "Éditer"
+
 #: opencourse/templates/courses/handout_list.html:31
 msgid "Download"
 msgstr ""
@@ -489,6 +599,12 @@ msgstr ""
 msgid "No handouts yet."
 msgstr "Pas de cours encore."
 
+#: opencourse/templates/courses/join_request_list.html:30
+#, fuzzy
+#| msgid "No courses yet."
+msgid "No join requests yet."
+msgstr "Pas de cours encore."
+
 #: opencourse/templates/profiles/profile.html:12
 msgid "Manage emails"
 msgstr "Gérer les e-mails"
@@ -496,6 +612,9 @@ msgstr "Gérer les e-mails"
 #: opencourse/templates/profiles/profile.html:19
 msgid "Update"
 msgstr "Mise à jour"
+
+#~ msgid "All rights reserved | This template is made with"
+#~ msgstr "Tous droits réservés | This template is made with"
 
 #~ msgid "List courses"
 #~ msgstr "Liste des cours"

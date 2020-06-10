@@ -250,7 +250,7 @@ class JoinRequest(models.Model):
     objects = managers.JoinRequestManager()
 
     class Meta:
-        verbose_name = _("JoinRequest")
+        verbose_name = _("Join request")
         verbose_name_plural = _("Join requests")
         permissions = (("manage_join_request", _("Manage join request")),)
         unique_together = ("center", "professor")
