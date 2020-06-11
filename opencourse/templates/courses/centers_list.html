@@ -45,12 +45,13 @@
               {% if user.professor == center.admin %}
               <li class="list-group-item">
                 <a href="{% url 'courses:centers:detail' center.pk %}">{{center}}</a>
-                <a class="btn btn-outline-danger btn-sm float-right"
+                <a class="btn btn-outline-danger btn-sm float-right text-center"
                   href="{% url 'courses:centers:delete' center.pk %}" role="button">
-                  <i class="fa fa-trash" aria-hidden="true"></i></a>
-                <a class="btn btn-outline-info btn-sm float-right mr-2"
+                  <span class="oi oi-trash"></span></a>
+                <a class="btn btn-outline-info btn-sm float-right mr-2 text-center"
                   href="{% url 'courses:centers:edit' center.pk %}" role="button">
-                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                  <span class="oi oi-pencil "></span></a>
+                  
               </li>
               {% endif %}
               {% empty %}

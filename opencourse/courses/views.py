@@ -22,6 +22,8 @@ from opencourse.profiles.models import Student
 from .mixins import FormsetMixin, JsonFormMixin
 from opencourse.profiles.forms import ReviewForm
 from opencourse.profiles.mixins import ProfessorRequiredMixin, StudentRequiredMixin
+from django.views.generic.list import MultipleObjectMixin
+
 
 REVIEW_COUNT = 10
 
@@ -284,9 +286,10 @@ class CenterListView(ProfessorRequiredMixin, ListView):
         return super().get_context_data(**kwargs)
 
 
-class CenterDetailView(DetailView):
+class CenterDetailView(DetailView, MultipleObjectMixin):
     model = models.Center
     template_name = "courses/center_detail.html"
+    paginate_by = 3
 
     def get_context_data(self, **kwargs):
         professor = getattr(self.request.user, "professor", None)
@@ -299,8 +302,9 @@ class CenterDetailView(DetailView):
         kwargs["join_request_accepted"] = getattr(
             join_request, "accepted", "not_existing"
         )
-
-        return super().get_context_data(**kwargs)
+        object_list = models.Course.objects.filter(center=self.get_object())
+        return super(CenterDetailView, self).get_context_data(
+            object_list=object_list, **kwargs)
 
 
 class CenterDeleteView(ProfessorRequiredMixin, DeleteView):

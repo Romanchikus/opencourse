@@ -23,12 +23,12 @@
           {% if user.professor %}
             <a class="btn btn-outline-danger btn-sm float-right mr-2"
                href="{% url 'courses:handouts:delete' handout.pk %}"
-               role="button">{% trans "Delete" %}</a>
+               role="button"><span class="oi oi-trash"></span></a>
             <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:handouts:edit' handout.pk %}"
-               role="button">{% trans "Edit" %}</a>
+               role="button"><span class="oi oi-pencil "></span></a>
           {% endif %}
           <a class="btn btn-outline-info btn-sm float-right mr-2" href="{{handout.attachment.url}}"
-             role="button" download>{% trans "Download" %}</a>
+             role="button" download><span class="oi oi-data-transfer-download"></span></a>
         </li>
       {% endfor %}
     </ul>

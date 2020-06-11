@@ -10,7 +10,7 @@
   {% if user.professor %}
     <ul class="list-group">
       {% for student in object_list %}
-        <li class="list-group-item"><img style="height: 20px; width: 20px;" src='
+        <li class="list-group-item"><img class="sml-img" src='
           {% if student.picture %}
               {{ student.picture.url }}
           {% else %}

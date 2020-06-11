@@ -37,3 +37,8 @@ body {
 .form-control {
   height: calc(1.5em + 0.75rem + 2px) !important;
 }
+
+.sml-img {
+  height: 20px;
+   width: 20px;
+}

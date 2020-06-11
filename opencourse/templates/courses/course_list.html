@@ -17,15 +17,15 @@
             <a class="float-left" href="{% url 'courses:detail' course.pk %}">{{ course }}</a></div>
           <div class="col-sm-5 float-right">
             <a class="btn btn-outline-danger float-right mx-1 my-1 btn-sm " href="{% url 'courses:delete' course.pk %}"
-               role="button"><i class="fa fa-trash" aria-hidden="true"></i></a>
+               role="button"><span class="oi oi-trash"></span></a>
             <a class="btn btn-outline-warning float-right btn-sm  mx-1 my-1" href="{% url 'courses:edit' course.pk %}"
-               role="button"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+               role="button"><span class="oi oi-pencil "></span></a>
             <a class="btn btn-outline-info float-right btn-sm  mx-1 my-1"
                href="{% url 'courses:handouts:list' course.pk %}" role="button">
-              <i class="fa fa-list-alt" aria-hidden="true"></i></a>
+               <span class="oi oi-list"></span></a>
             <a class="btn btn-outline-info float-right btn-sm mx-1 my-1"
                href="{% url 'courses:students_list' course.pk %}" role="button">
-              <i class="fa fa-users" aria-hidden="true"></i></a>
+               <span class="oi oi-people"></span></a>
           </div>
         </div>
       </li>
