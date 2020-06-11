@@ -304,7 +304,8 @@ class CenterDetailView(DetailView, MultipleObjectMixin):
         )
         object_list = models.Course.objects.filter(center=self.get_object())
         return super(CenterDetailView, self).get_context_data(
-            object_list=object_list, **kwargs)
+            object_list=object_list, **kwargs
+        )
 
 
 class CenterDeleteView(ProfessorRequiredMixin, DeleteView):
