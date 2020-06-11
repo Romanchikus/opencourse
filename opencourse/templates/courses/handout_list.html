@@ -19,7 +19,7 @@
       {% for handout in section.list %}
         <li class="list-group-item">
           <a href="{% url 'courses:handouts:edit' handout.pk %}"></a>
-          <span><b>{{ handout.name }}</b> - {{ handout.description }}</span>
+          <span><b>{{ handout.name }}</b></span>
           {% if user.professor %}
             <a class="btn btn-outline-danger btn-sm float-right mr-2"
                href="{% url 'courses:handouts:delete' handout.pk %}"
@@ -27,8 +27,9 @@
             <a class="btn btn-outline-info btn-sm float-right mr-2" href="{% url 'courses:handouts:edit' handout.pk %}"
                role="button"><span class="oi oi-pencil "></span></a>
           {% endif %}
-          <a class="btn btn-outline-info btn-sm float-right mr-2" href="{{handout.attachment.url}}"
+          <a class="btn btn-outline-info btn-sm float-right mr-2" href="{{ handout.attachment.url }}"
              role="button" download><span class="oi oi-data-transfer-download"></span></a>
+          <div>{{ handout.description }}</div>
         </li>
       {% endfor %}
     </ul>

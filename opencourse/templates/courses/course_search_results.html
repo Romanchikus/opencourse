@@ -44,7 +44,7 @@
                       {% endfor %}
                     </span>
                     <h2>{{ course.title }}</h2>
-                    <p class="mb-2">{{ course.descrip }}</p>
+                    <p class="mb-2">{{ course.descrip|slice:":200" }}...</p>
                     <span class="seen">
                       {% for area in course.area.all %}
                         <span class="position">{{ area }}</span>
