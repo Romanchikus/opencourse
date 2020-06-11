@@ -78,10 +78,6 @@
             Your enrollment request was sent.
           </div>
         {% endif %}
-      {% else %}
-        <a class="btn btn-primary"
-           href="{% url 'courses:detail' course.pk %}" role="button">
-          {% trans "Go to course" %}</a>
       {% endif %}
     </div>
   </div>
