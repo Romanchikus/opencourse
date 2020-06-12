@@ -117,24 +117,3 @@ class EnrollmentCreateForm(forms.ModelForm):
     class Meta:
         model = models.Enrollment
         fields = ["id", "course", "student"]
-
-
-class CenterForm(forms.ModelForm):
-    class Meta:
-        model = models.Center
-        fields = [
-            "name",
-            "description",
-            "picture",
-        ]
-        labels = {
-            "name": _("Name"),
-            "description": _("Description"),
-            "picture": _("Picture"),
-        }
-
-
-class JoinRequestCreateForm(forms.ModelForm):
-    class Meta:
-        model = models.JoinRequest
-        fields = ["id", "center", "professor"]

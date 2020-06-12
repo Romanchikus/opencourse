@@ -113,3 +113,24 @@ class ReviewForm(forms.ModelForm):
             "score": _("Score"),
             "text": _("Text"),
         }
+
+
+class CenterForm(forms.ModelForm):
+    class Meta:
+        model = models.Center
+        fields = [
+            "name",
+            "description",
+            "picture",
+        ]
+        labels = {
+            "name": _("Name"),
+            "description": _("Description"),
+            "picture": _("Picture"),
+        }
+
+
+class JoinRequestCreateForm(forms.ModelForm):
+    class Meta:
+        model = models.JoinRequest
+        fields = ["id", "center", "professor"]

@@ -103,26 +103,6 @@ class CourseLanguage(models.Model):
         return str(self.name)
 
 
-class Center(models.Model):
-    admin = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    name = models.CharField(max_length=40)
-    description = models.TextField(max_length=255, blank=True, null=True)
-    picture = models.ImageField(
-        upload_to="center_pics/%Y-%m-%d/", null=True, blank=True
-    )
-    created = models.DateTimeField(auto_now=True, blank=True, null=True)
-
-    objects = managers.CenterManager()
-
-    class Meta:
-        verbose_name = _("Center")
-        verbose_name_plural = _("Centers")
-        permissions = (("manage_center", _("Manage center")),)
-
-    def __str__(self):
-        return str(self.name)
-
-
 class Course(models.Model):
     professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE, null=True)
@@ -240,20 +220,3 @@ class Handout(models.Model):
 
     def __str__(self):
         return str(self.name)
-
-
-class JoinRequest(models.Model):
-    center = models.ForeignKey(Center, on_delete=models.CASCADE)
-    professor = models.ForeignKey(Professor, on_delete=models.CASCADE)
-    accepted = models.NullBooleanField()
-
-    objects = managers.JoinRequestManager()
-
-    class Meta:
-        verbose_name = _("Join request")
-        verbose_name_plural = _("Join requests")
-        permissions = (("manage_join_request", _("Manage join request")),)
-        unique_together = ("center", "professor")
-
-    def __str__(self):
-        return "{}: {} ({})".format(self.center, self.professor, self.accepted)
