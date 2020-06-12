@@ -151,9 +151,9 @@ class HandoutListView(LoginRequiredMixin, ListView):
         return context
 
     def dispatch(self, request, *args, **kwargs):
+        course_pk = self.kwargs.get("course_pk")
+        course = get_object_or_404(models.Course, pk=course_pk)
         if self.request.user.is_student:
-            course_pk = self.kwargs.get("course_pk")
-            course = get_object_or_404(models.Course, pk=course_pk)
             student = self.request.user.student
             enrollment = models.Enrollment.objects.filter(
                 course=course, student=student
@@ -161,6 +161,8 @@ class HandoutListView(LoginRequiredMixin, ListView):
             has_access = getattr(enrollment, "accepted", False)
             if not has_access:
                 return self.handle_no_permission()
+        elif self.request.user.professor != course.professor:
+            return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -253,21 +255,21 @@ class CenterCreateView(ProfessorRequiredMixin, CreateView):
     success_url = reverse_lazy("courses:centers:list")
 
     def form_valid(self, form):
-        form.instance.admin = self.request.user.professor
-        form.save()
-        return super().form_valid(form)
+        with transaction.atomic():
+            form.instance.admin = self.request.user.professor
+            response = super().form_valid(form)
+            center = self.object
+            assign_perm("manage_center", center.admin.user, center)
+            return response
 
 
-class CenterEditView(ProfessorRequiredMixin, UpdateView):
+class CenterEditView(PermissionRequiredMixin, UpdateView):
     model = models.Center
     template_name = "courses/center_edit.html"
     form_class = forms.CenterForm
+    permission_required = "courses.manage_center"
+    return_403 = True
     success_url = reverse_lazy("courses:centers:list")
-
-    def form_valid(self, form):
-        form.instance.admin = self.request.user.professor
-        form.save()
-        return super().form_valid(form)
 
 
 class CenterListView(ProfessorRequiredMixin, ListView):
@@ -308,10 +310,12 @@ class CenterDetailView(DetailView, MultipleObjectMixin):
         )
 
 
-class CenterDeleteView(ProfessorRequiredMixin, DeleteView):
+class CenterDeleteView(PermissionRequiredMixin, DeleteView):
     model = models.Center
     success_url = reverse_lazy("courses:centers:list")
     template_name = "confirm_delete.html"
+    permission_required = "courses.manage_center"
+    return_403 = True
 
 
 class CenterSearchResultsView(FilterView):
