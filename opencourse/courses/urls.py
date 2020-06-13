@@ -40,25 +40,6 @@ handout_patterns = [
     path("delete/<int:pk>/", views.HandoutDeleteView.as_view(), name="delete"),
 ]
 
-center_patterns = [
-    path("list/", views.CenterListView.as_view(), name="list"),
-    path("create/", views.CenterCreateView.as_view(), name="create"),
-    path("edit/<int:pk>/", views.CenterEditView.as_view(), name="edit"),
-    path("delete/<int:pk>/", views.CenterDeleteView.as_view(), name="delete"),
-    path("detail/<int:pk>/", views.CenterDetailView.as_view(), name="detail"),
-    path(
-        "search-results/",
-        views.CenterSearchResultsView.as_view(),
-        name="search_results",
-    ),
-]
-
-join_request_patterns = [
-    path("admin/", views.JoinRequestrListView.as_view(), name="admin_list"),
-    path("create/", views.JoinRequestCreateView.as_view(), name="create"),
-    path("edit/<int:pk>/", views.JoinRequestUpdateView.as_view(), name="edit"),
-]
-
 urlpatterns = [
     path("", include(course_patterns)),
     path(
@@ -68,15 +49,5 @@ urlpatterns = [
     path(
         "handouts/",
         include((handout_patterns, "opencourse.courses"), namespace="handouts"),
-    ),
-    path(
-        "centers/",
-        include((center_patterns, "opencourse.courses"), namespace="centers"),
-    ),
-    path(
-        "join_requests/",
-        include(
-            (join_request_patterns, "opencourse.courses"), namespace="join_requests"
-        ),
     ),
 ]
