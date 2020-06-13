@@ -124,9 +124,9 @@ class ForbiddenView(TemplateView):
 
 class CenterCreateView(ProfessorRequiredMixin, CreateView):
     model = models.Center
-    template_name = "courses/center_edit.html"
+    template_name = "profiles/center_edit.html"
     form_class = forms.CenterForm
-    success_url = reverse_lazy("courses:centers:list")
+    success_url = reverse_lazy("profiles:centers:list")
 
     def form_valid(self, form):
         with transaction.atomic():
@@ -139,15 +139,15 @@ class CenterCreateView(ProfessorRequiredMixin, CreateView):
 
 class CenterEditView(PermissionRequiredMixin, UpdateView):
     model = models.Center
-    template_name = "courses/center_edit.html"
+    template_name = "profiles/center_edit.html"
     form_class = forms.CenterForm
-    permission_required = "courses.manage_center"
+    permission_required = "profiles.manage_center"
     return_403 = True
-    success_url = reverse_lazy("courses:centers:list")
+    success_url = reverse_lazy("profiles:centers:list")
 
 
 class CenterListView(ProfessorRequiredMixin, ListView):
-    template_name = "courses/centers_list.html"
+    template_name = "profiles/centers_list.html"
 
     def get_queryset(self, *args, **kwargs):
         professor = self.request.user.professor
@@ -164,7 +164,7 @@ class CenterListView(ProfessorRequiredMixin, ListView):
 
 class CenterDetailView(DetailView, MultipleObjectMixin):
     model = models.Center
-    template_name = "courses/center_detail.html"
+    template_name = "profiles/center_detail.html"
     paginate_by = 3
 
     def get_context_data(self, **kwargs):
@@ -186,15 +186,15 @@ class CenterDetailView(DetailView, MultipleObjectMixin):
 
 class CenterDeleteView(PermissionRequiredMixin, DeleteView):
     model = models.Center
-    success_url = reverse_lazy("courses:centers:list")
+    success_url = reverse_lazy("profiles:centers:list")
     template_name = "confirm_delete.html"
-    permission_required = "courses.manage_center"
+    permission_required = "profiles.manage_center"
     return_403 = True
 
 
 class CenterSearchResultsView(FilterView):
     filterset_class = filters.CenterFilter
-    template_name = "courses/center_search_results.html"
+    template_name = "profiles/center_search_results.html"
     paginate_by = 10
 
 
@@ -210,7 +210,7 @@ class JoinRequestUpdateView(ProfessorRequiredMixin, JsonFormMixin, UpdateView):
 
 class JoinRequestrListView(ProfessorRequiredMixin, ListView):
     model = models.JoinRequest
-    template_name = "courses/join_request_list.html"
+    template_name = "profiles/join_request_list.html"
     paginate_by = 15
 
     def get_queryset(self):

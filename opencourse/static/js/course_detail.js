@@ -12,6 +12,24 @@ $("#contact_request").click(function () {
   $.post(url)
 })
 
+
+$("#enroll").click(function() {	
+  let form = $("#enrollment-form")	
+  let url = form.attr('action');	
+  let button = $(this)	
+
+  $.post({	
+    url: url,	
+    data: form.serialize(), // serializes the form's elements.	
+    success: function (data) {	
+      console.log(data); // show response from the php script.	
+      $("#enrollment-sent-alert").removeClass("d-none");	
+      button.hide();	
+    }	
+  });	
+})
+
+
 window.onload = function loadContIcons() {
   var count_value = document.getElementById("ReviewCountCl").getAttribute('value');
   var newspan = document.createElement("span");

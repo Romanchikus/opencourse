@@ -42,3 +42,6 @@ body {
   height: 20px;
    width: 20px;
 }
+p {
+  word-wrap: break-word;
+}
