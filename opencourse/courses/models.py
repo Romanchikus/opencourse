@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 
 from . import managers
-from opencourse.profiles.models import Professor, Student
+from opencourse.profiles.models import Professor, Student, Center
 
 
 class City(models.Model):

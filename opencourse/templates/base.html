@@ -52,7 +52,7 @@
           </li>
         {% elif user.professor %}
           <li class="nav-item"><a class="nav-link" href="{% url 'courses:list' %}">{% trans "Courses" %}</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'courses:centers:list' %}">{% trans "Centers" %}</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'profiles:centers:list' %}">{% trans "Centers" %}</a></li>
           <li class="nav-item"><a class="nav-link" href="{% url 'courses:enrollments:professor_list' %}">{% trans "Enrollments" %}</a></li>
         {% endif %}
         {% if user.is_superuser %}
