@@ -36,7 +36,7 @@
                       <p class="mb-2">{{ center.description }}</p>
                       {% if user.professor %}
                         {% if user.professor != center.admin %}
-                          <form action="{% url 'courses:join_requests:create' %}" method="post" class="d-none"
+                          <form action="{% url 'profiles:join_requests:create' %}" method="post" class="d-none"
                                 id="join-request-form">
                             {% csrf_token %}
                             {{ join_request_form }}

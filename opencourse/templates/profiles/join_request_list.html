@@ -17,7 +17,7 @@
               data-toggle="toggle"
               data-size="xs"
               class="status-toggle mr-3"
-              data-ajax-target="{% url "courses:join_requests:edit" join_request.pk %}"
+              data-ajax-target="{% url "profiles:join_requests:edit" join_request.pk %}"
               {% if join_request.accepted %} checked {% endif %}
               data-on="{% trans 'On' %}"
               data-off="{% trans 'Off' %}">

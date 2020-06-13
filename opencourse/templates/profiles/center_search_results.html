@@ -15,7 +15,7 @@
         <div class="col-lg-4 sidebar">
           <div class="sidebar-box bg-white p-4 ftco-animate fadeInUp ftco-animated">
             <h3 class="heading-sidebar">{% trans "Filters" %}</h3>
-            <form action="{% url 'courses:centers:search_results' %}" class="bg-white contact-form" method="get">
+            <form action="{% url 'profiles:centers:search_results' %}" class="bg-white contact-form" method="get">
               {{ filter.form|crispy }}
               <div class="form-group">
                 <input type="submit" value='{% trans "Filter" %}' class="btn btn-primary py-3 px-5">
@@ -41,7 +41,7 @@
                     </span>
                     <h2>{{ center.name }}</h2>
                     <p class="mb-2">{{ center.descrip }}</p>
-                    <p><a href="{% url 'courses:centers:detail' center.pk %}"
+                    <p><a href="{% url 'profiles:centers:detail' center.pk %}"
                           class="btn btn-primary">{% trans "Details" %}</a>
                     </p>
                   </div>
