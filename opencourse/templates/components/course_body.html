@@ -60,7 +60,7 @@
           {% csrf_token %}
           {{ enrollment_form }}
         </form>
-        {% if enrollment_accepted%}
+        {% if not center %}
           {% if enrollment_accepted is None %}
             <div class="alert alert-primary" role="alert">
               Your enrollment is under review.

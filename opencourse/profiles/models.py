@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from guardian.mixins import GuardianUserMixin
 from . import managers
 
+
 class User(GuardianUserMixin, AbstractUser):
     @property
     def profile(self):

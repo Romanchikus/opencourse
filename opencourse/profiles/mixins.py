@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy
 from django.http import JsonResponse
 
+
 class ProfessorRequiredMixin(PermissionRequiredMixin):
     permission_required = "profiles.access_professor_pages"
     login_url = reverse_lazy("profiles:403")

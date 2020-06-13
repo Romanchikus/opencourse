@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class CenterManager(models.Manager):
     use_for_related_fields = True
 
